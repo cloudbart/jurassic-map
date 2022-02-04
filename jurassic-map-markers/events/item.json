@@ -1,0 +1,7 @@
+{
+ "id": { "S": "vehicle03" },
+ "ycoord": { "N": "235" },
+ "name": { "S": "Vehicle 03" },
+ "xcoord": { "N": "275" },
+ "color": { "S": "green" }
+}

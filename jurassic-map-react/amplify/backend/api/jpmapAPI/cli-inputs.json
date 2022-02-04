@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "jpmapAPI",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/ec2-user/environment/jurassic-map-react/amplify/backend/api/jpmapAPI/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authjpmapreact0e8d8bd2"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2022-01-17T03:02:14.902Z",
+        "keyDescription": ""
+      }
+    ]
+  }
+}
