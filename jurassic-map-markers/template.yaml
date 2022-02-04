@@ -34,6 +34,28 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       Tracing: Active
+  # Lambda function for performing vehicle tours map marker updates
+  mapMarkerTourVehiclesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/mapMarkerLambda.mapMarkerHandler
+      Runtime: nodejs14.x
+      Layers:
+        - !Ref turfLayer
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: JurassicMap map-markers updater function
+      Policies:
+        # Give Lambda basic execution Permission
+        - AWSLambdaBasicExecutionRole
+        # Give Lambda DynamoDB read and write permissions
+        - DynamoDBReadPolicy:
+            TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+        - DynamoDBWritePolicy:
+            TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+      Tracing: Active
   # State Machine for orchestration map marker updates and controls
   mapMarkersUpdateMachine:
     Type: AWS::Serverless::StateMachine
