@@ -101,7 +101,7 @@ Resources:
             Description: Schedule for running mapMarker's update State Machine every minute
             # NOTE Schedulers begin disabled, must be manually enabled
             Enabled: false
-            Input: '[{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"dilo01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"rex01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"bary01"}]'
+            Input: '[{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"dilo01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"rex01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"bary01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"procert01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"metricanth01"}]'
         Scheduler02:
           Type: Schedule
           Properties:
@@ -110,7 +110,7 @@ Resources:
             Description: Schedule for running mapMarker's update State Machine every minute
             # NOTE Schedulers begin disabled, must be manually enabled
             Enabled: false
-            Input: '[{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"dilo01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"rex01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"bary01"}]'
+            Input: '[{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"brachi03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike02"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"trike03"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"dilo01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"rex01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"bary01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"procert01"},{"table":"mapMarker-yr5q33is7ngxno7igxguwgezye-dev","id":"metricanth01"}]'
   # CloudWatch LogGroup for streaming Step Function log events
   updateMachineLogGroup:
     Type: AWS::Logs::LogGroup
