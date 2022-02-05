@@ -69,8 +69,9 @@ function App({ signOut, user }) {
         drawMarker(ctx, 'raptor03') // Raptor 3
         drawMarker(ctx, 'rex01') // TRex 1
         drawMarker(ctx, 'dilo01') // Dilophosaur 1
-        drawMarker(ctx, 'cerat01') // Ceratosaur 1
+        drawMarker(ctx, 'procerat01') // Proceratosaur 1
         drawMarker(ctx, 'bary01') // Baryonyx 1
+        drawMarker(ctx, 'metricanth01') // Metricanthosaurus 1
         drawMarker(ctx, 'trike01') // Triceratops 1
         drawMarker(ctx, 'trike02') // Triceratops 2
         drawMarker(ctx, 'trike03') // Triceratops 3

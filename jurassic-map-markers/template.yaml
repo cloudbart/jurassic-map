@@ -46,7 +46,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      Description: JurassicMap map-markers updater function
+      Description: JurassicMap tour vehicle map-markers updater function
       Policies:
         # Give Lambda basic execution Permission
         - AWSLambdaBasicExecutionRole
