@@ -1,0 +1,13 @@
+--- To-DO List ---
+
+fix console logging format for map markers
+add log-output to map interface
+Add herrerasaurs
+Add parasauralophus
+Add Gallimimus
+helicopter coordinates
+boat coordinates
+tour vehicles route 2
+table name parameterize - lambda variable?
+convert to better map
+add CloudWatch Dashboard to SAM template

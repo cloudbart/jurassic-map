@@ -194,7 +194,7 @@ exports.mapMarkerHandler = (event, context, callback) => {
     console.log('InputRecieved: ', JSON.stringify(event));
     // Populate DynamoDB client parameters
     let params = {
-        TableName: event.table,
+        TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',
         Key: { 'id': { S: event.id } }
     };
     // Call DynamoDB to read the mapMarker item current coordinates from the table
@@ -213,7 +213,7 @@ exports.mapMarkerHandler = (event, context, callback) => {
             randomWithin(data.Item);
             // Write newItem back to DDB
             dynamodb.putItem({
-                TableName: event.table,
+                TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',
                 Item: newItem
             }, function(err, data) {
                 if (err) {
