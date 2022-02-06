@@ -42,10 +42,10 @@ function App({ signOut, user }) {
           ctx.lineWidth = 2
           ctx.beginPath()
           if (typeof frameCount != "undefined") {
-            ctx.arc(x, y, 4 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
+            ctx.arc(x, y, 8 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
           }
           else {
-            ctx.arc(x, y, 4, 0, 2 * Math.PI, false)
+            ctx.arc(x, y, 8, 0, 2 * Math.PI, false)
           }
           ctx.fillStyle = color
           ctx.fill()
@@ -95,12 +95,12 @@ function App({ signOut, user }) {
           <table>
             <thead>
               <tr>
-                <th><h2>Jurassic Park Map 0.4</h2></th>
+                <th><h2>Jurassic Park Map 0.42</h2></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><Canvas draw={draw} style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 75 }} resizeMode="contain"/></td>
+                <td><Canvas draw={draw} style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></td>
                 <td></td>
               </tr>
               <tr>
