@@ -30,7 +30,7 @@ function paddockLookup(input) {
                 ]
             ]);
             break;
-        case 'gailliLoc01':
+        case 'galliLoc01':
             paddock = helpers.polygon([
                 [
                     [1155, 1002],
@@ -83,16 +83,13 @@ function paddockLookup(input) {
         case 'diloLoc01':
             paddock = helpers.polygon([
                 [
-                    [1087, 1027],
-                    [1144, 1005],
-                    [1113, 978],
-                    [1045, 984]
-                    [971, 840],
-                    [963, 837],
-                    [1015, 902],
-                    [1059, 959],
-                    [1075, 988],
-                    [1087, 1027]
+                    [1086, 1027],
+                    [1116, 1015],
+                    [1027, 916],
+                    [1018, 877],
+                    [964, 838],
+                    [1009, 948],
+                    [1086, 1027]
                 ]
             ]);
             break;
@@ -203,7 +200,7 @@ exports.mapMarkerHandler = (event, context, callback) => {
         TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',
         Key: { 'id': { S: event.id } }
     };
-    // Call DynamoDB to read the mapMarker item current coordinates from the table
+    // Call DynamoDB to read the current mapMarker item from the table
     dynamodb.getItem(params, function(err, data) {
         // Check for getItem errors
         if (err) {

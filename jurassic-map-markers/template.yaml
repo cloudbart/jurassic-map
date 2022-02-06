@@ -100,7 +100,7 @@ Resources:
             Name: JurassicMapMarkerScheduler01
             Description: Schedule for running mapMarker's update State Machine every minute
             # NOTE Schedulers begin disabled, must be manually enabled
-            Enabled: true
+            Enabled: false
             Input: '[{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"}]'
         Scheduler02:
           Type: Schedule

@@ -11,3 +11,13 @@ tour vehicles route 2
 table name parameterize - lambda variable?
 make map window zoomable within viewport
 add CloudWatch Dashboard to SAM template
+add DynamoDB table to SAM template
+
+JSON formatter
+https://jsonformatter.curiousconcept.com/#
+
+"max-height: 100%; max-width: 100%"
+
+
+REGEX for cleaning up brackets
+\[[^\]]*\]
