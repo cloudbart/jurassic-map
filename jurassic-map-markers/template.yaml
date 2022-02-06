@@ -34,6 +34,7 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       Tracing: Active
+      AutoPublishAlias: live
   # Lambda function for performing vehicle tours map marker updates
   mapMarkerTourVehiclesFunction:
     Type: AWS::Serverless::Function
@@ -56,6 +57,7 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       Tracing: Active
+      AutoPublishAlias: live
   # State Machine for orchestration map marker updates and controls
   mapMarkersUpdateMachine:
     Type: AWS::Serverless::StateMachine
@@ -71,7 +73,7 @@ Resources:
               States:
                 MapMarkerState:
                   Type: Task
-                  Resource: !GetAtt mapMarkerFunction.Arn
+                  Resource: !Ref mapMarkerFunction.Alias
                   End: true
             End: true
       Logging:
