@@ -100,7 +100,7 @@ function App({ signOut, user }) {
             </thead>
             <tbody>
               <tr>
-                <td><Canvas draw={draw} /></td>
+                <td><Canvas draw={draw} style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 75 }} resizeMode="contain"/></td>
                 <td></td>
               </tr>
               <tr>

@@ -13,7 +13,7 @@ const useCanvas = draw => {
 
     const render = () => {
       const map_img = new Image()
-      map_img.src = "jpMap_600x750.png"
+      map_img.src = "jpMap_2261x2492.png"
       canvas.width = map_img.width
       canvas.height = map_img.height
       context.drawImage(map_img, 0, 0)
