@@ -8,13 +8,12 @@ align-items: center;
 }
 
 table {
-border: 2px solid lightgray;
-width: 800px;
+width: 750px;
 height: 200px;
 }
 
 th {
-border-bottom: 1px solid black;
+border-bottom: 2px solid black;
 }
 
 td {
