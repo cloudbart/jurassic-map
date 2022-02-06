@@ -14,7 +14,6 @@ var paddock;
 
 // Function for looking up and setting the current mapMarker's paddock coordinates
 function paddockLookup(input) {
-    console.log("Current Paddock: ", input);
     switch (input) {
         case 'herbLoc01':
             paddock = helpers.polygon([
@@ -171,20 +170,19 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log("Updating marker:", tempItem.name.S);
-            console.log("New coords:", tempItem.xcoord.N, ",", tempItem.ycoord.N);
+            console.log(tempItem.name.S,"- Coords:",tempItem.xcoord.N,tempItem.ycoord.N,"- Padock:",tempItem.paddockId.S);
             newItem = tempItem;
             return true;
         }
         else {
             // Check for too many attempts
-            if (attempts == 10) {
-                console.log("MARKER OUT OF BOUNDS");
+            if (attempts == 15) {
+                console.log("ERROR",tempItem.name.S,"fence collision. Checking...");
                 return;
             }
             // Continue mapMarker update attempts
             else {
-                console.log("NOT WITHIN, RETRYING");
+                console.log("PROXIMITY ALERT -",tempItem.name.S,"- Paddock:",tempItem.paddockId.S);
                 attempts++;
             }
         }
@@ -193,8 +191,6 @@ function randomWithin(input) {
 
 //Function handler code
 exports.mapMarkerHandler = (event, context, callback) => {
-    // Log the received input data event
-    console.log('InputRecieved: ', JSON.stringify(event));
     // Populate DynamoDB client parameters
     let params = {
         TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',

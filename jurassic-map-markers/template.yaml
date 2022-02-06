@@ -58,6 +58,9 @@ Resources:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       Tracing: Active
       AutoPublishAlias: live
+      DeploymentPreference:
+        Enabled: true
+        Type: AllAtOnce
   # State Machine for orchestration map marker updates and controls
   mapMarkersUpdateMachine:
     Type: AWS::Serverless::StateMachine
@@ -118,3 +121,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: "/stepfunctions/mapMarkersUpdateMachine-Logs"
+Outputs:
+  managementURL:
+    Description: Serverless application mgmt page URL
+    Value: 'https://console.aws.amazon.com/lambda/home?region=us-east-1#/applications/JurassicMapMarkerControls'
