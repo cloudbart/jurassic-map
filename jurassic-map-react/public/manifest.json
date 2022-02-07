@@ -11,6 +11,21 @@
       "src": "jpMap_600x750.png",
       "type": "image/png",
       "sizes": "600x750"
+    },
+    {
+      "src": "mapGuideTop_715x345.png",
+      "type": "image/png",
+      "sizes": "715x345"
+    },
+    {
+      "src": "mapGuideMiddle_715x1395.png",
+      "type": "image/png",
+      "sizes": "715x1395"
+    },
+    {
+      "src": "mapGuideBottom_715x250.png",
+      "type": "image/png",
+      "sizes": "715x250"
     }
   ],
   "start_url": ".",
