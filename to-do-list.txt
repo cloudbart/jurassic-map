@@ -16,8 +16,6 @@ add map reference panels
 JSON formatter
 https://jsonformatter.curiousconcept.com/#
 
-"max-height: 100%; max-width: 100%"
-
 
 REGEX for cleaning up brackets
 \[[^\]]*\]

@@ -95,13 +95,17 @@ function App({ signOut, user }) {
           <table>
             <thead>
               <tr>
-                <th><h2>Jurassic Park Map 0.42</h2></th>
+                <th colSpan={2}><h2>Jurassic Park Map 0.44</h2></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><Canvas draw={draw} style={{ alignSelf: 'center', width: '95%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></td>
-                <td></td>
+                <td>
+                  <tr><img src="mapGuideTop_715x345.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
+                  <tr><img src="mapGuideMiddle_715x1395.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
+                  <tr><img src="mapGuideBottom_715x250.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
+                </td>
+                <td ><Canvas draw={draw} style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></td>
               </tr>
               <tr>
                 <td colSpan={2}><h3>UserId: {user.username}</h3></td>

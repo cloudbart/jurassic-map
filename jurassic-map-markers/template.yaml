@@ -34,7 +34,7 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       Tracing: Active
-      AutoPublishAlias: live
+      AutoPublishAlias: DevAlias
   # Lambda function for performing vehicle tours map marker updates
   mapMarkerTourVehiclesFunction:
     Type: AWS::Serverless::Function
