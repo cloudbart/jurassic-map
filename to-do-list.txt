@@ -1,8 +1,8 @@
 --- To-DO List ---
 
 add log-output to map interface
-Add herrerasaurs
-Add parasauralophus
+Add Herrerasaurs
+Add Parasauralophus
 Add Gallimimus
 helicopter route
 boat route
