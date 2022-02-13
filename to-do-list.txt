@@ -2,7 +2,6 @@
 
 add log-output to map interface
 Add Herrerasaurs
-Add Parasauralophus
 Add Gallimimus
 helicopter route
 boat route

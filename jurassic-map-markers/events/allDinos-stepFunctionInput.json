@@ -1,45 +1,43 @@
-[
+[{
+        "id": "parasaur01"
+    },
+    {
+        "id": "parasaur02"
+    },
+    {
+        "id": "parasaur03"
+    },
     {
         "id": "brachi01"
     },
     {
-
         "id": "brachi02"
     },
     {
-
         "id": "brachi03"
     },
     {
-
         "id": "trike01"
     },
     {
-
         "id": "trike02"
     },
     {
-
         "id": "trike03"
     },
     {
-
         "id": "dilo01"
     },
     {
-
         "id": "rex01"
     },
     {
-
         "id": "bary01"
     },
     {
-
         "id": "procerat01"
     },
     {
-
         "id": "metricanth01"
     }
 ]
