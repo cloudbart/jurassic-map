@@ -15,6 +15,22 @@ var paddock;
 // Function for looking up and setting the current mapMarker's paddock coordinates
 function paddockLookup(input) {
     switch (input) {
+        case 'gallimimusLoc01':
+            paddock = helpers.polygon([
+                [
+                    [1159, 1004],
+                    [1272, 963],
+                    [1275, 738],
+                    [1409, 703],
+                    [1445, 664],
+                    [1223, 715],
+                    [1103, 710],
+                    [1048, 781],
+                    [1027, 870],
+                    [1159, 1004]
+                ]
+            ]);
+            break;
         case 'herbLoc01':
             paddock = helpers.polygon([
                 [
@@ -170,19 +186,19 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log(tempItem.name.S,"- Coords:",tempItem.xcoord.N,tempItem.ycoord.N,"- Padock:",tempItem.paddockId.S);
+            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N, "- Padock:", tempItem.paddockId.S);
             newItem = tempItem;
             return true;
         }
         else {
             // Check for too many attempts
             if (attempts == 15) {
-                console.log("ERROR",tempItem.name.S,"fence collision. Checking...");
+                console.log("ERROR", tempItem.name.S, "fence collision. Checking...");
                 return;
             }
             // Continue mapMarker update attempts
             else {
-                console.log("PROXIMITY ALERT -",tempItem.name.S,"- Paddock:",tempItem.paddockId.S);
+                console.log("PROXIMITY ALERT -", tempItem.name.S, "- Paddock:", tempItem.paddockId.S);
                 attempts++;
             }
         }
