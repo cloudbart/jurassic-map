@@ -41,9 +41,11 @@ function App({ signOut, user }) {
           color = item.color
           ctx.lineWidth = 2
           ctx.beginPath()
+          //Check if marker should be animated, presence of frameCount value indicates animation
           if (typeof frameCount != "undefined") {
             ctx.arc(x, y, 8 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
           }
+          //If frameCount is undefined, then the marker should not be animated
           else {
             ctx.arc(x, y, 8, 0, 2 * Math.PI, false)
           }
@@ -75,6 +77,9 @@ function App({ signOut, user }) {
         drawMarker(ctx, 'trike01') // Triceratops 1
         drawMarker(ctx, 'trike02') // Triceratops 2
         drawMarker(ctx, 'trike03') // Triceratops 3
+        drawMarker(ctx, 'parasaur01') // Parasaurolophus 1
+        drawMarker(ctx, 'parasaur02') // Parasaurolophus 2
+        drawMarker(ctx, 'parasaur03') // Parasaurolophus 3
         drawMarker(ctx, 'brachi01') // Brachiosaurus 1
         drawMarker(ctx, 'brachi02') // Brachiosaurus 2
         drawMarker(ctx, 'brachi03') // Brachiosaurus 3
@@ -95,7 +100,7 @@ function App({ signOut, user }) {
           <table>
             <thead>
               <tr>
-                <th colSpan={2}><h2>Jurassic Park Map 0.44</h2></th>
+                <th colSpan={2}><h2>Jurassic Park Map 0.45</h2></th>
               </tr>
             </thead>
             <tbody>
