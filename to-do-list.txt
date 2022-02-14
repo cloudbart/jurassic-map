@@ -9,6 +9,8 @@ table name parameterize - lambda variable?
 make map window zoomable within viewport
 add CloudWatch Dashboard to SAM template
 add DynamoDB table to SAM template
+add mapMarker labels
+add mapMarker labels display filter
 
 
 JSON formatter
