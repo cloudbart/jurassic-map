@@ -83,6 +83,15 @@ function App({ signOut, user }) {
         drawMarker(ctx, 'brachi01') // Brachiosaurus 1
         drawMarker(ctx, 'brachi02') // Brachiosaurus 2
         drawMarker(ctx, 'brachi03') // Brachiosaurus 3
+        drawMarker(ctx, 'gallimimus01') // Gallimimus 1
+        drawMarker(ctx, 'gallimimus02') // Gallimimus 2
+        drawMarker(ctx, 'gallimimus03') // Gallimimus 3
+        drawMarker(ctx, 'gallimimus04') // Gallimimus 4
+        drawMarker(ctx, 'gallimimus05') // Gallimimus 5
+        drawMarker(ctx, 'gallimimus06') // Gallimimus 6
+        drawMarker(ctx, 'gallimimus07') // Gallimimus 7
+        drawMarker(ctx, 'gallimimus08') // Gallimimus 8
+        drawMarker(ctx, 'gallimimus09') // Gallimimus 9
         drawMarker(ctx, 'vehicle01', frameCount) // Vehicle 1
         drawMarker(ctx, 'vehicle02', frameCount) // Vehicle 2
         drawMarker(ctx, 'vehicle03', frameCount) // Vehicle 3 
@@ -100,7 +109,7 @@ function App({ signOut, user }) {
           <table>
             <thead>
               <tr>
-                <th colSpan={2}><h2>Jurassic Park Map 0.45</h2></th>
+                <th colSpan={2}><h2>Jurassic Park Map 0.46</h2></th>
               </tr>
             </thead>
             <tbody>
