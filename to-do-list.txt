@@ -1,5 +1,7 @@
 --- To-DO List ---
 
+add raptors paddock
+add herd logic
 add log-output to map interface
 Add Herrerasaurs
 helicopter route

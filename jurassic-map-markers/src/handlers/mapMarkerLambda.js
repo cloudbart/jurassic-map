@@ -45,6 +45,20 @@ function paddockLookup(input) {
                 ]
             ]);
             break;
+        case 'raptorLoc01':
+            paddock = helpers.polygon([
+                [
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    []
+                ]
+            ]);
+            break;
         case 'galliLoc01':
             paddock = helpers.polygon([
                 [

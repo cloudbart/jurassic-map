@@ -117,3 +117,5 @@ awsconfiguration.json
 #SAM
 .aws-sam
 
+#To-do list
+to-do-list.txt
