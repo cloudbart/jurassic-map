@@ -51,7 +51,8 @@ function paddockLookup(input) {
                     [700, 930],
                     [745, 930],
                     [745, 900],
-                    [700, 900]
+                    [700, 900],
+                    [700, 930]
                 ]
             ]);
             break;
@@ -196,7 +197,7 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N, "- Padock:", tempItem.paddockId.S);
+            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N, "- Paddock:", tempItem.paddockId.S);
             newItem = tempItem;
             return true;
         }
