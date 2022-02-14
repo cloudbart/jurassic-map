@@ -109,7 +109,7 @@ function App({ signOut, user }) {
           <table>
             <thead>
               <tr>
-                <th colSpan={2}><h2>Jurassic Park Map 0.47</h2></th>
+                <th colSpan={2}><h2>Jurassic Park Map 0.48</h2></th>
               </tr>
             </thead>
             <tbody>
