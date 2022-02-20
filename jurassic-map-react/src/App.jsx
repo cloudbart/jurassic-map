@@ -106,30 +106,21 @@ function App({ signOut, user }) {
   return (
     <>
       <div className="App">
-          <table>
-            <thead>
-              <tr>
-                <th colSpan={2}><h2>Jurassic Park Map 0.48</h2></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <tr><img src="mapGuideTop_715x345.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
-                  <tr><img src="mapGuideMiddle_715x1395.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
-                  <tr><img src="mapGuideBottom_715x250.png" style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></tr>
-                </td>
-                <td ><Canvas draw={draw} style={{ alignSelf: 'center', width: '100%', borderWidth: 1, borderRadius: 10 }} resizeMode="contain"/></td>
-              </tr>
-              <tr>
-                <td colSpan={2}><h3>UserId: {user.username}</h3></td>
-              </tr>
-              <tr>
-                <td colSpan={2}><button onClick={signOut}>Sign out</button></td>
-              </tr>
-            </tbody>
-          </table>
+        <span className="header"><h1>Jurassic Park - Monitoring System</h1></span>
+        <div className="main">
+          <div className="map-table">
+             <div class="mapCell1"><img src="mapGuideTop_715x345.png"/></div>
+             <div class="mapCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
+             <div class="mapCell3"><img src="mapGuideBottom_715x250.png"/></div>
+             <div class="mapCell4"><button onClick={signOut}>Sign out</button></div>
+             <div class="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
+          </div>
+          <div className="events-table">
+            <iframe scrolling="no" height="660px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Events&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfVE1ubVdTbUJyIiwiQyI6IjNrdTlvbGg5aTZ1dXRnamlkZDVhdmlhcjN1IiwiSSI6InVzLWVhc3QtMTo3ZjdmOTFkMC1hYjFlLTRkODItOGMzYS1iOTkzZWExNzg4MzgiLCJNIjoiUHVibGljIn0="/>
+          </div>
+        </div>
       </div>
+      <span className="footer"><h3>jurassic-map v.50 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</h3></span>
     </>
   );
 }
