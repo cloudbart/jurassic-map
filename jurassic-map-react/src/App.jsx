@@ -120,7 +120,7 @@ function App({ signOut, user }) {
           </div>
         </div>
       </div>
-      <span className="footer"><h3>JurassicMap v.50 - @CloudBart 2022</h3></span>
+      <span className="footer"><h3>jurassic-map v.50 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</h3></span>
     </>
   );
 }
