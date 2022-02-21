@@ -197,7 +197,7 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N, "- Paddock:", tempItem.paddockId.S);
+            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N+"\n","Paddock:", tempItem.paddockId.S);
             newItem = tempItem;
             return true;
         }
