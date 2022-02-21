@@ -197,19 +197,19 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log(tempItem.name.S, "- Coords:", tempItem.xcoord.N, tempItem.ycoord.N+"\n","Paddock:", tempItem.paddockId.S);
+            console.log(tempItem.name.S,"("+tempItem.xcoord.N+","+tempItem.ycoord.N+")");
             newItem = tempItem;
             return true;
         }
         else {
             // Check for too many attempts
-            if (attempts == 15) {
-                console.log("ERROR", tempItem.name.S, "fence collision. Checking...");
+            if (attempts >= 12) {
+                console.log("FAULT",tempItem.paddockId.S,"fence collision!");
                 return;
             }
             // Continue mapMarker update attempts
             else {
-                console.log("PROXIMITY ALERT -", tempItem.name.S, "- Paddock:", tempItem.paddockId.S);
+                console.log("PROXIMITY ALERT ("+tempItem.id.S+")");
                 attempts++;
             }
         }

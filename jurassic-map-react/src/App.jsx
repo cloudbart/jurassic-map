@@ -116,11 +116,11 @@ function App({ signOut, user }) {
              <div class="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
           </div>
           <div className="events-table">
-            <iframe scrolling="no" height="660px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Events&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfVE1ubVdTbUJyIiwiQyI6IjNrdTlvbGg5aTZ1dXRnamlkZDVhdmlhcjN1IiwiSSI6InVzLWVhc3QtMTo3ZjdmOTFkMC1hYjFlLTRkODItOGMzYS1iOTkzZWExNzg4MzgiLCJNIjoiUHVibGljIn0="/>
+            <iframe scrolling="no" height="560px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTo5MDlkMThmYS03ODlmLTRlYTktOTBjOC03YjUxYjZiMDJhMTIiLCJNIjoiUHVibGljIn0="/>
           </div>
         </div>
       </div>
-      <span className="footer"><h3>jurassic-map v.50 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</h3></span>
+      <span className="footer"><h3>jurassic-map v.51 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</h3></span>
     </>
   );
 }
