@@ -9,8 +9,9 @@ phases:
       - echo "Beginnging jurassic-map GitHub and CodeCommit sync"
   pre_build:
     commands:
-      - git config --replace-all user.email "bartacus@amazon.com"
-      - git config --replace-all user.name "bartacus"  
+      - cd ~
+      - git config --global user.email "bartacus@amazon.com"
+      - git config --global user.name "bartacus" 
       - mkdir temp
       - cd temp/
       - echo "Clone GitHub repo"
