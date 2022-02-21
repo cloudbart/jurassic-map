@@ -9,6 +9,8 @@ phases:
       - echo "Beginnging jurassic-map GitHub and CodeCommit sync"
   pre_build:
     commands:
+      - git config --replace-all user.email "bartacus@amazon.com"
+      - git config --replace-all user.name "bartacus"  
       - mkdir temp
       - cd temp/
       - echo "Clone GitHub repo"
@@ -20,8 +22,8 @@ phases:
   build:
     commands:
       - cd jurassic-map-mirror/
-      - git status
       - git add .
+      - git status
       - git commit -a -m "GitHub mirror `date`"
       - git push
   post_build:
