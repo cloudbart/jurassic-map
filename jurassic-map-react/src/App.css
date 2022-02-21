@@ -20,7 +20,7 @@ html {
 }
 
 .map-table {
-  min-width: 470px;
+  min-width: 400px;
   max-width: 67%;
   display: grid;
   margin: auto;
