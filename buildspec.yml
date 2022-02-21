@@ -16,6 +16,9 @@ phases:
       - cd temp/
       - echo "Clone GitHub repo"
       - git clone https://github.com/cloudbart/jurassic-map.git
+      - cd jurassic-map/
+      - COMMENT=$(git log -1 --pretty=%B)
+      - cd .. 
       - echo "Clone CodeCommit mirror repo"
       - git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror
       - echo "Copy GitHub repo to CodeCommit mirror repo"
@@ -25,7 +28,7 @@ phases:
       - cd jurassic-map-mirror/
       - git add .
       - git status
-      - git commit -a -m "GitHub mirror `date`"
+      - git commit -a -m "$COMMENT"
       - git push
   post_build:
     commands:
