@@ -18,7 +18,7 @@ phases:
       - git clone https://github.com/cloudbart/jurassic-map.git
       - echo "Clone CodeCommit mirror repo"
       - git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror
-      - echo "Full copy of GitHub repo to CodeCommit mirror repo"
+      - echo "Copy GitHub repo to CodeCommit mirror repo"
       - cp -a jurassic-map/* jurassic-map-mirror/.
   build:
     commands:
