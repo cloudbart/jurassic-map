@@ -28,7 +28,7 @@ phases:
       - cd jurassic-map-mirror/
       - git add .
       - git status
-      - git commit -a -m "$COMMENT"
+      - git commit -a -m "Mirror $COMMENT"
       - git push
   post_build:
     commands:
