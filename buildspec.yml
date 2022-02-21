@@ -1,0 +1,26 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo "Beginnging jurassic-map GitHub and CodeCommit sync"
+  pre_build:
+    commands:
+      - mkdir temp
+      - cd temp/
+      - echo "Clone GitHub repo"
+      - git clone https://github.com/cloudbart/jurassic-map.git
+      - echo "Clone CodeCommit mirror repo"
+      - git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror
+      - echo "Full copy of GitHub repo to CodeCommit mirror repo"
+      - cp -a jurassic-map/* jurassic-map-mirror/.
+  build:
+    commands:
+      - cd jurassic-map-mirror/
+      - git status
+      - git add .
+      - git commit -a -m "GitHub mirror `date`"
+      - git push
+  post_build:
+    commands:
+      - echo "Completed jurassic-map repo sync on `date`"
