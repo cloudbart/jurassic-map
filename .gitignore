@@ -115,7 +115,8 @@ aws-exports.js
 awsconfiguration.json
 
 #SAM
-.aws-sam
+.aws-sam/
+samconfig.toml
 
 #My personal notes
 to-do-list.txt
