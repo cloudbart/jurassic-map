@@ -26,10 +26,11 @@ phases:
   build:
     commands:
       - cd jurassic-map-mirror/
+      - git checkout -b "preview"
       - git add .
       - git status
       - git commit -a -m "$COMMENT"
-      - git push
+      - git push --set-upstream origin preview
   post_build:
     commands:
       - echo "Completed jurassic-map repo sync on `date`"
