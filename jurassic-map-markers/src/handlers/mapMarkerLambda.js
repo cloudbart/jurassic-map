@@ -166,6 +166,38 @@ function paddockLookup(input) {
                 ]
             ]);
             break;
+        case 'segisaurusLoc01':
+            paddock = helpers.polygon([
+                [
+                    [1443,1717],
+                    [1481,1643],
+                    [1548,1562],
+                    [1625,1505],
+                    [1697,1470],
+                    [1755,1457],
+                    [1711,1550],
+                    [1664,1437],
+                    [1620,1424],
+                    [1536,1410],
+                    [1508,1385],
+                    [1466,1371],
+                    [1446,1399],
+                    [1444,1420],
+                    [1477,1537],
+                    [1466,1555],
+                    [1445,1559],
+                    [1402,1534],
+                    [1394,1510],
+                    [1391,1443],
+                    [1373,1489],
+                    [1369,1495],
+                    [1330,1500],
+                    [1314,1497],
+                    [1317,1587],
+                    [1365,1669],
+                    [1443,1717]
+                ]
+            ]);
     }
 }
 
@@ -197,19 +229,19 @@ function randomWithin(input) {
         ]);
         // Test for temporary coordinates attempt valid (within boundaries)
         if (turf.booleanPointInPolygon(tempCoords, paddock)) {
-            console.log(tempItem.name.S,"("+tempItem.xcoord.N+","+tempItem.ycoord.N+")");
+            console.log(tempItem.name.S, "(" + tempItem.xcoord.N + "," + tempItem.ycoord.N + ")");
             newItem = tempItem;
             return true;
         }
         else {
             // Check for too many attempts
             if (attempts >= 12) {
-                console.log("FAULT",tempItem.paddockId.S,"fence collision!");
+                console.log("FAULT", tempItem.paddockId.S, "fence collision!");
                 return;
             }
             // Continue mapMarker update attempts
             else {
-                console.log("PROXIMITY ALERT ("+tempItem.id.S+")");
+                console.log("PROXIMITY ALERT (" + tempItem.id.S + ")");
                 attempts++;
             }
         }
