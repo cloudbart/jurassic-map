@@ -92,12 +92,12 @@ function App({ signOut, user }) {
         drawMarker(ctx, 'gallimimus07') // Gallimimus 7
         drawMarker(ctx, 'gallimimus08') // Gallimimus 8
         drawMarker(ctx, 'gallimimus09') // Gallimimus 9
-        drawMarker(ctx, 'segisaurus01') // Segisaurus 1
-        drawMarker(ctx, 'segisaurus02') // Segisaurus 2
-        drawMarker(ctx, 'segisaurus03') // Segisaurus 3
-        drawMarker(ctx, 'segisaurus04') // Segisaurus 4
-        drawMarker(ctx, 'segisaurus05') // Segisaurus 5
-        drawMarker(ctx, 'segisaurus06') // Segisaurus 6
+        drawMarker(ctx, 'segi01') // Segisaurus 1
+        drawMarker(ctx, 'segi02') // Segisaurus 2
+        drawMarker(ctx, 'segi03') // Segisaurus 3
+        drawMarker(ctx, 'segi04') // Segisaurus 4
+        drawMarker(ctx, 'segi05') // Segisaurus 5
+        drawMarker(ctx, 'segi06') // Segisaurus 6
         drawMarker(ctx, 'vehicle01', frameCount) // Vehicle 1
         drawMarker(ctx, 'vehicle02', frameCount) // Vehicle 2
         drawMarker(ctx, 'vehicle03', frameCount) // Vehicle 3 
