@@ -9,19 +9,21 @@ phases:
       - echo "${PHASE}"
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
+          echo "BEGIN SAM-Backend-Build-and-Deploy";
           echo "UNPACK @turf geospatial libraries layer";
           cd jurassic-map-markers;
           tar -xvf turf-layer.tar.gz;
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          
+          echo "BEGIN merge-preview-to-master";
         fi
       
   build:
     commands:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
+          echo "BUILD jurassic-map-markers SAM project";
           sam build;
         fi
       - |
@@ -37,6 +39,7 @@ phases:
     commands:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
+          echo "DEPLOY JurassicMapMarkerControls SAM stack";
           sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       - |
