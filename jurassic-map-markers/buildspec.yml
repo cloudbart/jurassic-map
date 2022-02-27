@@ -44,7 +44,7 @@ phases:
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
           echo "DEPLOY JurassicMapMarkerControls SAM stack";
           sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
-          echo "STAGGER ScheduledEvents start time";
+          echo "RESTART staggered ScheduledEvents";
           aws events disable-rule --name "JurassicMapMarkerScheduler01";
           aws events disable-rule --name "JurassicMapMarkerScheduler02";
           echo "BEGIN Scheduler01";
@@ -56,7 +56,7 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "STAGGER ScheduledEvents start time";
+          echo "RESTART staggered ScheduledEvents";
           aws events disable-rule --name "JurassicMapMarkerScheduler01";
           aws events disable-rule --name "JurassicMapMarkerScheduler02";
           echo "BEGIN Scheduler01";

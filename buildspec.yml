@@ -12,20 +12,20 @@ phases:
     commands:
       - cd ~
       - git config --global user.email "bartacus@amazon.com"
-      - git config --global user.name "bartacus" 
+      - git config --global user.name "bartacus"
       - mkdir temp
       - cd temp/
       - echo "Clone GitHub repo"
       - git clone https://github.com/cloudbart/jurassic-map.git
       - cd jurassic-map/
       - COMMENT=$(git log -1 --pretty=%B)
-      - cd .. 
-      - echo "Clone CodeCommit mirror repo, preview branch"
+      - cd ..
+      - echo "CLONE CodeCommit mirror repo, preview branch"
       - git clone --branch preview https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror
   build:
     on-failure: ABORT
     commands:
-      - echo "Copy GitHub repo to CodeCommit mirror repo"
+      - echo "COPY GitHub repo to CodeCommit mirror repo"
       - cp -a jurassic-map/* jurassic-map-mirror/.
       - cd jurassic-map-mirror/
       - git add .
