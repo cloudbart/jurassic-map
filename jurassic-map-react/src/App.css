@@ -31,41 +31,40 @@ html {
 
 .map-table img,button {
   margin: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
   justify-content: center;
 }
 
 .map-table Canvas {
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
   max-height: 100%;
   object-fit: cover;
 }
 
 .mapCell1 {
+  margin-top: auto;
   grid-column: 1/2;
   grid-row: 1/2;
 }
 
 .mapCell2 {
+  margin: auto;
   grid-column: 1/2;
   grid-row: 2/3
 }
 
 .mapCell3 {
+  margin-bottom: auto;
   grid-column: 1/2;
   grid-row: 3/4;
 }
 
-.mapCell4 {
-  grid-column: 1/2;
-  grid-row: 4/5;
-}
-
 .mapCellMap {
+  margin: auto;
   grid-column: 2/3;
-  grid-row: 1/5;
+  grid-row: 1/4;
 }
 
 .events-table {
