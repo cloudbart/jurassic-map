@@ -121,7 +121,7 @@ function App({ signOut, user }) {
             <div class="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
           </div>
           <div className="events-table">
-            <iframe scrolling="no" height="720px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTo5MDlkMThmYS03ODlmLTRlYTktOTBjOC03YjUxYjZiMDJhMTIiLCJNIjoiUHVibGljIn0="/>
+            <iframe scrolling="no" height="720px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
           </div>
           <span className="footer"><p>jurassic-map v.54 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
         </div>

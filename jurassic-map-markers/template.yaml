@@ -129,6 +129,18 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: "/stepfunctions/mapMarkersUpdateMachine-Logs"
+  # CloudWatch Dashboard for receent-events log events
+  recentActivityDashboard:
+    Type: 'AWS::CloudWatch::Dashboard'
+    Properties:
+      DashboardBody: >-
+        {"start":"-PT5M","widgets":[{"height":12,"width":12,"y":0,"x":0,"type":"log","properties":{"query":"SOURCE
+        '/aws/lambda/JurassicMapMarkerControls-mapMarkerFunction-I7HmmtEB00kl' |
+        fields @message | sort @ingestionTime desc | sort @requestId | sort @message
+        asc | limit 30 | filter @message like /(?i)(INFO)/ | parse @message
+        /(?<Event>(?<=INFO).+)/ | display
+        Event","region":"us-east-1","stacked":false,"title":"","view":"table"}}]}
+      DashboardName: Recent-Activity
 Outputs:
   managementURL:
     Description: Serverless application mgmt page URL
