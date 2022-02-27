@@ -9,4 +9,7 @@ phases:
   build:
     commands:
       - sam build
+      
+  post-build:
+    commands:
       - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
