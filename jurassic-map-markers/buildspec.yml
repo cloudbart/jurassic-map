@@ -1,15 +1,8 @@
 version: 0.2
-
-env:
-  git-credential-helper: yes
   
 phases:
   build:
     commands:
-      - export BUCKET=arn:aws:s3:::aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx
       - cd jurassic-map-markers
-      - aws cloudformation package --template-file template.yaml --s3-bucket $BUCKET --output-template-file JurassicMapMarkerControls/outputtemplate.yaml
-
-artifacts:
-  files:
-    - JurassicMapMarkerControls/outputtemplate.yaml
+      - sam build
+      - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
