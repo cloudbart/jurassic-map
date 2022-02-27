@@ -1,4 +1,4 @@
-version: 0.2
+version: 0.3
 
 env:
   git-credential-helper: yes
@@ -6,7 +6,7 @@ env:
 phases:
   install:
     commands:
-      - echo "${PHASE}"
+      - echo "${PHASE}";
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
           echo "BEGIN SAM-Backend-Build-and-Deploy";
@@ -44,6 +44,13 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "DELETE preview branch";
-          aws codecommit delete-branch --repository-name jurassic-map-mirror --branch-name preview
+          echo "STAGGER ScheduledEvents start time";
+          aws events disable-rule --name "mapMarkersUpdateMachineScheduler01";
+          aws events disable-rule --name "mapMarkersUpdateMachineScheduler02";
+          echo "BEGIN Scheduler01";
+          aws events enable-rule --name "mapMarkersUpdateMachineScheduler01";
+          echo "WAIT 30 seconds...";
+          sleep 30;
+          echo "BEGIN Scheduler02";
+          aws events enable-rule --name "mapMarkersUpdateMachineScheduler02";
         fi
