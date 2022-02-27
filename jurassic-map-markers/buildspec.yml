@@ -7,8 +7,9 @@ phases:
   build:
     commands:
       - export BUCKET=arn:aws:s3:::aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx
-      - aws cloudformation package --template-file ./jurassic-map-markers/template.yaml --s3-bucket $BUCKET --output-template-file JurassicMapMarkerControls/outputtemplate.yaml
+      - cd jurassic-map-markers
+      - aws cloudformation package --template-file template.yaml --s3-bucket $BUCKET --output-template-file JurassicMapMarkerControls/outputtemplate.yaml
 
 artifacts:
   files:
-    - outputtemplate.yaml
+    - JurassicMapMarkerControls/outputtemplate.yaml
