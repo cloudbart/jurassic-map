@@ -21,10 +21,10 @@ phases:
       - cd .. 
       - echo "Clone CodeCommit mirror repo, preview branch"
       - git clone --branch preview https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror
-      - echo "Copy GitHub repo to CodeCommit mirror repo"
-      - cp -a jurassic-map/* jurassic-map-mirror/.
   build:
     commands:
+      - echo "Copy GitHub repo to CodeCommit mirror repo"
+      - cp -a jurassic-map/* jurassic-map-mirror/.
       - cd jurassic-map-mirror/
       - git add .
       - git status

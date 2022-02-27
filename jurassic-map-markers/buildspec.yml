@@ -1,8 +1,12 @@
 version: 0.2
   
 phases:
+  install:
+    commands:
+      - echo "Unpack Turk geospatial libraries layer"
+      - cd jurassic-map-markers
+      - tar -xvf turf-layer.tar.gz
   build:
     commands:
-      - cd jurassic-map-markers
       - sam build
       - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
