@@ -42,24 +42,24 @@ phases:
           echo "DEPLOY JurassicMapMarkerControls SAM stack";
           sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
           echo "STAGGER ScheduledEvents start time";
-          aws events disable-rule --name "mapMarkersUpdateMachineScheduler01";
-          aws events disable-rule --name "mapMarkersUpdateMachineScheduler02";
+          aws events disable-rule --name "JurassicMapMarkerScheduler01";
+          aws events disable-rule --name "JurassicMapMarkerScheduler02";
           echo "BEGIN Scheduler01";
-          aws events enable-rule --name "mapMarkersUpdateMachineScheduler01";
+          aws events enable-rule --name "JurassicMapMarkerScheduler01";
           echo "WAIT 30 seconds...";
           sleep 30;
           echo "BEGIN Scheduler02";
-          aws events enable-rule --name "mapMarkersUpdateMachineScheduler02";
+          aws events enable-rule --name "JurassicMapMarkerScheduler02";
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
           echo "STAGGER ScheduledEvents start time";
-          aws events disable-rule --name "mapMarkersUpdateMachineScheduler01";
-          aws events disable-rule --name "mapMarkersUpdateMachineScheduler02";
+          aws events disable-rule --name "JurassicMapMarkerScheduler01";
+          aws events disable-rule --name "JurassicMapMarkerScheduler02";
           echo "BEGIN Scheduler01";
-          aws events enable-rule --name "mapMarkersUpdateMachineScheduler01";
+          aws events enable-rule --name "JurassicMapMarkerScheduler01";
           echo "WAIT 30 seconds...";
           sleep 30;
           echo "BEGIN Scheduler02";
-          aws events enable-rule --name "mapMarkersUpdateMachineScheduler02";
+          aws events enable-rule --name "JurassicMapMarkerScheduler02";
         fi
