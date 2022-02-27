@@ -9,16 +9,13 @@ phases:
       - echo "${PHASE}"
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
-          echo "Unpack @turf geospatial libraries layer";
+          echo "UNPACK @turf geospatial libraries layer";
           cd jurassic-map-markers;
           tar -xvf turf-layer.tar.gz;
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "Clone CodeCommit mirror repo, preview branch";
-          git clone --branch preview https://git-codecommit.us-east-1.amazonaws.com/v1/repos/jurassic-map-mirror;
-          cd jurassic-map-mirror/;
-          COMMENT=$(git log -1 --pretty=%B);
+          
         fi
       
   build:
@@ -29,13 +26,11 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          REQUESTID=$(aws codecommit create-pull-request --title "$COMMENT" \
-          --description "Last commit comment was: $COMMENT" \
-          --targets repositoryName=jurassic-map-mirror,sourceReference=preview,destinationReference=master \
-          --region us-east-1 \
-          --query 'pullRequest.pullRequestId');
-          SOURCE_COMMIT_ID=$();
-          aws codecommit merge-pull-request-by-fast-forward --pull-request-id $REQUESTID --source-commit-id 99132ab0EXAMPLE --repository-name MyDemoRepo
+          echo "MERGE preview branch to master";
+          aws codecommit merge-branches-by-fast-forward \
+          --source-commit-specifier preview \
+          --destination-commit-specifier master \
+          --repository-name jurassic-map-mirror;
         fi
       
   post_build:
@@ -46,6 +41,6 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          aws codecommit merge-pull-request-by-fast-forward --pull-request-id <PULL_REQUEST_ID_FROM_PREVIOUS_COMMAND> \
-          --repository-name $RepoName --region us-east-1
+          echo "DELETE preview branch";
+          aws codecommit delete-branch --repository-name jurassic-map-mirror --branch-name preview
         fi
