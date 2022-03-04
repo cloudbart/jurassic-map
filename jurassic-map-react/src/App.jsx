@@ -3,10 +3,8 @@ import './App.css';
 import Canvas from './Canvas';
 import { API, graphqlOperation } from 'aws-amplify';
 import { Amplify } from 'aws-amplify';
-// import { withAuthenticator } from '@aws-amplify/ui-react';
-// import '@aws-amplify/ui-react/styles.css';
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
 
 //declare marker variables
 let x
@@ -28,7 +26,7 @@ const fetchMapMarkers = async function() {
   catch (err) { console.log('Error fetching mapMarkers') }
 }
 
-function App({ signOut, user }) {
+function App() {
   //Initial call to fetch map markers from datasource
   fetchMapMarkers()
   //Marker-drawing function
@@ -115,10 +113,10 @@ function App({ signOut, user }) {
         <div className="main">
           <span className="header"><h2>Jurassic Park - Monitoring System</h2></span>
           <div className="map-table">
-            <div class="mapCell1"><img src="mapGuideTop_715x345.png"/></div>
-            <div class="mapCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
-            <div class="mapCell3"><img src="mapGuideBottom_715x250.png"/></div>
-            <div class="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
+            <div className="mapCell1"><img src="mapGuideTop_715x345.png"/></div>
+            <div className="mapCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
+            <div className="mapCell3"><img src="mapGuideBottom_715x250.png"/></div>
+            <div className="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
           </div>
           <div className="events-table">
             <iframe scrolling="no" height="720px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
@@ -130,5 +128,4 @@ function App({ signOut, user }) {
   );
 }
 
-// export default withAuthenticator(App);
 export default App;

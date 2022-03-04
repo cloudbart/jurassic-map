@@ -5,6 +5,7 @@ type mapMarker {
   color: String
   xcoord: Int
   ycoord: Int
+  paddockId: String
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
@@ -111,6 +112,7 @@ input ModelMapMarkerFilterInput {
   color: ModelStringInput
   xcoord: ModelIntInput
   ycoord: ModelIntInput
+  paddockId: ModelStringInput
   and: [ModelMapMarkerFilterInput]
   or: [ModelMapMarkerFilterInput]
   not: ModelMapMarkerFilterInput
@@ -126,6 +128,7 @@ input ModelMapMarkerConditionInput {
   color: ModelStringInput
   xcoord: ModelIntInput
   ycoord: ModelIntInput
+  paddockId: ModelStringInput
   and: [ModelMapMarkerConditionInput]
   or: [ModelMapMarkerConditionInput]
   not: ModelMapMarkerConditionInput
@@ -137,6 +140,7 @@ input CreateMapMarkerInput {
   color: String
   xcoord: Int
   ycoord: Int
+  paddockId: String
 }
 
 input UpdateMapMarkerInput {
@@ -145,6 +149,7 @@ input UpdateMapMarkerInput {
   color: String
   xcoord: Int
   ycoord: Int
+  paddockId: String
 }
 
 input DeleteMapMarkerInput {

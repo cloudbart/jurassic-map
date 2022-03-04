@@ -9,6 +9,7 @@ export const getMapMarker = /* GraphQL */ `
       color
       xcoord
       ycoord
+      paddockId
     }
   }
 `;
@@ -25,6 +26,7 @@ export const listMapMarkers = /* GraphQL */ `
         color
         xcoord
         ycoord
+        paddockId
       }
       nextToken
     }

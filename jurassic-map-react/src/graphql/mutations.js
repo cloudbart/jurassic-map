@@ -12,6 +12,7 @@ export const createMapMarker = /* GraphQL */ `
       color
       xcoord
       ycoord
+      paddockId
       createdAt
       updatedAt
     }
@@ -28,6 +29,7 @@ export const updateMapMarker = /* GraphQL */ `
       color
       xcoord
       ycoord
+      paddockId
       createdAt
       updatedAt
     }
@@ -44,6 +46,7 @@ export const deleteMapMarker = /* GraphQL */ `
       color
       xcoord
       ycoord
+      paddockId
       createdAt
       updatedAt
     }

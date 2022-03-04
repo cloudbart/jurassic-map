@@ -41,9 +41,6 @@
       ],
       "Description": "Enable server side encryption powered by KMS."
     },
-    "AuthCognitoUserPoolId": {
-      "Type": "String"
-    },
     "AppSyncApiName": {
       "Type": "String",
       "Default": "AppSyncSimpleTransform"
@@ -61,7 +58,7 @@
     "GraphQLAPI": {
       "Type": "AWS::AppSync::GraphQLApi",
       "Properties": {
-        "AuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+        "AuthenticationType": "API_KEY",
         "Name": {
           "Fn::Join": [
             "",
@@ -75,20 +72,6 @@
               }
             ]
           ]
-        },
-        "AdditionalAuthenticationProviders": [
-          {
-            "AuthenticationType": "API_KEY"
-          }
-        ],
-        "UserPoolConfig": {
-          "AwsRegion": {
-            "Ref": "AWS::Region"
-          },
-          "DefaultAction": "ALLOW",
-          "UserPoolId": {
-            "Ref": "AuthCognitoUserPoolId"
-          }
         }
       }
     },
@@ -128,7 +111,8 @@
             "ApiId"
           ]
         },
-        "Expires": 1642388990
+        "Description": "jurassicMapDevAPIKey",
+        "Expires": 1654185058
       }
     },
     "GraphQLAPINONEDS95A13CF0": {
