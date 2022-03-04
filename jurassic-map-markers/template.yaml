@@ -1,6 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: JurassicMap movement generation, paddock testing, & scheduling components
 Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Layers:
+      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
 Resources:
   # Lambda layer resource for @Turf GeoSpatial libraries
   turfLayer:
@@ -20,7 +24,6 @@ Resources:
       Runtime: nodejs14.x
       Layers:
         - !Ref turfLayer
-        - arn:aws:lambda:us-east-1:580247275435:layer:LambdaInsightsExtension:16
       Architectures:
         - x86_64
       MemorySize: 128
@@ -46,7 +49,6 @@ Resources:
       Runtime: nodejs14.x
       Layers:
         - !Ref turfLayer
-        - arn:aws:lambda:us-east-1:580247275435:layer:LambdaInsightsExtension:16
       Architectures:
         - x86_64
       MemorySize: 128
