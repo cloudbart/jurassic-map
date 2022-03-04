@@ -3,8 +3,7 @@ Description: JurassicMap movement generation, paddock testing, & scheduling comp
 Transform: AWS::Serverless-2016-10-31
 Globals:
   Function:
-    Layers:
-      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
+    Layers: "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
 Resources:
   # Lambda layer resource for @Turf GeoSpatial libraries
   turfLayer:
