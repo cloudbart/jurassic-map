@@ -1,3 +1,5 @@
+import React from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import * as queries from './graphql/queries';
 import './App.css';
 import Canvas from './Canvas';
@@ -41,11 +43,11 @@ function App() {
           ctx.beginPath()
           //Check if marker should be animated, presence of frameCount value indicates animation
           if (typeof frameCount != "undefined") {
-            ctx.arc(x, y, 8 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
+            ctx.arc(x, y, 5 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
           }
           //If frameCount is undefined, then the marker should not be animated
           else {
-            ctx.arc(x, y, 8, 0, 2 * Math.PI, false)
+            ctx.arc(x, y, 5, 0, 2 * Math.PI, false)
           }
           ctx.fillStyle = color
           ctx.fill()
@@ -116,12 +118,28 @@ function App() {
             <div className="mapCell1"><img src="mapGuideTop_715x345.png"/></div>
             <div className="mapCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
             <div className="mapCell3"><img src="mapGuideBottom_715x250.png"/></div>
-            <div className="mapCellMap"><Canvas className="map-image" draw={draw}/></div>
+            <div className="mapCellMap">
+              <TransformWrapper>
+                {({ zoomIn, zoomOut, resetTransform, centerView, ...rest }) => (
+                  <React.Fragment>
+                    <div className="mapZoomControls">
+                      <button class="mapZoomControlBtn" onClick={() => zoomOut()}>-</button>
+                      <button class="mapZoomControlBtn" onClick={() => resetTransform()}>Reset</button>
+                      <button class="mapZoomControlBtn" onClick={() => centerView()}>Center</button>
+                      <button class="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
+                    </div>
+                    <TransformComponent>
+                      <Canvas className="map-image" draw={draw}/>
+                    </TransformComponent>
+                  </React.Fragment>
+                )}
+              </TransformWrapper>
+            </div>
           </div>
           <div className="events-table">
             <iframe scrolling="no" height="720px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
           </div>
-          <span className="footer"><p>jurassic-map v.55 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
+          <span className="footer"><p>jurassic-map v.56 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
         </div>
       </div>
     </>

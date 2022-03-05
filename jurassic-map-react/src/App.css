@@ -67,6 +67,34 @@ html {
   grid-row: 1/4;
 }
 
+.mapZoomControls {
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 130%;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  z-index: 2;
+  transform: translate(10px, 10px);
+  max-width: calc(100% - 20px);
+}
+
+.mapZoomControlBtn {
+  -webkit-font-smoothing: antialiased;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .events-table {
   padding-top: 5px;
   padding-bottom: 5px;
