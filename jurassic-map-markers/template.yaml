@@ -147,7 +147,7 @@ Resources:
       DisplayName: "Jurassic Map Release Preview Topic"
       Subscription: 
         - Endpoint: "bartacus@amazon.com"
-          Protocol: "sqs"
+          Protocol: "email"
       TopicName: "jurassicMapReleasePreviewTopic"
 Outputs:
   managementURL:
