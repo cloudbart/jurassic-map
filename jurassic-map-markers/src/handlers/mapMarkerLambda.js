@@ -236,7 +236,7 @@ function randomWithin(input) {
         else {
             // Check for too many attempts
             if (attempts >= 12) {
-                console.log("FAULT", tempItem.paddockId.S, "fence collision!");
+                console.log("FENCE COLLISION!", tempItem.paddockId.S);
                 return;
             }
             // Continue mapMarker update attempts
