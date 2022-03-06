@@ -138,7 +138,7 @@ function App() {
           <div className="events-table">
             <iframe scrolling="no" height="720px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
           </div>
-          <span className="footer"><p>jurassic-map v.56 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
+          <span className="footer"><p>jurassic-map v.57 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
         </div>
       </div>
     </>
