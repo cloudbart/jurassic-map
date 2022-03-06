@@ -115,17 +115,16 @@ function App() {
         <div className="main">
           <span className="header"><h2>Jurassic Park - Monitoring System</h2></span>
           <div className="map-table">
-            <div className="mapCell1"><img src="mapGuideTop_715x345.png"/></div>
-            <div className="mapCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
-            <div className="mapCell3"><img src="mapGuideBottom_715x250.png"/></div>
-            <div className="mapCellMap">
+            <div className="mapTableCell1"><img src="mapGuideTop_715x345.png"/></div>
+            <div className="mapTableCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
+            <div className="mapTableCell3"><img src="mapGuideBottom_715x250.png"/></div>
+            <div className="mapTableCellMap">
               <TransformWrapper>
-                {({ zoomIn, zoomOut, resetTransform, centerView, ...rest }) => (
+                {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
                     <div className="mapZoomControls">
                       <button class="mapZoomControlBtn" onClick={() => zoomOut()}>-</button>
                       <button class="mapZoomControlBtn" onClick={() => resetTransform()}>Reset</button>
-                      <button class="mapZoomControlBtn" onClick={() => centerView()}>Center</button>
                       <button class="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
                     </div>
                     <TransformComponent>
