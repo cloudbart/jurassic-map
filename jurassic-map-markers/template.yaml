@@ -141,18 +141,7 @@ Resources:
         /(?<Event>(?<=INFO).+)/ | display
         Event","region":"us-east-1","stacked":false,"title":"","view":"table"}}]}
       DashboardName: Recent-Activity
-  codePipelineReleaseTopic:
-    Type: AWS::SNS::Topic
-    Properties: 
-      DisplayName: "Jurassic Map Release Preview Topic"
-      Subscription: 
-        - Endpoint: "pibrocher@gmail.com"
-          Protocol: "email"
-      TopicName: "jurassicMapReleasePreviewTopic"
 Outputs:
   managementURL:
     Description: Serverless application mgmt page URL
     Value: 'https://console.aws.amazon.com/lambda/home?region=us-east-1#/applications/JurassicMapMarkerControls'
-  releasePreviewTopicARN:
-    Description: Release Preview Topic ARN
-    Value: !Ref codePipelineReleaseTopic
