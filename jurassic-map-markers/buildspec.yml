@@ -14,6 +14,8 @@ phases:
           echo "UNPACK @turf geospatial libraries layer";
           cd jurassic-map-markers;
           tar -xvf turf-layer.tar.gz;
+          echo "BUILD jurassic-map-markers SAM project";
+          sam build;
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
@@ -25,8 +27,8 @@ phases:
     commands:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
-          echo "BUILD jurassic-map-markers SAM project";
-          sam build;
+          echo "DEPLOY JurassicMapMarkerControls SAM stack";
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
@@ -42,8 +44,6 @@ phases:
     commands:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
-          echo "DEPLOY JurassicMapMarkerControls SAM stack";
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
           echo "RESTART staggered ScheduledEvents";
           aws events disable-rule --name "JurassicMapMarkerScheduler01";
           aws events disable-rule --name "JurassicMapMarkerScheduler02";
