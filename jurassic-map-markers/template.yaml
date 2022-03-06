@@ -146,7 +146,7 @@ Resources:
     Properties: 
       DisplayName: "Jurassic Map Release Preview Topic"
       Subscription: 
-        - Endpoint: "bartacus@amazon.com"
+        - Endpoint: "pibrocher@gmail.com"
           Protocol: "email"
       TopicName: "jurassicMapReleasePreviewTopic"
 Outputs:

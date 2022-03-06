@@ -53,6 +53,27 @@ phases:
           sleep 30;
           echo "BEGIN Scheduler02";
           aws events enable-rule --name "JurassicMapMarkerScheduler02";
+          echo "Pause for Amplify Deploy - 10min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 9min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 8min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 7min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 6min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 5min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 4min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 3min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 2min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - 1min remaining";
+          sleep 1m;
+          echo "Pause for Amplify Deploy - deploy preview complete";
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
@@ -65,25 +86,25 @@ phases:
           sleep 30;
           echo "BEGIN Marker Event Scheduler02";
           aws events enable-rule --name "JurassicMapMarkerScheduler02";
-          echo "Pause for Amplify Deploy - 10min remaining"";
+          echo "Pause for Amplify Deploy - 10min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 9min remaining"";
+          echo "Pause for Amplify Deploy - 9min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 8min remaining"";
+          echo "Pause for Amplify Deploy - 8min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 7min remaining"";
+          echo "Pause for Amplify Deploy - 7min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 6min remaining"";
+          echo "Pause for Amplify Deploy - 6min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 5min remaining"";
+          echo "Pause for Amplify Deploy - 5min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 4min remaining"";
+          echo "Pause for Amplify Deploy - 4min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 3min remaining"";
+          echo "Pause for Amplify Deploy - 3min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 2min remaining"";
+          echo "Pause for Amplify Deploy - 2min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - 1min remaining"";
+          echo "Pause for Amplify Deploy - 1min remaining";
           sleep 1m;
-          echo "Pause for Amplify Deploy - preview deploy complete";
+          echo "Pause for Amplify Deploy - deploy production complete";
         fi
