@@ -1,34 +1,35 @@
 html {
   background-color: darkslategray;
-  height: 100vh;
 }
 
 .main {
   display: flex;
-  width: 95vw;
-  max-width: 1390px;
-  max-height: 100vh;
-  height: 100%;
   flex-flow: row wrap;
   margin: auto;
   align-self: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
-  width: 100%;
+  width: 95%;
   text-align: center;
   border-bottom: 2px solid #000;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .map-table {
-  min-width: 360px;
-  max-width: 67%;
+  flex-direction: column;
+  flex: 0 0 100vh;
+  min-height: 0;
+  max-width: 95vw;
   display: grid;
-  margin: auto;
-  column-gap: 5px;
   grid-template-columns: 1fr 3fr;
+  column-gap: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  margin: auto;
 }
 
 .mapTableCell1 {
@@ -52,7 +53,10 @@ html {
 .map-table img {
   margin: auto;
   border-radius: 5px;
-  width: 100%;
+  max-width: 100%;
+  width: auto;
+  max-height: 100%;
+  height: auto;
   justify-content: center;
 }
 
@@ -62,11 +66,16 @@ html {
   grid-row: 1/4;
 }
 
+.react-transform-wrapper {
+  border-radius: 5px;
+}
+
 .map-table Canvas {
   border-radius: 5px;
-  width: 100%;
+  max-width: 100%;
+  width: auto;
   max-height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .mapZoomControls {
@@ -95,9 +104,10 @@ html {
 }
 
 .events-table {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 400px;
+  flex-direction: row;
+  flex: 1 1 400px;
+  max-width: 790px;
+  padding: 5px;
   margin: auto;
 }
 
@@ -106,8 +116,10 @@ html {
 }
 
 .footer {
-  width: 100%;
+  width: 95%;
   display: grid;
   text-align: center;
   border-top: 2px solid #000;
+  margin-left: auto;
+  margin-right: auto;
 }
