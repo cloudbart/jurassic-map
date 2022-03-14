@@ -92,15 +92,14 @@ html {
   flex-direction: row;
   flex: 1 1 360px;
   max-width: 400px;
-  max-height: 80vh;
   margin-top: auto;
   margin-bottom: auto;
   padding: 5px;
 }
 
 .events-table iframe{
-  height: 80vh;
-  max-height: 100%;
+  height: 710px;
+  max-height: 80vh;
   min-height: 100%;
   width: 100%;
 }
