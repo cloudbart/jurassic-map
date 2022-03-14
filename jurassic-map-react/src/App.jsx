@@ -115,10 +115,12 @@ function App() {
         <div className="main">
           <span className="header"><h2>Jurassic Park - Monitoring System</h2></span>
           <div className="map-table">
-            <div className="mapTableCell1"><img src="mapGuideTop_715x345.png"/></div>
-            <div className="mapTableCell2"><img src="mapGuideMiddle_715x1395.png"/></div>
-            <div className="mapTableCell3"><img src="mapGuideBottom_715x250.png"/></div>
-            <div className="mapTableCellMap">
+            <div className="mapTableSidePanel">
+              <img src="mapGuideTop_715x345.png" alt="MapLocationsIndex"/>
+              <img src="mapGuideMiddle_715x1395.png" alt="DinosaurIndex"/>
+              <img src="mapGuideBottom_715x250.png" alt="MapIndex"/>
+            </div>
+            <div className="mapTableMap">
               <TransformWrapper>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
@@ -128,7 +130,7 @@ function App() {
                       <button class="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
                     </div>
                     <TransformComponent>
-                      <Canvas className="map-image" draw={draw}/>
+                      <Canvas className="map-image" draw={draw} alt="InteractiveParkMap"/>
                     </TransformComponent>
                   </React.Fragment>
                 )}
@@ -136,9 +138,9 @@ function App() {
             </div>
           </div>
           <div className="events-table">
-            <iframe scrolling="no" height="740px" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
+            <iframe title="RecentEventsTable" scrolling="no" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJNIjoiUHVibGljIn0="/>
           </div>
-          <span className="footer"><p>jurassic-map v.57 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
+          <span className="footer"><p>jurassic-map v.58 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
         </div>
       </div>
     </>
