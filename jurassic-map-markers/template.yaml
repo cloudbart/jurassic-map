@@ -65,6 +65,10 @@ Resources:
         Level: 'ALL'
       # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
       Policies:
+        - DynamoDBReadPolicy:
+            TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+        - DynamoDBWritePolicy:
+            TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
         - Statement:
           - Sid: tourVehiclesStateMachineExecutionPolicy
             Effect: Allow
