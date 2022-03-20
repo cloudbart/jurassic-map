@@ -48,15 +48,18 @@ Resources:
       Name: tourVehiclesStateMachine
       Definition:
         Comment: 'tourVehiclesStateMachine invoked'
-        StartAt: Hello
+        StartAt: setTourStateActive
         States:
-            Hello:
-                Type: Pass
-                Next: World
-            World:
-                Type: Pass
-                Result: World
+            setTourStateActive:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:putItem'
+                Parameters:
+                    TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+                    Item:
+                        id.$: $.id
+                        tourState: active
                 End: true
+                Comment: 'Set tourState to active'
       Logging:
         Destinations:
           - CloudWatchLogsLogGroup:
