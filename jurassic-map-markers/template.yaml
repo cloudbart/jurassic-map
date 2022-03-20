@@ -66,7 +66,7 @@ Resources:
       # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
       Policies:
         - Statement:
-          - Sid: mapMarkersUpdateMachineExecutionPolicy
+          - Sid: tourVehiclesStateMachineExecutionPolicy
             Effect: Allow
             Action:
               - "lambda:InvokeFunction"
@@ -75,25 +75,6 @@ Resources:
             Resource: "*"
       Tracing:
         Enabled: true
-      Events:
-        Scheduler01:
-          Type: Schedule
-          Properties:
-            Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler01
-            Description: Schedule for running mapMarker's update State Machine every minute
-            # NOTE Schedulers begin disabled, must be manually enabled
-            Enabled: false
-            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
-        Scheduler02:
-          Type: Schedule
-          Properties:
-            Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler02
-            Description: Schedule for running mapMarker's update State Machine every minute
-            # NOTE Schedulers begin disabled, must be manually enabled
-            Enabled: false
-            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
   mapMarkersUpdateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
