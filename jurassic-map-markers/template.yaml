@@ -52,12 +52,17 @@ Resources:
         States:
             setTourStateActive:
                 Type: Task
-                Resource: 'arn:aws:states:::dynamodb:putItem'
+                Resource: 'arn:aws:states:::dynamodb:updateItem'
                 Parameters:
                     TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
-                    Item:
-                        id.$: $.id
-                        tourState: active
+                    Key:
+                        id:
+                            S.$: $.id
+                    UpdateExpression: 'SET tourState = :stateValue'
+                    ExpressionAttributeValues:
+                        ':stateValue':
+                            S: active
+                ResultPath: $.TblUpdate   
                 End: true
                 Comment: 'Set tourState to active'
       Logging:
