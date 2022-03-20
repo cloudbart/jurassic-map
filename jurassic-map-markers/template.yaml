@@ -77,11 +77,6 @@ Resources:
               - "cloudwatch:*"
               - "logs:*"
             Resource: "*"
-          - Sid: tourVehiclesStateMachineDynamoDB
-            Effect: Allow
-            Action:
-              - "dynamodb:*"
-            Resource: "arn:aws:dynamodb:us-east-1:360259704161:table/mapMarker-yr5q33is7ngxno7igxguwgezye-dev"
       Tracing:
         Enabled: true
   mapMarkersUpdateMachine:
