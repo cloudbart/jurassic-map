@@ -70,14 +70,14 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
         - Statement:
-          - Sid: tourVehiclesStateMachineExecutionPolicy
+          - Sid: tourVehiclesStateMachineExecution
             Effect: Allow
             Action:
               - "lambda:InvokeFunction"
               - "cloudwatch:*"
               - "logs:*"
             Resource: "*"
-          - Sid: tourVehiclesStateMachineExecutionPolicy
+          - Sid: tourVehiclesStateMachineDynamoDB
             Effect: Allow
             Action:
               - "dynamodb:*"
