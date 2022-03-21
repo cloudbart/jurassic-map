@@ -29,4 +29,33 @@
             "xcoord": "900",
             "ycoord": "825"
         }]
+    "route1segment2":[
+        {
+            "xcoord": "1086",
+            "ycoord": "978"
+        },
+        {
+            "xcoord": "1114",
+            "ycoord": "1009"
+        },
+        {
+            "xcoord": "1142",
+            "ycoord": "1038"
+        },
+        {
+            "xcoord": "1154",
+            "ycoord": "1056"
+        },
+        {
+            "xcoord": "1180",
+            "ycoord": "1088"
+        },
+        {
+            "xcoord": "1066",
+            "ycoord": "958"
+        },
+        {
+            "xcoord": "900",
+            "ycoord": "825"
+        }]
 }

@@ -97,8 +97,45 @@ Resources:
                       Seconds: 15
                       End: true
                 ResultPath: null
-                Next: route1dilo1Wait
-            route1dilo1Wait:
+                Next: route1DiloWait
+            route1DiloWait:
+                Type: Wait
+                Seconds: 45
+                Next: tourRoute1Segment2
+            tourRoute1Segment2:
+                Type: Map
+                ItemsPath: '$.route1segment2'
+                Parameters:
+                  id.$: $.id
+                  coords.$: $$.Map.Item.Value
+                Comment: 'tourRoute1 Segment2 map state'
+                MaxConcurrency: 1
+                Iterator:
+                  StartAt: route1Segment2Map
+                  States:
+                    route1Segment2Map:
+                      Type: Task
+                      Resource: 'arn:aws:states:::dynamodb:updateItem'
+                      Comment: 'Begin tour vehicles route1 segment2'
+                      Parameters:
+                          TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+                          Key:
+                              id:
+                                  S.$: $.id
+                          UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
+                          ExpressionAttributeValues:
+                              ':xValue':
+                                  N.$: $.coords.xcoord
+                              ':yValue':
+                                  N.$: $.coords.ycoord
+                      Next: route1Segment2Wait
+                    route1Segment2Wait:
+                      Type: Wait
+                      Seconds: 15
+                      End: true
+                ResultPath: null
+                Next: route1ProceratWait
+            route1ProceratWait:
                 Type: Wait
                 Seconds: 45
                 Next: setTourStateIdle
