@@ -79,7 +79,7 @@ Resources:
                     route1segment1Map:
                       Type: Task
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
-                      Comment: 'Processing tour route1 segment1'
+                      Comment: 'Begin tour vehicles route1 segment1'
                       Parameters:
                           TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
                           Key:
