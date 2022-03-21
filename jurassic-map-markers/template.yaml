@@ -72,6 +72,7 @@ Resources:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
                 Comment: 'tourRoute1segment1 map state'
+                MaxConcurrency: 1
                 Iterator:
                   StartAt: route1segement1Map
                   States:
@@ -93,8 +94,23 @@ Resources:
                       Next: route1segement1Wait
                     route1segement1Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 45
                       End: true
+                Next: setTourStateIdle
+            setTourStateIdle:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:updateItem'
+                Comment: 'Return tourState to idle'
+                Parameters:
+                    TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+                    Key:
+                        id:
+                            S.$: $.id
+                    UpdateExpression: 'SET tourState = :tourStateValue'
+                    ExpressionAttributeValues:
+                        ':tourStateValue':
+                            S: idle
+                ResultPath: null
                 End: true
       Logging:
         Destinations:
