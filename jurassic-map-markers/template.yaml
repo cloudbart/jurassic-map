@@ -48,21 +48,53 @@ Resources:
       Name: tourVehiclesStateMachine
       Definition:
         Comment: 'tourVehiclesStateMachine invoked'
-        StartAt: setTourStateActive
+        StartAt: setTourStateActiveRoute1
         States:
-            setTourStateActive:
+            setTourStateActiveRoute1:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
-                Comment: 'Set tourState to active'
+                Comment: 'Set tourState to active for route1'
                 Parameters:
                     TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
                     Key:
                         id:
                             S.$: $.id
-                    UpdateExpression: 'SET tourState = :stateValue'
+                    UpdateExpression: 'SET tourState = :tourStateValue'
                     ExpressionAttributeValues:
-                        ':stateValue':
+                        ':tourStateValue':
                             S: activeRoute1
+                ResultPath: null
+                Next: tourRoute1Segment1
+            tourRoute1Segment1:
+                Type: Map
+                ItemsPath: '$.route1segement1'
+                Parameters:
+                  id.$: $.id
+                  coords.$: $$.Map.Item.Value
+                Comment: 'tourRoute1segment1 map state'
+                Iterator:
+                  StartAt: route1segement1Map
+                  States:
+                    route1segement1Map:
+                      Type: Task
+                      Resource: 'arn:aws:states:::dynamodb:updateItem'
+                      Comment: 'Processing tour route1 segment1'
+                      Parameters:
+                          TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
+                          Key:
+                              id:
+                                  S.$: $.id
+                          UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
+                          ExpressionAttributeValues:
+                              ':xValue':
+                                  N.$: $.coords.xcoord
+                              ':yValue':
+                                  N.$: $.coords.ycoord
+                      Next: route1segement1Wait
+                    route1segement1Wait:
+                      Type: Wait
+                      Seconds: 15
+                      End: true
                 End: true
       Logging:
         Destinations:

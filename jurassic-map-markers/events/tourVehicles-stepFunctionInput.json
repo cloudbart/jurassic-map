@@ -1,10 +1,24 @@
-[{
-        "id": "vehicle01"
-    },
-    {
-        "id": "vehicle02"
-    },
-    {
-        "id": "vehicle03"
-    }
-]
+{
+    "id": "vehicle01",
+    "route1segement1":[
+        {
+            "xcoord": "898",
+            "ycoord": "828"
+        },
+        {
+            "xcoord": "933",
+            "ycoord": "830"
+        },
+        {
+            "xcoord": "978",
+            "ycoord": "840"
+        },
+        {
+            "xcoord": "1018",
+            "ycoord": "872"
+        },
+        {
+            "xcoord": "1039",
+            "ycoord": "930"
+        }]
+}
