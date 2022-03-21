@@ -62,7 +62,7 @@ Resources:
                     UpdateExpression: 'SET tourState = :stateValue'
                     ExpressionAttributeValues:
                         ':stateValue':
-                            S: active
+                            S: activeRoute1
                 End: true
       Logging:
         Destinations:
