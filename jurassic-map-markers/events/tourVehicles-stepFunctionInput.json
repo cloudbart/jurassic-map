@@ -1,6 +1,6 @@
 {
     "id": "vehicle01",
-    "route1segement1":[
+    "route1segment1":[
         {
             "xcoord": "898",
             "ycoord": "828"
@@ -22,7 +22,11 @@
             "ycoord": "930"
         },
         {
+            "xcoord": "1066",
+            "ycoord": "958"
+        },
+        {
             "xcoord": "900",
-            "ycoord": "830"
+            "ycoord": "825"
         }]
 }

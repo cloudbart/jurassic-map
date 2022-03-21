@@ -1,7 +1,8 @@
-900,830 start position 1
+900,825 start position 1
 
 898,828
 933,830
 978,840
 1018,872
-1039,930    dilo paddock
+1039,930
+1066,958    dilo paddock position 1

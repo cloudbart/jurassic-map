@@ -94,9 +94,13 @@ Resources:
                       Next: route1segment1Wait
                     route1segment1Wait:
                       Type: Wait
-                      Seconds: 20
+                      Seconds: 15
                       End: true
                 ResultPath: null
+                Next: route1dilo1Wait
+            route1dilo1Wait:
+                Type: Wait
+                Seconds: 45
                 Next: setTourStateIdle
             setTourStateIdle:
                 Type: Task
