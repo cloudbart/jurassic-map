@@ -94,7 +94,7 @@ Resources:
                       Next: route1segement1Wait
                     route1segement1Wait:
                       Type: Wait
-                      Seconds: 45
+                      Seconds: 20
                       End: true
                 Next: setTourStateIdle
             setTourStateIdle:
