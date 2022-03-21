@@ -53,6 +53,7 @@ Resources:
             setTourStateActive:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
+                Comment: 'Set tourState to active'
                 Parameters:
                     TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
                     Key:
@@ -62,9 +63,7 @@ Resources:
                     ExpressionAttributeValues:
                         ':stateValue':
                             S: active
-                ResultPath: $.TblUpdate   
                 End: true
-                Comment: 'Set tourState to active'
       Logging:
         Destinations:
           - CloudWatchLogsLogGroup:
