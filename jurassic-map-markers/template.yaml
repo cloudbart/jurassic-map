@@ -47,7 +47,7 @@ Resources:
     Properties:
       Name: tourVehiclesStateMachine
       Definition:
-        Comment: 'tourVehiclesStateMachine invoked'
+        Comment: 'Begin tourVehiclesRoute1'
         StartAt: setTourStateActiveRoute1
         States:
             setTourStateActiveRoute1:
@@ -96,6 +96,7 @@ Resources:
                       Type: Wait
                       Seconds: 20
                       End: true
+                ResultPath: null
                 Next: setTourStateIdle
             setTourStateIdle:
                 Type: Task
