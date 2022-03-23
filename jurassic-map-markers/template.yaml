@@ -282,7 +282,7 @@ Resources:
             route1RexWait:
                 Type: Wait
                 Seconds: 45
-                Next: setTourStateIdle
+                Next: tourRoute1Segment7
             tourRoute1Segment7:
                 Type: Map
                 ItemsPath: '$.route1segment7'
