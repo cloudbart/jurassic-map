@@ -63,7 +63,7 @@ Resources:
                     ExpressionAttributeValues:
                         ':tourStateValue':
                             S: activeRoute1
-                ResultPath: 'null'
+                ResultPath: null
                 Next: tourRoute1Segment1
             tourRoute1Segment1:
                 Type: Map
@@ -96,7 +96,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1DiloWait
             route1DiloWait:
                 Type: Wait
@@ -133,7 +133,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1ProceratWait
             route1ProceratWait:
                 Type: Wait
@@ -170,7 +170,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1SegisaurusWait
             route1SegisaurusWait:
                 Type: Wait
@@ -207,7 +207,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: tourRoute1Segment5
             tourRoute1Segment5:
                 Type: Map
@@ -240,7 +240,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1BaryonyxWait
             route1BaryonyxWait:
                 Type: Wait
@@ -277,7 +277,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1RexWait
             route1RexWait:
                 Type: Wait
@@ -314,7 +314,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1MetricanthWait
             route1MetricanthWait:
                 Type: Wait
@@ -351,7 +351,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1TrikeWait
             route1TrikeWait:
                 Type: Wait
@@ -388,7 +388,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: route1HerbivoreWait
             route1HerbivoreWait:
                 Type: Wait
@@ -425,7 +425,7 @@ Resources:
                       Type: Wait
                       Seconds: 15
                       End: true
-                ResultPath: 'null'
+                ResultPath: null
                 Next: setTourStateIdle
             setTourStateIdle:
                 Type: Task
@@ -440,7 +440,7 @@ Resources:
                     ExpressionAttributeValues:
                         ':tourStateValue':
                             S: idle
-                ResultPath: 'null'
+                ResultPath: null
                 End: true
       Logging:
         Destinations:
