@@ -175,7 +175,7 @@ Resources:
             route1SegisaurusWait:
                 Type: Wait
                 Seconds: 45
-                Next: setTourStateIdle
+                Next: tourRoute1Segment4
             tourRoute1Segment4:
                 Type: Map
                 ItemsPath: '$.route1segment4'
