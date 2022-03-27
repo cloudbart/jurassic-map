@@ -537,11 +537,17 @@ Resources:
       Tracing:
         Enabled: true
   # DynamoDB table for vehicle route coordinates
-  vehicleCoordinatesDDBTable:
-    Type: AWS::Serverless::SimpleTable
+  vehicleRouteCoordinatesDDBTable:
+    Type: AWS::DynamoDB::Table
     Properties:
-      PrimaryKey: segmentId
-      TableName: vehicleCoordinatesTable
+      AttributeDefinitions:
+      - AttributeName: segmentId
+        AttributeType: S
+      KeySchema:
+      - AttributeName: segmentId
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      TableName: vehicleRouteCoordsTable
   # SNS Topic for relaying messages about CodePipiline release events
   codePipelineReleaseTopic:
     Type: AWS::SNS::Topic
