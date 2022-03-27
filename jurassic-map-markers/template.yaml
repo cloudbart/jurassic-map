@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: JurassicMap movement generation, paddock testing, & scheduling components
+Description: JurassicMap backend components - dinosaur and vehicle schedules and movement
 Transform: AWS::Serverless-2016-10-31
 Globals:
   Function:
@@ -41,7 +41,79 @@ Resources:
         - DynamoDBWritePolicy:
             TableName: mapMarker-yr5q33is7ngxno7igxguwgezye-dev
       AutoPublishAlias: DevAlias
-  # State Machine for orchestration map marker updates and controls
+    # State Machine for orchestration of dino map markers
+  mapMarkersUpdateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Name: mapMarkerUpdateMachine
+      Definition:
+        StartAt: Map
+        States:
+          Map:
+            Type: Map
+            Iterator:
+              StartAt: MapMarkerState
+              States:
+                MapMarkerState:
+                  Type: Task
+                  Resource: !Ref mapMarkerFunction.Alias
+                  End: true
+            End: true
+      Logging:
+        Destinations:
+          - CloudWatchLogsLogGroup:
+              LogGroupArn: !GetAtt [ updateMachineLogGroup, Arn ]
+        IncludeExecutionData: false
+        Level: 'ALL'
+      # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
+      Policies:
+        - Statement:
+          - Sid: mapMarkersUpdateMachineExecutionPolicy
+            Effect: Allow
+            Action:
+              - "lambda:InvokeFunction"
+              - "cloudwatch:*"
+              - "logs:*"
+            Resource: "*"
+      Tracing:
+        Enabled: true
+      Events:
+        Scheduler01:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(1 minute)'
+            Name: JurassicMapMarkerScheduler01
+            Description: Schedule for running mapMarker's update State Machine every minute
+            # NOTE Schedulers begin disabled, must be manually enabled
+            Enabled: false
+            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
+        Scheduler02:
+          Type: Schedule
+          Properties:
+            Schedule: 'rate(1 minute)'
+            Name: JurassicMapMarkerScheduler02
+            Description: Schedule for running mapMarker's update State Machine every minute
+            # NOTE Schedulers begin disabled, must be manually enabled
+            Enabled: false
+            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
+  # CloudWatch LogGroup for streaming Step Function dino map marker log events
+  updateMachineLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: "/stepfunctions/mapMarkersUpdateMachine-Logs"
+  # CloudWatch Dashboard for dino map marker recent-events log events
+  recentActivityDashboard:
+    Type: 'AWS::CloudWatch::Dashboard'
+    Properties:
+      DashboardBody: >-
+        {"start":"-PT5M","widgets":[{"height":12,"width":12,"y":0,"x":0,"type":"log","properties":{"query":"SOURCE
+        '/aws/lambda/JurassicMapMarkerControls-mapMarkerFunction-I7HmmtEB00kl' |
+        fields @message | sort @ingestionTime desc | sort @requestId | sort @message
+        asc | limit 30 | filter @message like /(?i)(INFO)/ | parse @message
+        /(?<Event>(?<=INFO).+)/ | display
+        Event","region":"us-east-1","stacked":false,"title":"","view":"table"}}]}
+      DashboardName: Recent-Activity
+  # State Machine for orchestration of tour vehicle routes map markers
   tourVehiclesStateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
@@ -464,77 +536,13 @@ Resources:
             Resource: "*"
       Tracing:
         Enabled: true
-  mapMarkersUpdateMachine:
-    Type: AWS::Serverless::StateMachine
+  # DynamoDB table for vehicle route coordinates
+  vehicleCoordinatesDDBTable:
+    Type: AWS::Serverless::SimpleTable
     Properties:
-      Name: mapMarkerUpdateMachine
-      Definition:
-        StartAt: Map
-        States:
-          Map:
-            Type: Map
-            Iterator:
-              StartAt: MapMarkerState
-              States:
-                MapMarkerState:
-                  Type: Task
-                  Resource: !Ref mapMarkerFunction.Alias
-                  End: true
-            End: true
-      Logging:
-        Destinations:
-          - CloudWatchLogsLogGroup:
-              LogGroupArn: !GetAtt [ updateMachineLogGroup, Arn ]
-        IncludeExecutionData: false
-        Level: 'ALL'
-      # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
-      Policies:
-        - Statement:
-          - Sid: mapMarkersUpdateMachineExecutionPolicy
-            Effect: Allow
-            Action:
-              - "lambda:InvokeFunction"
-              - "cloudwatch:*"
-              - "logs:*"
-            Resource: "*"
-      Tracing:
-        Enabled: true
-      Events:
-        Scheduler01:
-          Type: Schedule
-          Properties:
-            Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler01
-            Description: Schedule for running mapMarker's update State Machine every minute
-            # NOTE Schedulers begin disabled, must be manually enabled
-            Enabled: false
-            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
-        Scheduler02:
-          Type: Schedule
-          Properties:
-            Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler02
-            Description: Schedule for running mapMarker's update State Machine every minute
-            # NOTE Schedulers begin disabled, must be manually enabled
-            Enabled: false
-            Input: '[{"id":"parasaur01"},{"id":"parasaur02"},{"id":"parasaur03"},{"id":"brachi01"},{"id":"brachi02"},{"id":"brachi03"},{"id":"gallimimus01"},{"id":"gallimimus02"},{"id":"gallimimus03"},{"id":"gallimimus04"},{"id":"gallimimus05"},{"id":"gallimimus06"},{"id":"gallimimus07"},{"id":"gallimimus08"},{"id":"gallimimus09"},{"id":"trike01"},{"id":"trike02"},{"id":"trike03"},{"id":"dilo01"},{"id":"rex01"},{"id":"bary01"},{"id":"procerat01"},{"id":"metricanth01"},{"id":"raptor01"},{"id":"raptor02"},{"id":"raptor03"},{"id":"segi01"},{"id":"segi02"},{"id":"segi03"},{"id":"segi04"},{"id":"segi05"},{"id":"segi06"}]'
-  # CloudWatch LogGroup for streaming Step Function log events
-  updateMachineLogGroup:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: "/stepfunctions/mapMarkersUpdateMachine-Logs"
-  # CloudWatch Dashboard for receent-events log events
-  recentActivityDashboard:
-    Type: 'AWS::CloudWatch::Dashboard'
-    Properties:
-      DashboardBody: >-
-        {"start":"-PT5M","widgets":[{"height":12,"width":12,"y":0,"x":0,"type":"log","properties":{"query":"SOURCE
-        '/aws/lambda/JurassicMapMarkerControls-mapMarkerFunction-I7HmmtEB00kl' |
-        fields @message | sort @ingestionTime desc | sort @requestId | sort @message
-        asc | limit 30 | filter @message like /(?i)(INFO)/ | parse @message
-        /(?<Event>(?<=INFO).+)/ | display
-        Event","region":"us-east-1","stacked":false,"title":"","view":"table"}}]}
-      DashboardName: Recent-Activity
+      PrimaryKey: segmentId
+      TableName: vehicleCoordinatesTable
+  # SNS Topic for relaying messages about CodePipiline release events
   codePipelineReleaseTopic:
     Type: AWS::SNS::Topic
     Properties: 
