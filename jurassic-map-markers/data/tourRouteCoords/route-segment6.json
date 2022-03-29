@@ -1,0 +1,64 @@
+[{
+    "segmentId": "routeSegment6",
+    "coords": [{
+            "xcoord": "1802",
+            "ycoord": "986"
+        },
+        {
+            "xcoord": "1814",
+            "ycoord": "955"
+        },
+        {
+            "xcoord": "1824",
+            "ycoord": "929"
+        },
+        {
+            "xcoord": "1834",
+            "ycoord": "898"
+        },
+        {
+            "xcoord": "1842",
+            "ycoord": "867"
+        },
+        {
+            "xcoord": "1845",
+            "ycoord": "838"
+        },
+        {
+            "xcoord": "1834",
+            "ycoord": "815"
+        },
+        {
+            "xcoord": "1814",
+            "ycoord": "795"
+        },
+        {
+            "xcoord": "1797",
+            "ycoord": "782"
+        },
+        {
+            "xcoord": "1784",
+            "ycoord": "761"
+        },
+        {
+            "xcoord": "1778",
+            "ycoord": "733"
+        },
+        {
+            "xcoord": "1765",
+            "ycoord": "714"
+        },
+        {
+            "xcoord": "1741",
+            "ycoord": "699"
+        },
+        {
+            "xcoord": "1706",
+            "ycoord": "678"
+        },
+        {
+            "xcoord": "1674",
+            "ycoord": "666"
+        }
+    ]
+}]

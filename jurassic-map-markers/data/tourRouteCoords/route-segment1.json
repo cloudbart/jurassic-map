@@ -1,5 +1,6 @@
 [{
-    "route1segment1": [{
+    "segmentId": "routeSegment1",
+    "coords": [{
             "xcoord": "898",
             "ycoord": "828"
         },

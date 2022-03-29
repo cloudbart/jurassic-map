@@ -1,0 +1,88 @@
+[{
+    "segmentId": "routeSegment3",
+    "coords": [{
+            "xcoord": "1196",
+            "ycoord": "1110"
+        },
+        {
+            "xcoord": "1230",
+            "ycoord": "1152"
+        },
+        {
+            "xcoord": "1247",
+            "ycoord": "1170"
+        },
+        {
+            "xcoord": "1271",
+            "ycoord": "1194"
+        },
+        {
+            "xcoord": "1304",
+            "ycoord": "1222"
+        },
+        {
+            "xcoord": "1345",
+            "ycoord": "1247"
+        },
+        {
+            "xcoord": "1361",
+            "ycoord": "1260"
+        },
+        {
+            "xcoord": "1382",
+            "ycoord": "1296"
+        },
+        {
+            "xcoord": "1385",
+            "ycoord": "1323"
+        },
+        {
+            "xcoord": "1387",
+            "ycoord": "1346"
+        },
+        {
+            "xcoord": "1389",
+            "ycoord": "1380"
+        },
+        {
+            "xcoord": "1393",
+            "ycoord": "1419"
+        },
+        {
+            "xcoord": "1396",
+            "ycoord": "1446"
+        },
+        {
+            "xcoord": "1396",
+            "ycoord": "1492"
+        },
+        {
+            "xcoord": "1398",
+            "ycoord": "1514"
+        },
+        {
+            "xcoord": "1412",
+            "ycoord": "1542"
+        },
+        {
+            "xcoord": "1432",
+            "ycoord": "1553"
+        },
+        {
+            "xcoord": "1461",
+            "ycoord": "1550"
+        },
+        {
+            "xcoord": "1467",
+            "ycoord": "1524"
+        },
+        {
+            "xcoord": "1459",
+            "ycoord": "1494"
+        },
+        {
+            "xcoord": "1449",
+            "ycoord": "1467"
+        }
+    ]
+}]

@@ -1,0 +1,36 @@
+[{
+    "segmentId": "routeSegment5",
+    "coords": [{
+            "xcoord": "1669",
+            "ycoord": "1103"
+        },
+        {
+            "xcoord": "1698",
+            "ycoord": "1094"
+        },
+        {
+            "xcoord": "1722",
+            "ycoord": "1075"
+        },
+        {
+            "xcoord": "1738",
+            "ycoord": "1061"
+        },
+        {
+            "xcoord": "1757",
+            "ycoord": "1038"
+        },
+        {
+            "xcoord": "1774",
+            "ycoord": "1019"
+        },
+        {
+            "xcoord": "1793",
+            "ycoord": "1010"
+        },
+        {
+            "xcoord": "1795",
+            "ycoord": "1002"
+        }
+    ]
+}]

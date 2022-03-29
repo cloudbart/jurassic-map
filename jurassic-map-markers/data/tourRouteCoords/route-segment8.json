@@ -1,0 +1,36 @@
+[{
+    "segmentId": "routeSegment8",
+    "coords": [{
+            "xcoord": "1728",
+            "ycoord": "464"
+        },
+        {
+            "xcoord": "1694",
+            "ycoord": "436"
+        },
+        {
+            "xcoord": "1662",
+            "ycoord": "409"
+        },
+        {
+            "xcoord": "1634",
+            "ycoord": "390"
+        },
+        {
+            "xcoord": "1602",
+            "ycoord": "368"
+        },
+        {
+            "xcoord": "1574",
+            "ycoord": "367"
+        },
+        {
+            "xcoord": "1546",
+            "ycoord": "383"
+        },
+        {
+            "xcoord": "1529",
+            "ycoord": "411"
+        }
+    ]
+}]

@@ -1,16 +1,17 @@
 {
-  "name": "ddbLoader",
-  "version": "1.0.0",
-  "description": "",
-  "main": "ddbLoader.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "AWS Serverless",
-  "license": "MIT-0",
-  "dependencies": {
-    "aws-sdk": "^2.1069.0",
-    "uuid": "^8.3.2"
-  }
+    "name": "jurassicMap map-marker functions",
+    "description": "Functions for managing jurassic map map-markers",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@turf/turf": "^6.5.0",
+        "aws-sdk": "^2.1069.0",
+        "uuid": "^8.3.2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "@CloudBart",
+    "license": "MIT-0"
 }

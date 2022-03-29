@@ -20,7 +20,7 @@ AWS.config.region = process.env.AWS_REGION
 const s3 = new AWS.S3()
 
 const docClient = new AWS.DynamoDB.DocumentClient()
-const { v4: uuidv4 } = require('uuid')
+const {"v4": uuidv4} = require('uuid')
 
 const ddbTable = process.env.DDBtable 
 
@@ -86,8 +86,8 @@ const ddbLoader = async (data) => {
         params.RequestItems[ddbTable].push({
           PutRequest: {
             Item: {
-              ID: uuidv4(),
-              ...item
+              segmentId: item.segmentId,
+              coords: item.coords
             }
           }
         })

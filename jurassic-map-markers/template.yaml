@@ -8,6 +8,9 @@ Parameters:
   VehicleRouteCoordsBucket:
     Type: String
     Default: 'jurassicmap-vehiclecoords-source'
+  VehicleRouteCoordsTable:
+    Type: String
+    Default: 'jurassicMapVehicleCoordsTable'
 
 Globals:
   Function:
@@ -33,7 +36,8 @@ Resources:
   mapMarkerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/mapMarkerLambda.mapMarkerHandler
+      CodeUri: src/handlers/
+      Handler: mapMarkerLambda.mapMarkerHandler
       Runtime: nodejs14.x
       Layers:
         - !Ref turfLayer
@@ -150,10 +154,22 @@ Resources:
                         ':tourStateValue':
                             S: activeRoute1
                 ResultPath: null
+                Next: fetchRoute1Segment1
+            fetchRoute1Segment1:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement1 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment1
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
                 Next: tourRoute1Segment1
             tourRoute1Segment1:
                 Type: Map
-                ItemsPath: '$.route1segment1'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -174,9 +190,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1segment1Wait
                     route1segment1Wait:
                       Type: Wait
@@ -187,10 +203,22 @@ Resources:
             route1DiloWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment2
+                Next: fetchRoute1Segment2
+            fetchRoute1Segment2:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement2 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment2
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment2              
             tourRoute1Segment2:
                 Type: Map
-                ItemsPath: '$.route1segment2'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -211,9 +239,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment2Wait
                     route1Segment2Wait:
                       Type: Wait
@@ -224,10 +252,22 @@ Resources:
             route1ProceratWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment3
+                Next: fetchRoute1Segment3
+            fetchRoute1Segment3:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement3 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment3
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment3              
             tourRoute1Segment3:
                 Type: Map
-                ItemsPath: '$.route1segment3'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -248,9 +288,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment3Wait
                     route1Segment3Wait:
                       Type: Wait
@@ -261,10 +301,22 @@ Resources:
             route1SegisaurusWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment4
+                Next: fetchRoute1Segment4
+            fetchRoute1Segment4:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement4 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment4
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment4              
             tourRoute1Segment4:
                 Type: Map
-                ItemsPath: '$.route1segment4'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -285,19 +337,31 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment4Wait
                     route1Segment4Wait:
                       Type: Wait
                       Seconds: 15
                       End: true
                 ResultPath: null
-                Next: tourRoute1Segment5
+                Next: fetchRoute1Segment5
+            fetchRoute1Segment5:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement5 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment5
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment5              
             tourRoute1Segment5:
                 Type: Map
-                ItemsPath: '$.route1segment5'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -318,9 +382,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment5Wait
                     route1Segment5Wait:
                       Type: Wait
@@ -331,10 +395,22 @@ Resources:
             route1BaryonyxWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment6
+                Next: fetchRoute1Segment6
+            fetchRoute1Segment6:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement6 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment6
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment6              
             tourRoute1Segment6:
                 Type: Map
-                ItemsPath: '$.route1segment6'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -355,9 +431,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment6Wait
                     route1Segment6Wait:
                       Type: Wait
@@ -368,10 +444,22 @@ Resources:
             route1RexWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment7
+                Next: fetchRoute1Segment7
+            fetchRoute1Segment7:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement7 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment7
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment7              
             tourRoute1Segment7:
                 Type: Map
-                ItemsPath: '$.route1segment7'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -392,9 +480,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment7Wait
                     route1Segment7Wait:
                       Type: Wait
@@ -405,10 +493,22 @@ Resources:
             route1MetricanthWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment8
+                Next: fetchRoute1Segment8
+            fetchRoute1Segment8:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement8 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment8
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment8              
             tourRoute1Segment8:
                 Type: Map
-                ItemsPath: '$.route1segment8'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -429,9 +529,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment8Wait
                     route1Segment8Wait:
                       Type: Wait
@@ -442,10 +542,22 @@ Resources:
             route1TrikeWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment9
+                Next: fetchRoute1Segment9
+            fetchRoute1Segment9:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement9 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment9
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment9              
             tourRoute1Segment9:
                 Type: Map
-                ItemsPath: '$.route1segment9'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -466,9 +578,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment9Wait
                     route1Segment9Wait:
                       Type: Wait
@@ -479,10 +591,22 @@ Resources:
             route1HerbivoreWait:
                 Type: Wait
                 Seconds: 45
-                Next: tourRoute1Segment10
+                Next: fetchRoute1Segment10
+            fetchRoute1Segment10:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch route1 segement10 coordinates'
+                Parameters:
+                    TableName: !Ref VehicleRouteCoordsTable
+                    Key:
+                        segmentId: routeSegment10
+                ResultPath: "$.coords"
+                ResultSelector:
+                    coordsList.$: "$.Item.coords.L"
+                Next: tourRoute1Segment10              
             tourRoute1Segment10:
                 Type: Map
-                ItemsPath: '$.route1segment10'
+                ItemsPath: '$.coords.coordsList'
                 Parameters:
                   id.$: $.id
                   coords.$: $$.Map.Item.Value
@@ -503,9 +627,9 @@ Resources:
                           UpdateExpression: 'SET xcoord = :xValue, ycoord = :yValue'
                           ExpressionAttributeValues:
                               ':xValue':
-                                  N.$: $.coords.xcoord
+                                  S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  N.$: $.coords.ycoord
+                                  S.$: $.coords.M.xcoord.S
                       Next: route1Segment10Wait
                     route1Segment10Wait:
                       Type: Wait
@@ -537,7 +661,7 @@ Resources:
       # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
       Policies:
         - DynamoDBReadPolicy:
-            TableName: !Ref MapMarkersTable
+            TableName: !Ref vehicleRouteCoordinatesDDBTable
         - DynamoDBWritePolicy:
             TableName: !Ref MapMarkersTable
         - Statement:
@@ -556,9 +680,9 @@ Resources:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
-        Name: segementId
+        Name: segmentId
         Type: String
-      TableName: jurassicMapVehicleCoords
+      TableName: !Ref VehicleRouteCoordsTable
 
   # S3 bucket for importing data
   vehicleRouteCoordsSourceBucket:
@@ -570,8 +694,9 @@ Resources:
   vehicleRouteImportFunction:
     Type: AWS::Serverless::Function 
     Properties:
-      Handler: src/handlers/ddbLoader.handler
-      Runtime: nodejs12.x
+      CodeUri: src/handlers/
+      Handler: ddbLoader.handler
+      Runtime: nodejs14.x
       Timeout: 30
       MemorySize: 512
       Environment:
