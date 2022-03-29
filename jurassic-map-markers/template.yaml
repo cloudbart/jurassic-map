@@ -196,13 +196,13 @@ Resources:
                       Next: route1segment1Wait
                     route1segment1Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1DiloWait
             route1DiloWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment2
             fetchRoute1Segment2:
                 Type: Task
@@ -245,13 +245,13 @@ Resources:
                       Next: route1Segment2Wait
                     route1Segment2Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1ProceratWait
             route1ProceratWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment3
             fetchRoute1Segment3:
                 Type: Task
@@ -294,13 +294,13 @@ Resources:
                       Next: route1Segment3Wait
                     route1Segment3Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1SegisaurusWait
             route1SegisaurusWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment4
             fetchRoute1Segment4:
                 Type: Task
@@ -343,7 +343,7 @@ Resources:
                       Next: route1Segment4Wait
                     route1Segment4Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: fetchRoute1Segment5
@@ -388,13 +388,13 @@ Resources:
                       Next: route1Segment5Wait
                     route1Segment5Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1BaryonyxWait
             route1BaryonyxWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment6
             fetchRoute1Segment6:
                 Type: Task
@@ -437,13 +437,13 @@ Resources:
                       Next: route1Segment6Wait
                     route1Segment6Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1RexWait
             route1RexWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment7
             fetchRoute1Segment7:
                 Type: Task
@@ -486,13 +486,13 @@ Resources:
                       Next: route1Segment7Wait
                     route1Segment7Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1MetricanthWait
             route1MetricanthWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment8
             fetchRoute1Segment8:
                 Type: Task
@@ -535,13 +535,13 @@ Resources:
                       Next: route1Segment8Wait
                     route1Segment8Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1TrikeWait
             route1TrikeWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment9
             fetchRoute1Segment9:
                 Type: Task
@@ -584,13 +584,13 @@ Resources:
                       Next: route1Segment9Wait
                     route1Segment9Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: route1HerbivoreWait
             route1HerbivoreWait:
                 Type: Wait
-                Seconds: 45
+                Seconds: 30
                 Next: fetchRoute1Segment10
             fetchRoute1Segment10:
                 Type: Task
@@ -633,7 +633,7 @@ Resources:
                       Next: route1Segment10Wait
                     route1Segment10Wait:
                       Type: Wait
-                      Seconds: 15
+                      Seconds: 10
                       End: true
                 ResultPath: null
                 Next: setTourStateIdle
