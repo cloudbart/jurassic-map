@@ -290,7 +290,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment3Wait
                     route1Segment3Wait:
                       Type: Wait
@@ -339,7 +339,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment4Wait
                     route1Segment4Wait:
                       Type: Wait
@@ -384,7 +384,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment5Wait
                     route1Segment5Wait:
                       Type: Wait
@@ -433,7 +433,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment6Wait
                     route1Segment6Wait:
                       Type: Wait
@@ -482,7 +482,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment7Wait
                     route1Segment7Wait:
                       Type: Wait
@@ -531,7 +531,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment8Wait
                     route1Segment8Wait:
                       Type: Wait
@@ -580,7 +580,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment9Wait
                     route1Segment9Wait:
                       Type: Wait
@@ -629,7 +629,7 @@ Resources:
                               ':xValue':
                                   S.$: $.coords.M.xcoord.S
                               ':yValue':
-                                  S.$: $.coords.M.xcoord.S
+                                  S.$: $.coords.M.ycoord.S
                       Next: route1Segment10Wait
                     route1Segment10Wait:
                       Type: Wait
