@@ -145,7 +145,7 @@ Resources:
                 Choices:
                   - Variable: $.routeId
                     StringMatches: fullTour
-                    Next: set
+                    Next: setTourStateActiveRoute1
                 Default: setTourStateActiveRoute1a
             setTourStateActiveRoute1a:
                 Type: Task
