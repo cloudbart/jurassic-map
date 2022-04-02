@@ -1,3 +1,4 @@
 {
-    "id": "vehicle01"
+    "id": "vehicle01",
+    "routeId": "fullTour"
 }
