@@ -1,0 +1,76 @@
+[{
+    "segmentId": "routeSegment1a",
+    "coords": [{
+            "xcoord": "898",
+            "ycoord": "828"
+        },
+        {
+            "xcoord": "933",
+            "ycoord": "830"
+        },
+        {
+            "xcoord": "978",
+            "ycoord": "840"
+        },
+        {
+            "xcoord": "1018",
+            "ycoord": "872"
+        },
+        {
+            "xcoord": "1047",
+            "ycoord": "895"
+        },
+        {
+            "xcoord": "1084",
+            "ycoord": "932"
+        },
+        {
+            "xcoord": "1110",
+            "ycoord": "967"
+        },
+        {
+            "xcoord": "1144",
+            "ycoord": "1000"
+        },
+        {
+            "xcoord": "1182",
+            "ycoord": "1025"
+        },
+        {
+            "xcoord": "1225",
+            "ycoord": "1047"
+        },
+        {
+            "xcoord": "1268",
+            "ycoord": "1065"
+        },
+        {
+            "xcoord": "1312",
+            "ycoord": "1075"
+        },
+        {
+            "xcoord": "1369",
+            "ycoord": "1088"
+        },
+        {
+            "xcoord": "1413",
+            "ycoord": "1085"
+        },
+        {
+            "xcoord": "1469",
+            "ycoord": "1090"
+        },
+        {
+            "xcoord": "1516",
+            "ycoord": "1103"
+        },
+        {
+            "xcoord": "1581",
+            "ycoord": "1116"
+        },
+        {
+            "xcoord": "1629",
+            "ycoord": "1111"
+        }
+    ]
+}]

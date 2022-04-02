@@ -1,0 +1,20 @@
+[{
+    "segmentId": "routeSegment11",
+    "coords": [{
+            "xcoord": "1001",
+            "ycoord": "825"
+        },
+        {
+            "xcoord": "942",
+            "ycoord": "831"
+        },
+        {
+            "xcoord": "916",
+            "ycoord": "829"
+        },
+        {
+            "xcoord": "884",
+            "ycoord": "828"
+        }
+    ]
+}]

@@ -145,7 +145,7 @@ Resources:
                 Choices:
                   - Variable: $.routeId
                     StringMatches: fullTour
-                    Next: setTourStateActiveRoute1
+                    Next: set
                 Default: setTourStateActiveRoute1a
             setTourStateActiveRoute1a:
                 Type: Task
@@ -207,7 +207,7 @@ Resources:
                       End: true
                 ResultPath: null
                 Next: fetchSegment5
-            setTourStateActive:
+            setTourStateActiveRoute1:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
                 Comment: 'Set tourState to active for route1'
