@@ -140,13 +140,36 @@ Resources:
         Comment: 'Tour Vehicle Route1'
         StartAt: tourRouteChoice
         States:
+            fetchVehicleState:
+                Type: Task
+                Resource: 'arn:aws:states:::dynamodb:getItem'
+                Comment: 'Fetch current vehicle status'
+                Parameters:
+                    TableName: !Ref MapMarkersTable
+                    Key:
+                        id: $.id
+                ResultPath: "$.tourState"
+                Next: tourRouteChoice
             tourRouteChoice:
                 Type: Choice
                 Choices:
-                  - Variable: $.routeId
-                    StringMatches: fullTour
-                    Next: setTourStateActiveRoute1
-                Default: setTourStateActiveRoute1a
+                  - And:
+                    - Variable: $.routeId
+                      StringMatches: fullTour
+                    - Variable: $.tourState
+                      StringMatches: idle
+                  Next: setTourStateActiveRoute1
+                  - And:
+                    - Variable: $.routeId
+                      StringMatches: shortTour
+                    - Variable: $.tourState
+                      StringMatches: idle
+                  Next: setTourStateActiveRoute1a
+                Default: activeVehicleError
+            activeVehicleError:
+                Type: Fail
+                Cause: Vehicle already active
+                Error: vehicleActiveTourError
             setTourStateActiveRoute1a:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
