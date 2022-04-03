@@ -146,11 +146,11 @@ Resources:
                 Comment: 'Fetch current vehicle status'
                 Parameters:
                     TableName: !Ref MapMarkersTable
-                    Key:
-                        id: $.id
-                ResultPath: "$.tourState"
-                ResultSelector:
-                    tourState.$: "$.Item.tourState.S"
+                    Key: 
+                        id.$: $.id
+                ResultSelector: 
+                    vehicleTourState.$: "$.Item.tourState.S"
+                ResultPath: "$.response"
                 Next: tourRouteChoice
             tourRouteChoice:
                 Type: Choice
@@ -158,13 +158,13 @@ Resources:
                   - And:
                     - Variable: $.routeId
                       StringMatches: fullTour
-                    - Variable: $.tourState
+                    - Variable: $.response.vehicleTourState
                       StringMatches: idle
                     Next: setTourStateActiveRoute1
                   - And:
                     - Variable: $.routeId
                       StringMatches: shortTour
-                    - Variable: $.tourState
+                    - Variable: $.response.vehicleTourState
                       StringMatches: idle
                     Next: setTourStateActiveRoute1a
                 Default: activeVehicleError
@@ -195,9 +195,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment1a
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment1a
             tourSegment1a:
                 Type: Map
@@ -255,9 +255,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment1
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment1
             tourSegment1:
                 Type: Map
@@ -304,9 +304,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment2
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment2              
             tourSegment2:
                 Type: Map
@@ -353,9 +353,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment3
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment3              
             tourSegment3:
                 Type: Map
@@ -402,9 +402,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment4
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment4              
             tourSegment4:
                 Type: Map
@@ -447,9 +447,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment5
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment5              
             tourSegment5:
                 Type: Map
@@ -496,9 +496,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment6
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment6              
             tourSegment6:
                 Type: Map
@@ -545,9 +545,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment7
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment7              
             tourSegment7:
                 Type: Map
@@ -594,9 +594,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment8
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment8              
             tourSegment8:
                 Type: Map
@@ -643,9 +643,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment9
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment9              
             tourSegment9:
                 Type: Map
@@ -692,9 +692,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment10
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment10              
             tourSegment10:
                 Type: Map
@@ -741,9 +741,9 @@ Resources:
                     TableName: !Ref VehicleRouteCoordsTable
                     Key:
                         segmentId: routeSegment11
-                ResultPath: "$.coords"
                 ResultSelector:
                     coordsList.$: "$.Item.coords.L"
+                ResultPath: "$.coords"
                 Next: tourSegment11              
             tourSegment11:
                 Type: Map
