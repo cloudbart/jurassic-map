@@ -138,7 +138,7 @@ Resources:
       Name: tourVehiclesStateMachine
       Definition:
         Comment: 'Tour Vehicle Route1'
-        StartAt: tourRouteChoice
+        StartAt: fetchVehicleState
         States:
             fetchVehicleState:
                 Type: Task
@@ -153,18 +153,18 @@ Resources:
             tourRouteChoice:
                 Type: Choice
                 Choices:
-                  And:
+                  - And:
                     - Variable: $.routeId
                       StringMatches: fullTour
                     - Variable: $.tourState
                       StringMatches: idle
-                  Next: setTourStateActiveRoute1
-                  And:
+                    Next: setTourStateActiveRoute1
+                  - And:
                     - Variable: $.routeId
                       StringMatches: shortTour
                     - Variable: $.tourState
                       StringMatches: idle
-                  Next: setTourStateActiveRoute1a
+                    Next: setTourStateActiveRoute1a
                 Default: activeVehicleError
             activeVehicleError:
                 Type: Fail
