@@ -8,4 +8,5 @@ type mapMarker @model @auth(rules: [{ allow: public }]) {
   xcoord: Int
   ycoord: Int
   paddockId: String
+  tourState: String
 }

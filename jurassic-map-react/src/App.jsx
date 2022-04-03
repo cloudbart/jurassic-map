@@ -9,9 +9,6 @@ import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
 //declare marker variables
-let x
-let y
-let color
 let markerArray
 let markerArrayStatus = false
 let refreshCounter = 0
@@ -29,32 +26,31 @@ const fetchMapMarkers = async function() {
 }
 
 function App() {
-  //Initial call to fetch map markers from datasource
+  //Initial call to fetch map markers from DynamoDB table
   fetchMapMarkers()
   //Marker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
-    markerArray.map((item, index) => {
-      Object.entries(item).forEach(([key, value]) => {
-        if (item.id === markerId) {
-          x = item.xcoord
-          y = item.ycoord
-          color = item.color
-          ctx.lineWidth = 2
-          ctx.beginPath()
-          //Check if marker should be animated, presence of frameCount value indicates animation
-          if (typeof frameCount != "undefined") {
-            ctx.arc(x, y, 5 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
-          }
-          //If frameCount is undefined, then the marker should not be animated
-          else {
-            ctx.arc(x, y, 5, 0, 2 * Math.PI, false)
-          }
-          ctx.fillStyle = color
-          ctx.fill()
-        }
-      })
-      return 0
-    })
+    //Try to find current map marker in fetched mapMarkers array
+    try {
+      let currentMarker = markerArray.find(item => item.id === markerId)
+      //Reset visibility, check for visbility of current marker
+      var visible = true
+      if (currentMarker.tourState === "idle") { visible = false; return }
+      //Begin drawing context setup
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      //If frameCount is defined, marker should be animated
+      if (typeof frameCount != "undefined" && visible) {
+        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 5 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
+      }
+      //If frameCount is undefined, then marker should not be animated
+      else if (visible) {
+        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 5, 0, 2 * Math.PI, false)
+      }
+      ctx.fillStyle = currentMarker.color
+      ctx.fill()
+    }
+    catch (err) { console.log(markerId + 'not found') }
   }
   //Main call to draw on canvas
   const draw = (ctx, frameCount) => {
@@ -125,9 +121,9 @@ function App() {
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
                     <div className="mapZoomControls">
-                      <button class="mapZoomControlBtn" onClick={() => zoomOut()}>-</button>
-                      <button class="mapZoomControlBtn" onClick={() => resetTransform()}>Reset</button>
-                      <button class="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
+                      <button className="mapZoomControlBtn" onClick={() => zoomOut()}>-</button>
+                      <button className="mapZoomControlBtn" onClick={() => resetTransform()}>Reset</button>
+                      <button className="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
                     </div>
                     <TransformComponent>
                       <Canvas className="map-image" draw={draw} alt="InteractiveParkMap"/>
@@ -140,7 +136,7 @@ function App() {
           <div className="events-table">
             <iframe title="RecentEventsTable" scrolling="no" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Recent-Activity&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTowZWM2YWRhNC05Zjg0LTRmY2QtODM0MS03MjI5NzFhMGNhNTAiLCJPIjoiYXJuOmF3czppYW06OjM2MDI1OTcwNDE2MTpyb2xlL3NlcnZpY2Utcm9sZS9DV0RCU2hhcmluZy1QdWJsaWNSZWFkT25seUFjY2Vzcy1TREZPVU8xTyIsIk0iOiJQdWJsaWMifQ=="/>
           </div>
-          <span className="footer"><p>jurassic-map v.58 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
+          <span className="footer"><p>jurassic-map v.59 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022</p></span>
         </div>
       </div>
     </>

@@ -10,6 +10,7 @@ export const onCreateMapMarker = /* GraphQL */ `
       xcoord
       ycoord
       paddockId
+      tourState
       createdAt
       updatedAt
     }
@@ -24,6 +25,7 @@ export const onUpdateMapMarker = /* GraphQL */ `
       xcoord
       ycoord
       paddockId
+      tourState
       createdAt
       updatedAt
     }
@@ -38,6 +40,7 @@ export const onDeleteMapMarker = /* GraphQL */ `
       xcoord
       ycoord
       paddockId
+      tourState
       createdAt
       updatedAt
     }

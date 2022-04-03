@@ -10,6 +10,7 @@ export const getMapMarker = /* GraphQL */ `
       xcoord
       ycoord
       paddockId
+      tourState
     }
   }
 `;
@@ -27,6 +28,7 @@ export const listMapMarkers = /* GraphQL */ `
         xcoord
         ycoord
         paddockId
+        tourState
       }
       nextToken
     }
