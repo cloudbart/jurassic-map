@@ -799,9 +799,9 @@ Resources:
         Level: 'ALL'
       # Custom inline policy allowing Lambda invoke, CloudWatch metrics and logs
       Policies:
-        - DynamoDBReadPolicy:
+        - DynamoDBCrudPolicy:
             TableName: !Ref vehicleRouteCoordinatesDDBTable
-        - DynamoDBWritePolicy:
+        - DynamoDBCrudPolicy:
             TableName: !Ref MapMarkersTable
         - Statement:
           - Sid: tourVehiclesStateMachineExecution
