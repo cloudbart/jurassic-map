@@ -149,6 +149,8 @@ Resources:
                     Key:
                         id: $.id
                 ResultPath: "$.tourState"
+                ResultSelector:
+                    tourState.$: "$.Item.tourState.S"
                 Next: tourRouteChoice
             tourRouteChoice:
                 Type: Choice
