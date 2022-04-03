@@ -160,22 +160,22 @@ Resources:
                       StringMatches: fullTour
                     - Variable: $.response.vehicleTourState
                       StringMatches: idle
-                    Next: setTourStateActiveRoute1
+                    Next: setTourStateActiveFullTour
                   - And:
                     - Variable: $.routeId
                       StringMatches: shortTour
                     - Variable: $.response.vehicleTourState
                       StringMatches: idle
-                    Next: setTourStateActiveRoute1a
+                    Next: setTourStateActiveShortTour
                 Default: activeVehicleError
             activeVehicleError:
                 Type: Fail
                 Cause: Vehicle already active
                 Error: vehicleActiveTourError
-            setTourStateActiveRoute1a:
+            setTourStateActiveShortTour:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
-                Comment: 'Set tourState to active for route1a'
+                Comment: 'Set tourState to active for short tour'
                 Parameters:
                     TableName: !Ref MapMarkersTable
                     Key:
@@ -184,7 +184,7 @@ Resources:
                     UpdateExpression: 'SET tourState = :tourStateValue'
                     ExpressionAttributeValues:
                         ':tourStateValue':
-                            S: activeRoute1a
+                            S: shortTour
                 ResultPath: null
                 Next: fetchSegment1a
             fetchSegment1a:
@@ -232,10 +232,10 @@ Resources:
                       End: true
                 ResultPath: null
                 Next: fetchSegment5
-            setTourStateActiveRoute1:
+            setTourStateActiveFullTour:
                 Type: Task
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
-                Comment: 'Set tourState to active for route1'
+                Comment: 'Set tourState to active for full tour'
                 Parameters:
                     TableName: !Ref MapMarkersTable
                     Key:
@@ -244,7 +244,7 @@ Resources:
                     UpdateExpression: 'SET tourState = :tourStateValue'
                     ExpressionAttributeValues:
                         ':tourStateValue':
-                            S: activeRoute1
+                            S: fullTour
                 ResultPath: null
                 Next: fetchSegment1
             fetchSegment1:
