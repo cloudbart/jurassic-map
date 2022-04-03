@@ -153,13 +153,13 @@ Resources:
             tourRouteChoice:
                 Type: Choice
                 Choices:
-                  - And:
+                  And:
                     - Variable: $.routeId
                       StringMatches: fullTour
                     - Variable: $.tourState
                       StringMatches: idle
                   Next: setTourStateActiveRoute1
-                  - And:
+                  And:
                     - Variable: $.routeId
                       StringMatches: shortTour
                     - Variable: $.tourState
