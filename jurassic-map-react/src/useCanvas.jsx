@@ -12,11 +12,7 @@ const useCanvas = draw => {
     let animationFrameId
 
     const render = () => {
-      const map_img = new Image()
-      map_img.src = "jpMap_2261x2492.png"
-      canvas.width = map_img.width
-      canvas.height = map_img.height
-      context.drawImage(map_img, 0, 0)
+      context.clearRect(0, 0, canvas.width, canvas.height);
       frameCount++
       draw(context, frameCount)
       animationFrameId = window.requestAnimationFrame(render)

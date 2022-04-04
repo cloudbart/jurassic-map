@@ -126,7 +126,7 @@ function App() {
                       <button className="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
                     </div>
                     <TransformComponent>
-                      <Canvas className="map-image" draw={draw} alt="InteractiveParkMap"/>
+                      <Canvas className="map-image" draw={draw} width="2261" height="2492" alt="InteractiveParkMap"/>
                     </TransformComponent>
                   </React.Fragment>
                 )}
