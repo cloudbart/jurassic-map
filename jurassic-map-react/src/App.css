@@ -38,13 +38,30 @@ html {
   justify-content: center;
   gap: 5px;
   max-height: 100%;
+  text-align: center;
 }
 
 .mapTableSidePanel img {
-  flex: 0 1 auto;
+  flex: auto;
   border-radius: 5px;
   max-width: 100%;
   max-height: 100%;
+}
+
+.mapTableSidePanel p {
+  font-size: 1.6vw;
+  margin: auto;
+}
+
+.awsIconsPanel {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.awsIconsPanel img {
+  flex: 0 1 auto;
 }
 
 .mapTableMap {

@@ -115,6 +115,14 @@ function App() {
               <img src="mapGuideTop_715x345.png" alt="MapLocationsIndex"/>
               <img src="mapGuideMiddle_715x1395.png" alt="DinosaurIndex"/>
               <img src="mapGuideBottom_715x250.png" alt="MapIndex"/>
+              <span><p>Built with AWS Serverless</p></span>
+              <div className="awsIconsPanel">
+                <img src="awsicons/Arch_AWS-AppSync_16.png" alt="AppSync icon"/>
+                <img src="awsicons/Arch_AWS-Lambda_16.png" alt="Lambda icon"/>
+                <img src="awsicons/Arch_AWS-Step-Functions_16.png" alt="StepFunctions icon"/>
+                <img src="awsicons/Arch_Amazon-DynamoDB_16.png" alt="DynamoDB icon"/>
+                <img src="awsicons/Arch_AWS-CloudFormation_16.png" alt="CloudFormation icon"/>
+              </div>
             </div>
             <div className="mapTableMap">
               <TransformWrapper>
