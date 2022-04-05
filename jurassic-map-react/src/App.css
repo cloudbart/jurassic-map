@@ -56,8 +56,7 @@ html {
 .awsIconsPanel {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: space-evenly;
 }
 
 .awsIconsPanel img {
