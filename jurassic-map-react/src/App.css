@@ -49,11 +49,13 @@ html {
 }
 
 .mapTableSidePanel p {
+  flex: auto;
   font-size: 1.6vw;
   margin: auto;
 }
 
 .awsIconsPanel {
+  flex: auto;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
@@ -61,6 +63,7 @@ html {
 
 .awsIconsPanel img {
   flex: 0 1 auto;
+  min-width: 0;
 }
 
 .mapTableMap {
