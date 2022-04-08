@@ -109,7 +109,7 @@ function App() {
     <>
       <div className="App">
         <div className="main">
-          <span className="header"><h2>Jurassic Park - Monitoring System</h2></span>
+          <span className="header"><p>Jurassic Park - Monitoring System</p></span>
           <div className="map-table">
             <div className="mapTableSidePanel">
               <img src="mapGuideTop_715x345.png" alt="MapLocationsIndex"/>
