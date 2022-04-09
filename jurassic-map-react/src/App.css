@@ -60,6 +60,7 @@ html {
 
 .mapTableSidePanel p {
   font-size: 1vw;
+  font-weight: bold;
   margin: auto;
   white-space: nowrap;
 }
@@ -107,12 +108,27 @@ html {
   background-size: contain;
 }
 
+.tourVehicleInterface {
+  display: flex;
+  flex-flow: column nowrap;
+  z-index: 2;
+  position: absolute;
+  bottom: 2%;
+  left: 1%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tourVehicleInterface img {
+  flex: 0 1 auto;
+  padding: 2.5px;
+}
+
 .mapZoomControls {
   display: flex;
   z-index: 2;
   position: absolute;
   bottom: 0px;
-  left: 50%;
+  left: 55%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -webkit-font-smoothing: antialiased;

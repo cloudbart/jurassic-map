@@ -117,26 +117,31 @@ function App() {
               <img className="mapTableSidePanelImg" src="mapGuideBottom_715x250.png" alt="MapIndex"/>
               <span><p>Built with AWS Serverless</p></span>
               <div className="awsIconsPanel">
-                <a href="https://aws.amazon.com/appsync/">
+                <a title="AWS AppSync" href="https://aws.amazon.com/appsync/">
                   <img src="awsicons/Arch_AWS-AppSync_16.png" alt="AppSync icon"/></a>
-                <a href="https://aws.amazon.com/lambda/">
+                <a title="AWS Lambda"href="https://aws.amazon.com/lambda/">
                   <img src="awsicons/Arch_AWS-Lambda_16.png" alt="Lambda icon"/></a>
-                <a href="https://aws.amazon.com/step-functions/">
+                <a title="AWS Step Functions" href="https://aws.amazon.com/step-functions/">
                   <img src="awsicons/Arch_AWS-Step-Functions_16.png" alt="StepFunctions icon"/></a>
-                <a href="https://aws.amazon.com/dynamodb/">
+                <a title="Amazon DynamoDB" href="https://aws.amazon.com/dynamodb/">
                   <img src="awsicons/Arch_Amazon-DynamoDB_16.png" alt="DynamoDB icon"/></a>
-                <a href="https://aws.amazon.com/serverless/sam/">
+                <a title="AWS Serverless Application Model" href="https://aws.amazon.com/serverless/sam/">
                   <img src="awsicons/Arch_AWS-CloudFormation_16.png" alt="CloudFormation icon"/></a>
               </div>
             </div>
             <div className="mapTableMap">
+              <div className="tourVehicleInterface">
+                <img title="Vehicle 1" src="jurassicmap tour vehicle 20x47.png" alt="JurassicMap tour vehicle 1" onclick="startTour(vehicle01)"/>
+                <img title="Vehicle 2" src="jurassicmap tour vehicle 20x47.png" alt="JurassicMap tour vehicle 2" onclick="startTour(vehicle02)"/>
+                <img title="Vehicle 3" src="jurassicmap tour vehicle 20x47.png" alt="JurassicMap tour vehicle 3" onclick="startTour(vehicle03)"/>
+              </div>
               <TransformWrapper>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
                     <div className="mapZoomControls">
-                      <button className="mapZoomControlBtn" onClick={() => zoomOut()}>-</button>
-                      <button className="mapZoomControlBtn" onClick={() => resetTransform()}>Reset</button>
-                      <button className="mapZoomControlBtn" onClick={() => zoomIn()}>+</button>
+                      <button className="mapZoomControlBtn" title="Zoom Out" onClick={() => zoomOut()}>-</button>
+                      <button className="mapZoomControlBtn" title="Reset" onClick={() => resetTransform()}>Reset</button>
+                      <button className="mapZoomControlBtn" title="Zoom In" onClick={() => zoomIn()}>+</button>
                     </div>
                     <TransformComponent>
                       <Canvas className="map-image" draw={draw} width="2261" height="2492" alt="InteractiveParkMap"/>

@@ -2,6 +2,7 @@
     "AppSyncApiName": "jpmapAPI",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": false,
+    "AuthModeLastUpdated": "2022-03-04T14:26:52.780Z",
     "S3DeploymentBucket": "amplify-jpmapreact-dev-215100-deployment",
     "S3DeploymentRootKey": "amplify-appsync-files/0a28fab6d96985d0ea639bea160b514a860917a1"
 }

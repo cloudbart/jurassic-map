@@ -26,28 +26,17 @@
               "apiKeyExpirationDate": "2022-06-02T15:41:21.028Z",
               "description": "jurassicMapDevAPIKey"
             }
-          },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authjpmapreact33c05d8e"
-              }
-            },
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          }
         },
         "GraphQLAPIIdOutput": "yr5q33is7ngxno7igxguwgezye",
         "GraphQLAPIEndpointOutput": "https://k2hj55lflfflpeo67erbfku6g4.appsync-api.us-east-1.amazonaws.com/graphql",
         "GraphQLAPIKeyOutput": "da2-txtyw3gdkzcqlk6s2kuwlwsdv4"
       },
+      "lastPushTimeStamp": "2022-04-09T16:44:20.927Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jpmapreact-dev-215100-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijpmapAPI"
       },
-      "lastPushTimeStamp": "2022-04-03T21:40:16.702Z",
       "lastPushDirHash": "kxGMZkPovpOmjeuQETFO5gvWJn4="
     }
   }
