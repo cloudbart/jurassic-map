@@ -120,7 +120,7 @@ html {
 
 .tourVehicleInterface img {
   flex: 0 1 auto;
-  padding: 2.5px;
+  padding: .75em;
 }
 
 .mapZoomControls {
@@ -135,11 +135,11 @@ html {
 }
 
 .mapZoomControlBtn {
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-  padding: .25em .5em;
+  padding: .5em .75em;
   background: white;
   border: 1px solid grey;
   border-radius: 5px;
