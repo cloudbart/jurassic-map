@@ -161,7 +161,7 @@ html {
 .events-table iframe{
   height: 710px;
   max-height: 80vh;
-  width: 100%;
+  width: calc(100% - 5px);
 }
 
 .footer {
