@@ -150,9 +150,9 @@ html {
 
 .events-table {
   flex-direction: row;
-  flex: 1 0 400px;
-  min-width: 0;
-  max-width: 410px;
+  flex: 1 0 40vw;
+  min-width: 810px;
+  max-width: 95vw;
   margin-top: auto;
   margin-bottom: auto;
   padding: 5px;
