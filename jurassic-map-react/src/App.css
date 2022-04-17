@@ -152,16 +152,16 @@ html {
   flex-direction: row;
   flex: 1 0 40vw;
   min-width: 810px;
+  width: 95%;
   max-width: 95vw;
   margin-top: auto;
   margin-bottom: auto;
-  padding: 5px;
 }
 
 .events-table iframe{
   height: 710px;
   max-height: 80vh;
-  width: calc(100% - 5px);
+  width: calc(100% - 10px);
 }
 
 .footer {
