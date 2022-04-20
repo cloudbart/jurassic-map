@@ -59,10 +59,10 @@ html {
 }
 
 .mapTableSidePanel p {
-  font-size: 1vw;
+  font-size: 1em;
   font-weight: bold;
+  line-height: .95em;
   margin: auto;
-  white-space: nowrap;
 }
 
 .awsIconsPanel {
@@ -128,7 +128,7 @@ html {
   z-index: 2;
   position: absolute;
   bottom: 0px;
-  left: 55%;
+  left: 54%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -webkit-font-smoothing: antialiased;
@@ -139,7 +139,7 @@ html {
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-  padding: .5em .75em;
+  padding: .4em .65em;
   background: white;
   border: 1px solid grey;
   border-radius: 5px;
@@ -159,7 +159,8 @@ html {
 }
 
 .events-table iframe{
-  height: 710px;
+  height: 700px;
+  min-height: 700px;
   max-height: 80vh;
   width: calc(100% - 10px);
 }
