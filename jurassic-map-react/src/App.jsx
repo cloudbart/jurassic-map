@@ -131,9 +131,9 @@ function App() {
             </div>
             <div className="mapTableMap">
               <div className="tourVehicleInterface">
-                <img title="Vehicle 1" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 1" onclick="startTour(vehicle01)"/>
-                <img title="Vehicle 2" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 2" onclick="startTour(vehicle02)"/>
-                <img title="Vehicle 3" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 3" onclick="startTour(vehicle03)"/>
+                <div><img title="Vehicle 1" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 1" onclick="startTour(vehicle01)"/><p>01</p></div>
+                <div><img title="Vehicle 2" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 2" onclick="startTour(vehicle02)"/><p>02</p></div>
+                <div><img title="Vehicle 3" src="jurassicmap tour vehicle 25x59.png" alt="JurassicMap tour vehicle 3" onclick="startTour(vehicle03)"/><p>03</p></div>
               </div>
               <TransformWrapper>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
