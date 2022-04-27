@@ -1,7 +1,7 @@
 {
-  "dev": {
+  "production": {
     "configLevel": "project",
-    "useProfile": true,
-    "profileName": "default"
+    "useProfile": false,
+    "awsConfigFilePath": "/home/ec2-user/.amplify/awscloudformation/ZE2C2atZYu"
   }
 }

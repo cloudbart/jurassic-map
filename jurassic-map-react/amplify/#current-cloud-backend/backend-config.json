@@ -1,19 +1,18 @@
 {
-  "auth": {},
   "api": {
-    "jpmapAPI": {
+    "jurassicmapreact": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
+      "dependsOn": [],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 90,
-              "apiKeyExpirationDate": "2022-06-02T15:41:21.028Z",
-              "description": "jurassicMapDevAPIKey"
+              "apiKeyExpirationDays": 7
             }
-          }
+          },
+          "additionalAuthenticationProviders": []
         }
       }
     }

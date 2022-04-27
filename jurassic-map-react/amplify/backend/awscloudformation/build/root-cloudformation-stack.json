@@ -1,5 +1,5 @@
 {
-  "Description": "Root Stack for AWS Amplify Console",
+  "Description": "Root Stack for AWS Amplify CLI",
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "DeploymentBucketName": {
@@ -152,17 +152,17 @@
         }
       }
     },
-    "apijpmapAPI": {
+    "apijurassicmapreact": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-jpmapreact-dev-215100-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "Parameters": {
-          "AppSyncApiName": "jpmapAPI",
+          "AppSyncApiName": "jurassicmapreact",
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
-          "S3DeploymentBucket": "amplify-jpmapreact-dev-215100-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/0a28fab6d96985d0ea639bea160b514a860917a1",
-          "env": "dev"
+          "S3DeploymentBucket": "amplify-jurassicmapreact-production-191349-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/1b1d1463107bdef796875ba494224007be2bd1f0",
+          "env": "production"
         }
       }
     }

@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "jpmapAPI": {
+        "jurassicmapreact": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"

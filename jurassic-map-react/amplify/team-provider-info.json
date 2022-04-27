@@ -1,15 +1,15 @@
 {
-  "dev": {
+  "production": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-jpmapreact-dev-215100-authRole",
-      "UnauthRoleArn": "arn:aws:iam::360259704161:role/amplify-jpmapreact-dev-215100-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::360259704161:role/amplify-jpmapreact-dev-215100-authRole",
+      "AuthRoleName": "amplify-jurassicmapreact-production-191349-authRole",
+      "UnauthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-production-191349-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-production-191349-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-jpmapreact-dev-215100-deployment",
-      "UnauthRoleName": "amplify-jpmapreact-dev-215100-unauthRole",
-      "StackName": "amplify-jpmapreact-dev-215100",
-      "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jpmapreact-dev-215100/3c8ba2e0-7196-11ec-965b-0ebce804852b",
-      "AmplifyAppId": "d1tr268dmrmqau"
+      "DeploymentBucketName": "amplify-jurassicmapreact-production-191349-deployment",
+      "UnauthRoleName": "amplify-jurassicmapreact-production-191349-unauthRole",
+      "StackName": "amplify-jurassicmapreact-production-191349",
+      "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-production-191349/2bc77480-c65e-11ec-935e-0af60241c70f",
+      "AmplifyAppId": "d1o96259snw5dn"
     }
   }
 }
