@@ -31,11 +31,11 @@
         "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql",
         "GraphQLAPIKeyOutput": "da2-pcn67aah2bdpranxcc6leateee"
       },
+      "lastPushTimeStamp": "2022-04-28T18:56:16.124Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
       },
-      "lastPushTimeStamp": "2022-04-27T21:01:10.493Z",
       "lastPushDirHash": "6oqiGpbIInbWe5yLs0vJSUHaQ9g="
     }
   }
