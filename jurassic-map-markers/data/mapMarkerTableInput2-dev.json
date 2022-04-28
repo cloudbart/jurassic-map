@@ -1,0 +1,288 @@
+{
+  "mapMarker-sczjdaverzh7tbyn3vdcw7ptei-dev": [{
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "T-Rex 01"
+          },
+          "ycoord": {
+            "N": "806"
+          },
+          "color": {
+            "S": "red"
+          },
+          "paddockId": {
+            "S": "trexLoc01"
+          },
+          "xcoord": {
+            "N": "1585"
+          },
+          "id": {
+            "S": "rex01"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Brachiosaurus 01"
+          },
+          "ycoord": {
+            "N": "619"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "herbLoc01"
+          },
+          "xcoord": {
+            "N": "1264"
+          },
+          "id": {
+            "S": "brachi01"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Parasaurolophus 01"
+          },
+          "ycoord": {
+            "N": "545"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "herbLoc01"
+          },
+          "xcoord": {
+            "N": "1285"
+          },
+          "id": {
+            "S": "parasaur01"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Triceratops 01"
+          },
+          "ycoord": {
+            "N": "464"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "trikeLoc01"
+          },
+          "xcoord": {
+            "N": "1439"
+          },
+          "id": {
+            "S": "trike01"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Brachiosaurus 03"
+          },
+          "ycoord": {
+            "N": "633"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "herbLoc01"
+          },
+          "xcoord": {
+            "N": "1330"
+          },
+          "id": {
+            "S": "brachi03"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Parasaurolophus 02"
+          },
+          "ycoord": {
+            "N": "554"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "herbLoc01"
+          },
+          "xcoord": {
+            "N": "1381"
+          },
+          "id": {
+            "S": "parasaur02"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Segisaurus 03"
+          },
+          "ycoord": {
+            "N": "1470"
+          },
+          "color": {
+            "S": "red"
+          },
+          "paddockId": {
+            "S": "segisaurusLoc01"
+          },
+          "xcoord": {
+            "N": "1732"
+          },
+          "id": {
+            "S": "segi03"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Boat 01"
+          },
+          "xcoord": {
+            "N": "1800"
+          },
+          "ycoord": {
+            "N": "1600"
+          },
+          "id": {
+            "S": "boat01"
+          },
+          "color": {
+            "S": "blue"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Gallimimus 02"
+          },
+          "ycoord": {
+            "N": "893"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "gallimimusLoc01"
+          },
+          "xcoord": {
+            "N": "1163"
+          },
+          "id": {
+            "S": "gallimimus02"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Parasaurolophus 03"
+          },
+          "ycoord": {
+            "N": "614"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "herbLoc01"
+          },
+          "xcoord": {
+            "N": "1322"
+          },
+          "id": {
+            "S": "parasaur03"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Gallimimus 09"
+          },
+          "ycoord": {
+            "N": "926"
+          },
+          "color": {
+            "S": "white"
+          },
+          "paddockId": {
+            "S": "gallimimusLoc01"
+          },
+          "xcoord": {
+            "N": "1211"
+          },
+          "id": {
+            "S": "gallimimus09"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "name": {
+            "S": "Raptor 01"
+          },
+          "ycoord": {
+            "N": "922"
+          },
+          "color": {
+            "S": "red"
+          },
+          "paddockId": {
+            "S": "raptorLoc01"
+          },
+          "xcoord": {
+            "N": "713"
+          },
+          "id": {
+            "S": "raptor01"
+          }
+        }
+      }
+    }
+  ]
+}
