@@ -12,6 +12,8 @@ turf.helpers = helpers;
 var newItem;
 var paddock;
 
+let EnvTableName = toString(process.env.mapMarkerTable)
+
 // Function for looking up and setting the current mapMarker's paddock coordinates
 function paddockLookup(input) {
     switch (input) {
@@ -252,7 +254,7 @@ function randomWithin(input) {
 exports.mapMarkerHandler = (event, context, callback) => {
     // Populate DynamoDB client parameters
     let params = {
-        TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',
+        TableName: EnvTableName,
         Key: { 'id': { S: event.id } }
     };
     // Call DynamoDB to read the current mapMarker item from the table
@@ -271,7 +273,7 @@ exports.mapMarkerHandler = (event, context, callback) => {
             randomWithin(data.Item);
             // Write newItem back to DDB
             dynamodb.putItem({
-                TableName: 'mapMarker-yr5q33is7ngxno7igxguwgezye-dev',
+                TableName: EnvTableName,
                 Item: newItem
             }, function(err, data) {
                 if (err) {
