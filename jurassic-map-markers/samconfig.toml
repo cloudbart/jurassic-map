@@ -9,3 +9,16 @@ region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
+parameter_overrides = "EnvType=\"dev\" MapMarkersTableProduction=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" MapMarkersTableDevelopment=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
+
+[dev]
+[dev.deploy]
+[dev.deploy.parameters]
+stack_name = "JurassicMapMarkerControls"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx"
+s3_prefix = "JurassicMapMarkerControls"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "EnvType=\"dev\" MapMarkersTableProduction=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" MapMarkersTableDevelopment=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
+image_repositories = []
