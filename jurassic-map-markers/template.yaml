@@ -11,11 +11,6 @@ Parameters:
   VehicleRouteCoordsTable:
     Type: String
     Default: 'jurassicMapVehicleCoordsTable'
-    
-Conditions:
-  CreateProdResources: !Equals 
-    - !Ref EnvType
-    - prod
 
 Globals:
   Function:
