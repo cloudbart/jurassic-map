@@ -251,7 +251,8 @@ function randomWithin(input) {
 //Function handler code
 exports.mapMarkerHandler = (event, context, callback) => {
     // Set tableName from environment variable
-    let EnvTableName = process.env.mapMarkerTable;
+    let EnvTableName = process.env.TABLE_NAME;
+    console.log("Using :"+EnvTableName)
     // Populate DynamoDB client parameters
     let params = {
         TableName: EnvTableName,

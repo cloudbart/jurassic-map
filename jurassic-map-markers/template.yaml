@@ -2,17 +2,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: JurassicMap backend components - dinosaur and vehicle schedules and movement
 Transform: AWS::Serverless-2016-10-31
 Parameters:
-  EnvType:
-    Description: Environment type.
-    Default: dev
-    Type: String
-    AllowedValues:
-      - prod
-      - dev
-  MapMarkersTableProduction:
-    Type: String
-    Default: 'mapMarker-tn2uy2oll5ferj2lajmqokzay4-production'
-  MapMarkersTableDevelopment:
+  MapMarkersTable:
     Type: String
     Default: 'mapMarker-tn2uy2oll5ferj2lajmqokzay4-production'
   VehicleRouteCoordsBucket:
@@ -32,11 +22,11 @@ Globals:
     Tracing: Active
     Environment:
       Variables: 
-        mapMarkerTable: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+        TABLE_NAME: !Ref MapMarkersTable
     Architectures:
       - x86_64
-    Layers:
-      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
+    # Layers:
+    #   - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
       
 Resources:
   # Lambda layer resource for @Turf GeoSpatial libraries
@@ -68,10 +58,8 @@ Resources:
         # Lambda Insights permission
         - CloudWatchLambdaInsightsExecutionRolePolicy
         # Give Lambda DynamoDB read and write permissions
-        - DynamoDBReadPolicy:
-            TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
-        - DynamoDBWritePolicy:
-            TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MapMarkersTable
       AutoPublishAlias: DevAlias
 
   # State Machine for orchestration of dino map-marker movement
@@ -163,7 +151,7 @@ Resources:
                 Resource: 'arn:aws:states:::dynamodb:getItem'
                 Comment: 'Fetch current vehicle status'
                 Parameters:
-                    TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                    TableName: !Ref MapMarkersTable
                     Key: 
                         id.$: $.id
                 ResultSelector: 
@@ -195,7 +183,7 @@ Resources:
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
                 Comment: 'Set tourState to active for short tour'
                 Parameters:
-                    TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                    TableName: !Ref MapMarkersTable
                     Key:
                         id:
                             S.$: $.id
@@ -233,7 +221,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment1a'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -255,7 +243,7 @@ Resources:
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
                 Comment: 'Set tourState to active for full tour'
                 Parameters:
-                    TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                    TableName: !Ref MapMarkersTable
                     Key:
                         id:
                             S.$: $.id
@@ -293,7 +281,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment1'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -342,7 +330,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment2'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -391,7 +379,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment3'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -440,7 +428,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment4'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -485,7 +473,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment5'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -534,7 +522,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment6'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -583,7 +571,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment7'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -632,7 +620,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment8'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -681,7 +669,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment9'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -730,7 +718,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment10'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -779,7 +767,7 @@ Resources:
                       Resource: 'arn:aws:states:::dynamodb:updateItem'
                       Comment: 'Begin tour vehicles segment11'
                       Parameters:
-                          TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                          TableName: !Ref MapMarkersTable
                           Key:
                               id:
                                   S.$: $.id
@@ -801,7 +789,7 @@ Resources:
                 Resource: 'arn:aws:states:::dynamodb:updateItem'
                 Comment: 'Return tourState to idle'
                 Parameters:
-                    TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+                    TableName: !Ref MapMarkersTable
                     Key:
                         id:
                             S.$: $.id
@@ -822,7 +810,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref vehicleRouteCoordinatesDDBTable
         - DynamoDBCrudPolicy:
-            TableName: !If [CreateProdResources, !Ref MapMarkersTableProduction, !Ref MapMarkersTableDevelopment]
+            TableName: !Ref MapMarkersTable
         - Statement:
           - Sid: tourVehiclesStateMachineExecution
             Effect: Allow
@@ -888,7 +876,3 @@ Resources:
         - Endpoint: "pibrocher@gmail.com"
           Protocol: "email"
       TopicName: "jurassicMapReleasePreviewTopic"
-Outputs:
-  managementURL:
-    Description: Serverless application mgmt page URL
-    Value: 'https://console.aws.amazon.com/lambda/home?region=us-east-1#/applications/JurassicMapMarkerControls'
