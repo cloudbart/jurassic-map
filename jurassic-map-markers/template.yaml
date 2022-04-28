@@ -20,8 +20,8 @@ Globals:
         TABLE_NAME: !Ref MapMarkersTable
     Architectures:
       - x86_64
-    # Layers:
-    #   - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
+    Layers:
+      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:16"
       
 Resources:
   # Lambda layer resource for @Turf GeoSpatial libraries
