@@ -11,18 +11,5 @@
       "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-production-191349/2bc77480-c65e-11ec-935e-0af60241c70f",
       "AmplifyAppId": "d1o96259snw5dn"
     }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-jurassicmapreact-dev-185517-authRole",
-      "UnauthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-dev-185517-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-dev-185517-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-jurassicmapreact-dev-185517-deployment",
-      "UnauthRoleName": "amplify-jurassicmapreact-dev-185517-unauthRole",
-      "StackName": "amplify-jurassicmapreact-dev-185517",
-      "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-dev-185517/bec2cbb0-c724-11ec-963d-12506eda3be1",
-      "AmplifyAppId": "d1o96259snw5dn"
-    }
   }
 }
