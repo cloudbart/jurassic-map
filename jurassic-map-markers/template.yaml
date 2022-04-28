@@ -9,7 +9,6 @@ Parameters:
     AllowedValues:
       - prod
       - dev
-    ConstraintDescription: must specify prod or dev.
   MapMarkersTableProduction:
     Type: String
     Default: 'mapMarker-tn2uy2oll5ferj2lajmqokzay4-production'
