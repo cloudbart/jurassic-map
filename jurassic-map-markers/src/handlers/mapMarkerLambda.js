@@ -12,8 +12,6 @@ turf.helpers = helpers;
 var newItem;
 var paddock;
 
-let EnvTableName = toString(process.env.mapMarkerTable)
-
 // Function for looking up and setting the current mapMarker's paddock coordinates
 function paddockLookup(input) {
     switch (input) {
@@ -252,6 +250,8 @@ function randomWithin(input) {
 
 //Function handler code
 exports.mapMarkerHandler = (event, context, callback) => {
+    // Set tableName from environment variable
+    let EnvTableName = process.env.mapMarkerTable;
     // Populate DynamoDB client parameters
     let params = {
         TableName: EnvTableName,
