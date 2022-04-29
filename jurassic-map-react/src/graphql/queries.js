@@ -11,8 +11,6 @@ export const getMapMarker = /* GraphQL */ `
       ycoord
       paddockId
       tourState
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -31,8 +29,6 @@ export const listMapMarkers = /* GraphQL */ `
         ycoord
         paddockId
         tourState
-        createdAt
-        updatedAt
       }
       nextToken
     }
