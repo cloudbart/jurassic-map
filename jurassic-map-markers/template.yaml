@@ -10,7 +10,7 @@ Parameters:
       - production
   MapMarkersTable:
     Type: String
-    Default: 'mapMarker-tn2uy2oll5ferj2lajmqokzay4-production'
+    Default: 'mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev'
   VehicleRouteCoordsBucket:
     Type: String
     Default: 'jurassicmap-vehiclecoords-source-dev'
