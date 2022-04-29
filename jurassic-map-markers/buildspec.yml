@@ -27,8 +27,8 @@ phases:
     commands:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
-          echo "DEPLOY JurassicMapMarkerControls SAM stack";
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset;
+          echo "DEPLOY JurassicMapMarkerControls-Dev SAM stack";
+          sam deploy --config-env dev --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
@@ -37,6 +37,8 @@ phases:
           --source-commit-specifier preview \
           --destination-commit-specifier master \
           --repository-name jurassic-map-mirror;
+          echo "DEPLOY JurassicMapMarkerControls-Production SAM stack";
+          sam deploy --config-env production --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       
   post_build:
@@ -45,14 +47,14 @@ phases:
       - |
         if expr "${PHASE}" : "PREVIEW" >/dev/null; then
           echo "RESTART staggered ScheduledEvents";
-          aws events disable-rule --name "JurassicMapMarkerScheduler01";
-          aws events disable-rule --name "JurassicMapMarkerScheduler02";
+          aws events disable-rule --name "JurassicMapMarkerScheduler01-dev";
+          aws events disable-rule --name "JurassicMapMarkerScheduler02-dev";
           echo "BEGIN Scheduler01";
-          aws events enable-rule --name "JurassicMapMarkerScheduler01";
+          aws events enable-rule --name "JurassicMapMarkerScheduler01-dev";
           echo "WAIT 30 seconds...";
           sleep 30;
           echo "BEGIN Scheduler02";
-          aws events enable-rule --name "JurassicMapMarkerScheduler02";
+          aws events enable-rule --name "JurassicMapMarkerScheduler02-dev";
           echo "Pause for Amplify Preview Deploy - 5min remaining";
           sleep 1m;
           echo "Pause for Amplify Preview Deploy - 4min remaining";
