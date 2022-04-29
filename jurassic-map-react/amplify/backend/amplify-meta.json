@@ -1,14 +1,14 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-jurassicmapreact-production-191349-authRole",
-      "UnauthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-production-191349-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-production-191349-authRole",
+      "AuthRoleName": "amplify-jurassicmapreact-dev-235909-authRole",
+      "UnauthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-dev-235909-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::360259704161:role/amplify-jurassicmapreact-dev-235909-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-jurassicmapreact-production-191349-deployment",
-      "UnauthRoleName": "amplify-jurassicmapreact-production-191349-unauthRole",
-      "StackName": "amplify-jurassicmapreact-production-191349",
-      "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-production-191349/2bc77480-c65e-11ec-935e-0af60241c70f",
+      "DeploymentBucketName": "amplify-jurassicmapreact-dev-235909-deployment",
+      "UnauthRoleName": "amplify-jurassicmapreact-dev-235909-unauthRole",
+      "StackName": "amplify-jurassicmapreact-dev-235909",
+      "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-dev-235909/322397e0-c74f-11ec-a365-0ee294d59291",
       "AmplifyAppId": "d1o96259snw5dn"
     }
   },
@@ -27,15 +27,16 @@
           },
           "additionalAuthenticationProviders": []
         },
-        "GraphQLAPIIdOutput": "tn2uy2oll5ferj2lajmqokzay4",
-        "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-pcn67aah2bdpranxcc6leateee"
+        "GraphQLAPIIdOutput": "oadya2jnxjfwnpxwibwkolprhm",
+        "GraphQLAPIEndpointOutput": "https://i4hoatycxnbm3gt5vkkpg7wjba.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-uy53wnxkbbcxfjdlvaimgsbimq"
       },
-      "lastPushTimeStamp": "2022-04-28T19:32:14.588Z",
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-dev-235909-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
-      }
+      },
+      "lastPushTimeStamp": "2022-04-29T00:05:34.746Z",
+      "lastPushDirHash": "6oqiGpbIInbWe5yLs0vJSUHaQ9g="
     }
   }
 }

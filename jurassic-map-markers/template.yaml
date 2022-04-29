@@ -2,15 +2,26 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: JurassicMap backend components - dinosaur and vehicle schedules and movement
 Transform: AWS::Serverless-2016-10-31
 Parameters:
+  Stage:
+    Type: String
+    Default: 'dev'
+    AllowedValues:
+      - dev
+      - production
   MapMarkersTable:
     Type: String
-    Default: 'mapMarker-tn2uy2oll5ferj2lajmqokzay4-production'
+    Default: 'mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev'
   VehicleRouteCoordsBucket:
     Type: String
-    Default: 'jurassicmap-vehiclecoords-source'
+    Default: 'jurassicmap-vehiclecoords-source-dev'
   VehicleRouteCoordsTable:
     Type: String
-    Default: 'jurassicMapVehicleCoordsTable'
+    Default: 'jurassicMapVehicleCoordsTable-dev'
+    
+Conditions:
+  CreateProdResources: !Equals 
+    - !Ref Stage
+    - production
 
 Globals:
   Function:
@@ -28,7 +39,7 @@ Resources:
   turfLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: turf-layer
+      LayerName: !If [CreateProdResources, turf-layer, turf-layer-dev]
       Description: Turf Layer for use in JurassicMap controls
       ContentUri: ./turf-layer
       CompatibleRuntimes:
@@ -61,7 +72,7 @@ Resources:
   mapMarkersUpdateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
-      Name: mapMarkerUpdateMachine
+      Name: !If [CreateProdResources, mapMarkerUpdateMachine, mapMarkerUpdateMachine-dev]
       Definition:
         StartAt: Map
         States:
@@ -98,7 +109,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler01
+            Name: !If [CreateProdResources, JurassicMapMarkerScheduler01, JurassicMapMarkerScheduler01-dev]
             Description: Schedule for running mapMarker's update State Machine every minute
             # NOTE Schedulers begin disabled, must be manually enabled
             Enabled: false
@@ -107,7 +118,7 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: 'rate(1 minute)'
-            Name: JurassicMapMarkerScheduler02
+            Name: !If [CreateProdResources, JurassicMapMarkerScheduler02, JurassicMapMarkerScheduler02-dev]
             Description: Schedule for running mapMarker's update State Machine every minute
             # NOTE Schedulers begin disabled, must be manually enabled
             Enabled: false
@@ -117,7 +128,7 @@ Resources:
   updateMachineLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: "/stepfunctions/mapMarkersUpdateMachine-Logs"
+      LogGroupName: !If [CreateProdResources, "/stepfunctions/mapMarkersUpdateMachine-Logs", "/stepfunctions/mapMarkersUpdateMachine-dev-Logs"]
 
   # CloudWatch Dashboard for dino map marker recent-events log events
   recentActivityDashboard:
@@ -130,13 +141,13 @@ Resources:
         asc | limit 30 | filter @message like /(?i)(INFO)/ | parse @message
         /(?<Event>(?<=INFO).+)/ | display
         Event","region":"us-east-1","stacked":false,"title":"","view":"table"}}]}
-      DashboardName: Recent-Activity
+      DashboardName: !If [CreateProdResources, Recent-Activity, Recent-Activity-dev]
 
   # State Machine for orchestration of tour vehicle routes map markers
   tourVehiclesStateMachine:
     Type: AWS::Serverless::StateMachine
     Properties:
-      Name: tourVehiclesStateMachine
+      Name: !If [CreateProdResources, tourVehiclesStateMachine, tourVehiclesStateMachine-dev]
       Definition:
         Comment: 'Tour Vehicle Route1'
         StartAt: fetchVehicleState
@@ -870,4 +881,4 @@ Resources:
       Subscription: 
         - Endpoint: "pibrocher@gmail.com"
           Protocol: "email"
-      TopicName: "jurassicMapReleasePreviewTopic"
+      TopicName: !If [CreateProdResources, "jurassicMapReleasePreviewTopic", "jurassicMapReleasePreviewTopic-dev"]

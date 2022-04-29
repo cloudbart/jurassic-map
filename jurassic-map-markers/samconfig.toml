@@ -2,23 +2,35 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "JurassicMapMarkerControls"
+stack_name = "JurassicMapMarkerControls-Dev"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx"
-s3_prefix = "JurassicMapMarkerControls"
+s3_prefix = "JurassicMapMarkerControls-Dev"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
 image_repositories = []
-parameter_overrides = "EnvType=\"dev\" MapMarkersTableProduction=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" MapMarkersTableDevelopment=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
 
 [dev]
 [dev.deploy]
 [dev.deploy.parameters]
+stack_name = "JurassicMapMarkerControls-Dev"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx"
+s3_prefix = "JurassicMapMarkerControls-Dev"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
+image_repositories = []
+
+[production]
+[production.deploy]
+[production.deploy.parameters]
 stack_name = "JurassicMapMarkerControls"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-9tqldvldgjtx"
 s3_prefix = "JurassicMapMarkerControls"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "EnvType=\"dev\" MapMarkersTableProduction=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" MapMarkersTableDevelopment=\"mapMarker-7uijig3ps5fuhjaxbubqzydyci-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
+parameter_overrides = "MapMarkersTable=\"mapMarker-tn2uy2oll5ferj2lajmqokzay4-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
 image_repositories = []
