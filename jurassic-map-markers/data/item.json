@@ -1,7 +1,20 @@
 {
- "id": { "S": "vehicle03" },
- "ycoord": { "N": "235" },
- "name": { "S": "Vehicle 03" },
- "xcoord": { "N": "275" },
- "color": { "S": "green" }
+ "id": {
+  "S": "dilo01"
+ },
+ "color": {
+  "S": "red"
+ },
+ "name": {
+  "S": "Dilophosaurus 01"
+ },
+ "paddockId": {
+  "S": "diloLoc01"
+ },
+ "xcoord": {
+  "N": "1021"
+ },
+ "ycoord": {
+  "N": "941"
+ }
 }
