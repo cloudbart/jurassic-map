@@ -38,6 +38,7 @@ phases:
           --destination-commit-specifier master \
           --repository-name jurassic-map-mirror;
           echo "DEPLOY JurassicMapMarkerControls-Production SAM stack";
+          sam build;
           sam deploy --config-env production --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       
