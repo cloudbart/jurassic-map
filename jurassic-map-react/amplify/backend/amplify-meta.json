@@ -35,14 +35,14 @@
         },
         "GraphQLAPIIdOutput": "tn2uy2oll5ferj2lajmqokzay4",
         "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-g2xzoz3kkrcbvp4k6ziq2oj6xq"
+        "GraphQLAPIKeyOutput": "da2-ws6eg3adujf4tcv5ozifz4sr4m"
       },
-      "lastPushTimeStamp": "2022-05-08T01:45:32.548Z",
+      "lastPushTimeStamp": "2022-05-08T03:14:28.595Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
       },
-      "lastPushDirHash": "mwaXbdeb/0KoDS2AMdkktKrLCtc="
+      "lastPushDirHash": "UmuDkZe5/5AV0W+1h3PUv6bU608="
     }
   }
 }
