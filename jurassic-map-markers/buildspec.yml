@@ -19,7 +19,7 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "BEGIN merge-preview-to-master";
+          echo "BEGIN merge-preview-to-master, build, and deploy";
         fi
       
   build:
@@ -38,7 +38,6 @@ phases:
           --destination-commit-specifier master \
           --repository-name jurassic-map-mirror;
           echo "DEPLOY JurassicMapMarkerControls-Production SAM stack";
-          sam build;
           sam deploy --config-env production --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       

@@ -32,5 +32,5 @@ s3_prefix = "JurassicMapMarkerControls"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "Stage=\"production\" MapMarkersTable=\"mapMarker-tn2uy2oll5ferj2lajmqokzay4-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"jurassicMapVehicleCoordsTable\""
+parameter_overrides = "Stage=\"production\" MapMarkersTable=\"mapMarker-tn2uy2oll5ferj2lajmqokzay4-production\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable\""
 image_repositories = []
