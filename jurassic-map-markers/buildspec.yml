@@ -19,7 +19,12 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "BEGIN merge-preview-to-master, build, and deploy";
+          echo "BEGIN merge-preview-to-master";
+          aws codecommit merge-branches-by-fast-forward \
+          --source-commit-specifier preview \
+          --destination-commit-specifier master \
+          --repository-name jurassic-map-mirror;
+          cd jurassic-map-markers;
         fi
       
   build:
@@ -32,12 +37,12 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "MERGE preview branch to master";
-          aws codecommit merge-branches-by-fast-forward \
-          --source-commit-specifier preview \
-          --destination-commit-specifier master \
-          --repository-name jurassic-map-mirror;
-          echo "DEPLOY JurassicMapMarkerControls-Production SAM stack";
+          echo "BUILD-and-DEPLOY JurassicMapMarkerControls-Production SAM stack";
+          echo "UNPACK @turf geospatial libraries layer";
+          cd jurassic-map-markers;
+          tar -xvf turf-layer.tar.gz;
+          echo "BUILD jurassic-map-markers SAM project";
+          sam build;
           sam deploy --config-env production --no-confirm-changeset --no-fail-on-empty-changeset;
         fi
       

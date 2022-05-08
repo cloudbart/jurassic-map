@@ -32,6 +32,7 @@ const fetchMapMarkers = async function() {
 function App() {
   //Initial call to fetch map markers from DynamoDB table
   fetchMapMarkers()
+  
   //Marker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
     //Try to find current map marker in fetched mapMarkers array
@@ -56,6 +57,7 @@ function App() {
     }
     catch (err) { console.log(markerId + 'not found') }
   }
+  
   //Main call to draw on canvas
   const draw = (ctx, frameCount) => {
     //Check for loaded data status, else wait without drawing anything on the maps
@@ -109,6 +111,7 @@ function App() {
       console.log('Waiting for map markers...')
     }
   }
+  
   return (
     <>
       <div className="App">
