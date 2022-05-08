@@ -116,7 +116,6 @@ awsconfiguration.json
 
 #SAM
 .aws-sam/
-samconfig.toml
 
 #My personal notes
 to-do-list.txt
