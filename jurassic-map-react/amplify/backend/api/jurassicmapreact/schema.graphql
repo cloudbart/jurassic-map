@@ -11,3 +11,15 @@ type mapMarker @model @auth(rules: [{ allow: public }]) {
   paddockId: String
   tourState: String
 }
+
+type Tour {
+  executionArn: String!,
+  startDate: String!
+}
+
+type Mutation {
+    startTour(
+        vehicleId: String!,
+        routeId: String!
+    ): Tour
+}

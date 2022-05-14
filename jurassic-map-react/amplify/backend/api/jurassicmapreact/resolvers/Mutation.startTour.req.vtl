@@ -1,0 +1,15 @@
+{
+  "version": "2018-05-29",
+  "method": "POST",
+  "resourcePath": "/",
+  "params": {
+    "headers": {
+      "content-type": "application/x-amz-json-1.0",
+      "x-amz-target":"AWSStepFunctions.StartExecution"
+    },
+    "body": {
+      "stateMachineArn": "arn:aws:states:us-east-1:360259704161:stateMachine:tourVehiclesStateMachine-dev",
+      "input": "{ \"id\": \"$ctx.args.vehicleId\", \"routeId\": \"$ctx.args.routeId\" }"
+   }
+  }
+}

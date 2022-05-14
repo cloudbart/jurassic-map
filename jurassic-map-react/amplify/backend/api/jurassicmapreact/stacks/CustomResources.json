@@ -27,6 +27,94 @@
     }
   },
   "Resources": {
+    "StepFunctionsDataSource": {
+      "Type": "AWS::AppSync::DataSource",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "Name": "StepFunctions",
+        "Type": "HTTP",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": ["StepFunctionsRole", "Arn"]
+        },
+        "HttpConfig": {
+          "Endpoint": "https://states.us-east-1.amazonaws.com",
+          "AuthorizationConfig": {
+            "AuthorizationType": "AWS_IAM",
+            "AwsIamConfig": {
+              "SigningRegion": "us-east-1",
+              "SigningServiceName": "states"
+            }
+          }
+        }
+      }
+    },
+    "StepFunctionsRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "appsync.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }]
+        },
+        "Policies": [{
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{
+              "Action": ["states:StartExecution"],
+              "Resource": ["arn:aws:states:us-east-1:360259704161:stateMachine:tourVehiclesStateMachine-dev"],
+              "Effect": "Allow"
+            }]
+          },
+          "PolicyName": "StepFunctionsStartExecutionRole"
+        }],
+        "RoleName": "StepFunctionsRole"
+      }
+    },
+    "StepFunctionsResolver": {
+      "Type": "AWS::AppSync::Resolver",
+      "DependsOn": "StepFunctionsDataSource",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "DataSourceName": "StepFunctions",
+        "TypeName": "Mutation",
+        "FieldName": "startTour",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.startTour.req.vtl",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              }
+            }
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Sub": [
+            "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Mutation.startTour.res.vtl",
+            {
+              "S3DeploymentBucket": {
+                "Ref": "S3DeploymentBucket"
+              },
+              "S3DeploymentRootKey": {
+                "Ref": "S3DeploymentRootKey"
+              }
+            }
+          ]
+        }
+      }
+    },
     "EmptyResource": {
       "Type": "Custom::EmptyResource",
       "Condition": "AlwaysFalse"
@@ -34,16 +122,13 @@
   },
   "Conditions": {
     "HasEnvironmentParameter": {
-      "Fn::Not": [
-        {
-          "Fn::Equals": [
-            {
-              "Ref": "env"
-            },
-            "NONE"
-          ]
-        }
-      ]
+      "Fn::Not": [{
+        "Fn::Equals": [{
+            "Ref": "env"
+          },
+          "NONE"
+        ]
+      }]
     },
     "AlwaysFalse": {
       "Fn::Equals": ["true", "false"]
