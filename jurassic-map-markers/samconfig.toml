@@ -8,7 +8,7 @@ s3_prefix = "JurassicMapMarkerControls-Dev"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
+parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-man3szoyxvhuxmdtvg47wohdfe-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
 image_repositories = []
 
 [dev]
@@ -20,7 +20,7 @@ s3_prefix = "JurassicMapMarkerControls-Dev"
 region = "us-east-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-oadya2jnxjfwnpxwibwkolprhm-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
+parameter_overrides = "Stage=\"dev\" MapMarkersTable=\"mapMarker-man3szoyxvhuxmdtvg47wohdfe-dev\" VehicleRouteCoordsBucket=\"jurassicmap-vehiclecoords-source-dev\" VehicleRouteCoordsTable=\"VehicleRouteCoordsTable-dev\""
 image_repositories = []
 
 [production]

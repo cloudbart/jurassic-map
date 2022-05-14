@@ -1,6 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const startTour = /* GraphQL */ `
+  mutation StartTour($vehicleId: String!, $routeId: String!) {
+    startTour(vehicleId: $vehicleId, routeId: $routeId) {
+      executionArn
+      startDate
+    }
+  }
+`;
 export const createMapMarker = /* GraphQL */ `
   mutation CreateMapMarker(
     $input: CreateMapMarkerInput!
