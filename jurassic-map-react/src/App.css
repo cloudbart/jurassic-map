@@ -114,18 +114,18 @@ html {
   width: 15%;
 }
 
-.tourVehicleInterface div {
+.tourVehicleButton {
   display: flex;
 }
 
-.tourVehicleInterface img {
+.tourVehicleButtonImg {
   flex: 0 1 auto;
   min-width: 35px;
   padding: .75em;
   cursor: pointer;
 }
 
-.tourVehicleInterface p {
+.tourVehicleButton p {
   font-size: .85em;
   text-transform: uppercase;
   font-weight: 600;
