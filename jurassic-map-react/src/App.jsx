@@ -13,6 +13,7 @@ let markerArray
 let markerArrayStatus = false
 let refreshCounter = 0
 
+//Function for starting vehicle tours
 const startTour = async function(vehicleId) {
   console.log("Start tour: "+vehicleId)
 }
@@ -27,6 +28,62 @@ const fetchMapMarkers = async function() {
     refreshCounter = 0
   }
   catch (err) { console.log('Error fetching mapMarkers') }
+}
+
+//Function to render a tour vehicle button
+function TourVehicleButton(props) {
+  let vehicleNumber = Number(props.value) + 1;
+  
+  return (
+    <div className="tourVehicleButton">
+      <img className="tourVehicleButtonImg" 
+        src='jurassicmap_tourVehicle_25x59.png'
+        onClick={props.onClick}
+        alt="JurassicMap tour vehicle button"
+      /><p>0{vehicleNumber}</p>
+    </div>
+  );
+}
+
+//Function to render a tour vehicle button
+class TourVehicleInterface extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttons: Array(3).fill(null),
+      tours: Array(3).fill("idle")
+    };
+  }
+
+  //Function to handle click event
+  handleClick(i) {
+    let vehicleNumber = Number(i) + 1;
+    startTour("vehicle0" + vehicleNumber);
+    const tourRequest = this.state.tours.slice();
+    tourRequest[i] = "requested";
+    this.setState({
+      tours: tourRequest
+    });
+  }
+
+  renderButton(i) {
+    return (
+      <TourVehicleButton 
+        value={[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <div className="tourVehicleInterface">
+        {this.renderButton(0)}
+        {this.renderButton(1)}
+        {this.renderButton(2)}
+      </div>
+    );
+  }
 }
 
 function App() {
@@ -137,11 +194,7 @@ function App() {
               </div>
             </div>
             <div className="mapTableMap">
-              <div className="tourVehicleInterface">
-                <div><img title="Vehicle 1" src="jurassicmap_tourVehicle_25x59.png" alt="JurassicMap tour vehicle 1" onClick={() => startTour("vehicle01")}/><p>01</p></div>
-                <div><img title="Vehicle 2" src="jurassicmap_tourVehicle_25x59.png" alt="JurassicMap tour vehicle 2" onClick={() => startTour("vehicle02")}/><p>02</p></div>
-                <div><img title="Vehicle 3" src="jurassicmap_tourVehicle_25x59.png" alt="JurassicMap tour vehicle 3" onClick={() => startTour("vehicle03")}/><p>03</p></div>
-              </div>
+              <TourVehicleInterface/>
               <TransformWrapper>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
