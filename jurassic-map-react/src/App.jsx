@@ -1,6 +1,7 @@
 import React from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import * as queries from './graphql/queries';
+import * as mutations from './graphql/mutations';
 import './App.css';
 import Canvas from './Canvas';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -9,166 +10,207 @@ import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
 //declare marker variables
-let markerArray
-let markerArrayStatus = false
-let refreshCounter = 0
+var markerArray;
+var markerArrayStatus = false;
+let refreshCounter = 0;
 
 //Function for starting vehicle tours
 const startTour = async function(vehicleId) {
-  console.log("Start tour: "+vehicleId)
-}
+  console.log("Start tour: " + vehicleId);
+  var tourDetails = {vehicleId: vehicleId, routeId: 'fullTour'};
+  var random_boolean = Math.random() < 0.6;
+  if (random_boolean) {
+    tourDetails = {vehicleId: vehicleId, routeId: 'shortTour'};
+  }
+  console.log(tourDetails);
+  try {
+    const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
+    console.log(tourResponse);
+  }
+  catch (err) {
+    console.log("Failed tourRequest call");
+    console.log(err);
+  }
+};
 
 //Function for retrieving mapMarkers array from AppSync/DDB
 const fetchMapMarkers = async function() {
   try {
-    let response = await API.graphql(graphqlOperation(queries.listMapMarkers))
-    markerArray = response.data.listMapMarkers.items
-    console.log("Markers loaded. Rendering...")
-    markerArrayStatus = true
-    refreshCounter = 0
+    let response = await API.graphql(graphqlOperation(queries.listMapMarkers));
+    markerArray = response.data.listMapMarkers.items;
+    console.log("Markers loaded. Rendering...");
+    markerArrayStatus = true;
+    refreshCounter = 0;
+    return markerArrayStatus;
   }
   catch (err) { console.log('Error fetching mapMarkers') }
-}
+};
 
 //Function to render a tour vehicle button
 function TourVehicleButton(props) {
   let vehicleNumber = Number(props.value) + 1;
-  
   return (
     <div className="tourVehicleButton">
-      <img className="tourVehicleButtonImg" 
-        src='jurassicmap_tourVehicle_25x59.png'
+      <img src='jurassicmap_tourVehicle_25x59.png'
         onClick={props.onClick}
         alt="JurassicMap tour vehicle button"
+        style={{ filter: (props.buttonStyle) }}
       /><p>0{vehicleNumber}</p>
     </div>
   );
 }
 
-//Function to render a tour vehicle button
+//Function to render the tour vehicles interface
 class TourVehicleInterface extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       buttons: Array(3).fill(null),
-      tours: Array(3).fill("idle")
+      tours: Array(3).fill("idle"),
+      markersLoaded: null
     };
   }
 
   //Function to handle click event
   handleClick(i) {
-    let vehicleNumber = Number(i) + 1;
-    startTour("vehicle0" + vehicleNumber);
-    const tourRequest = this.state.tours.slice();
-    tourRequest[i] = "requested";
-    this.setState({
-      tours: tourRequest
-    });
+    let vehicleId = "vehicle0" + (i + 1);
+    let currentMarker = markerArray.find(item => item.id === vehicleId);
+    if (currentMarker.tourState !== "idle") {
+      console.log(vehicleId + " active: " + currentMarker.tourState);
+    }
+    else {
+      //Call startTour mutation
+      startTour(vehicleId);
+    }
   }
 
   renderButton(i) {
+    let vehicleId = "vehicle0" + (i + 1); //Construct vehicleId from index
+    let currentMarker = markerArray.find(item => item.id === vehicleId); //find current vehicle
+    let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow color
+    if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 3px white)" }
     return (
       <TourVehicleButton 
-        value={[i]}
-        onClick={() => this.handleClick(i)}
-      />
+          buttonStyle = {buttonStyle}
+          value={[i]}
+          onClick={() => this.handleClick(i)}
+        />
     );
   }
 
-  render() {
-    return (
-      <div className="tourVehicleInterface">
-        {this.renderButton(0)}
-        {this.renderButton(1)}
-        {this.renderButton(2)}
-      </div>
+  componentDidMount() {
+    this._asyncRequest = fetchMapMarkers().then(
+      markersLoaded => {
+        this._asyncRequest = null;
+        this.setState({ markersLoaded });
+      }
     );
+  }
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  render() {
+    if (this.state.markersLoaded === null) {
+      return (
+        <div className="tourVehicleInterface"></div>
+      );
+    }
+    else {
+      return (
+        <div className="tourVehicleInterface">
+          {this.renderButton(0)}
+          {this.renderButton(1)}
+          {this.renderButton(2)}
+        </div>
+      );
+    }
   }
 }
 
 function App() {
-  //Initial call to fetch map markers from DynamoDB table
-  fetchMapMarkers()
-  
   //Marker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
     //Try to find current map marker in fetched mapMarkers array
     try {
-      let currentMarker = markerArray.find(item => item.id === markerId)
+      let currentMarker = markerArray.find(item => item.id === markerId);
       //Reset visibility, check for visbility of current marker
-      var visible = true
+      var visible = true;
       if (currentMarker.tourState === "idle") { visible = false; return }
       //Begin drawing context setup
-      ctx.lineWidth = 2
-      ctx.beginPath()
+      ctx.lineWidth = 2;
+      ctx.beginPath();
       //If frameCount is defined, marker should be animated
       if (typeof frameCount != "undefined" && visible) {
-        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 5 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false)
+        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 8 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI, false);
       }
       //If frameCount is undefined, then marker should not be animated
       else if (visible) {
-        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 5, 0, 2 * Math.PI, false)
+        ctx.arc(currentMarker.xcoord, currentMarker.ycoord, 5, 0, 2 * Math.PI, false);
       }
-      ctx.fillStyle = currentMarker.color
-      ctx.fill()
+      ctx.fillStyle = currentMarker.color;
+      ctx.fill();
     }
     catch (err) { console.log(markerId + 'not found') }
   }
-  
+
   //Main call to draw on canvas
   const draw = (ctx, frameCount) => {
     //Check for loaded data status, else wait without drawing anything on the maps
     if (markerArrayStatus) {
       if (refreshCounter >= 300) {
-        console.log('Refreshing marker data...')
-        fetchMapMarkers()
+        console.log('Refreshing marker data...');
+        fetchMapMarkers();
       }
       else {
-        refreshCounter++
-        drawMarker(ctx, 'raptor01') // Raptor 1
-        drawMarker(ctx, 'raptor02') // Raptor 2
-        drawMarker(ctx, 'raptor03') // Raptor 3
-        drawMarker(ctx, 'rex01') // TRex 1
-        drawMarker(ctx, 'dilo01') // Dilophosaur 1
-        drawMarker(ctx, 'procerat01') // Proceratosaur 1
-        drawMarker(ctx, 'bary01') // Baryonyx 1
-        drawMarker(ctx, 'metricanth01') // Metricanthosaurus 1
-        drawMarker(ctx, 'trike01') // Triceratops 1
-        drawMarker(ctx, 'trike02') // Triceratops 2
-        drawMarker(ctx, 'trike03') // Triceratops 3
-        drawMarker(ctx, 'parasaur01') // Parasaurolophus 1
-        drawMarker(ctx, 'parasaur02') // Parasaurolophus 2
-        drawMarker(ctx, 'parasaur03') // Parasaurolophus 3
-        drawMarker(ctx, 'brachi01') // Brachiosaurus 1
-        drawMarker(ctx, 'brachi02') // Brachiosaurus 2
-        drawMarker(ctx, 'brachi03') // Brachiosaurus 3
-        drawMarker(ctx, 'gallimimus01') // Gallimimus 1
-        drawMarker(ctx, 'gallimimus02') // Gallimimus 2
-        drawMarker(ctx, 'gallimimus03') // Gallimimus 3
-        drawMarker(ctx, 'gallimimus04') // Gallimimus 4
-        drawMarker(ctx, 'gallimimus05') // Gallimimus 5
-        drawMarker(ctx, 'gallimimus06') // Gallimimus 6
-        drawMarker(ctx, 'gallimimus07') // Gallimimus 7
-        drawMarker(ctx, 'gallimimus08') // Gallimimus 8
-        drawMarker(ctx, 'gallimimus09') // Gallimimus 9
-        drawMarker(ctx, 'segi01') // Segisaurus 1
-        drawMarker(ctx, 'segi02') // Segisaurus 2
-        drawMarker(ctx, 'segi03') // Segisaurus 3
-        drawMarker(ctx, 'segi04') // Segisaurus 4
-        drawMarker(ctx, 'segi05') // Segisaurus 5
-        drawMarker(ctx, 'segi06') // Segisaurus 6
-        drawMarker(ctx, 'vehicle01', frameCount) // Vehicle 1
-        drawMarker(ctx, 'vehicle02', frameCount) // Vehicle 2
-        drawMarker(ctx, 'vehicle03', frameCount) // Vehicle 3 
-        drawMarker(ctx, 'boat01', frameCount) // Boat 01
-        drawMarker(ctx, 'helicopter01', frameCount) // Helicopter 01
+        refreshCounter++;
+        drawMarker(ctx, 'raptor01'); // Raptor 1
+        drawMarker(ctx, 'raptor02'); // Raptor 2
+        drawMarker(ctx, 'raptor03'); // Raptor 3
+        drawMarker(ctx, 'rex01'); // TRex 1
+        drawMarker(ctx, 'dilo01'); // Dilophosaur 1
+        drawMarker(ctx, 'procerat01'); // Proceratosaur 1
+        drawMarker(ctx, 'bary01'); // Baryonyx 1
+        drawMarker(ctx, 'metricanth01'); // Metricanthosaurus 1
+        drawMarker(ctx, 'trike01'); // Triceratops 1
+        drawMarker(ctx, 'trike02'); // Triceratops 2
+        drawMarker(ctx, 'trike03'); // Triceratops 3
+        drawMarker(ctx, 'parasaur01'); // Parasaurolophus 1
+        drawMarker(ctx, 'parasaur02'); // Parasaurolophus 2
+        drawMarker(ctx, 'parasaur03'); // Parasaurolophus 3
+        drawMarker(ctx, 'brachi01'); // Brachiosaurus 1
+        drawMarker(ctx, 'brachi02'); // Brachiosaurus 2
+        drawMarker(ctx, 'brachi03'); // Brachiosaurus 3
+        drawMarker(ctx, 'gallimimus01'); // Gallimimus 1
+        drawMarker(ctx, 'gallimimus02'); // Gallimimus 2
+        drawMarker(ctx, 'gallimimus03'); // Gallimimus 3
+        drawMarker(ctx, 'gallimimus04'); // Gallimimus 4
+        drawMarker(ctx, 'gallimimus05'); // Gallimimus 5
+        drawMarker(ctx, 'gallimimus06'); // Gallimimus 6
+        drawMarker(ctx, 'gallimimus07'); // Gallimimus 7
+        drawMarker(ctx, 'gallimimus08'); // Gallimimus 8
+        drawMarker(ctx, 'gallimimus09'); // Gallimimus 9
+        drawMarker(ctx, 'segi01'); // Segisaurus 1
+        drawMarker(ctx, 'segi02'); // Segisaurus 2
+        drawMarker(ctx, 'segi03'); // Segisaurus 3
+        drawMarker(ctx, 'segi04'); // Segisaurus 4
+        drawMarker(ctx, 'segi05'); // Segisaurus 5
+        drawMarker(ctx, 'segi06'); // Segisaurus 6
+        drawMarker(ctx, 'vehicle01', frameCount); // Vehicle 1
+        drawMarker(ctx, 'vehicle02', frameCount); // Vehicle 2
+        drawMarker(ctx, 'vehicle03', frameCount); // Vehicle 3 
+        drawMarker(ctx, 'boat01', frameCount); // Boat 01
+        drawMarker(ctx, 'helicopter01', frameCount); // Helicopter 01
       }
     }
     else {
-      console.log('Waiting for map markers...')
+      console.log('Waiting for map markers...');
     }
-  }
-  
+  };
+
   return (
     <>
       <div className="App">
@@ -214,7 +256,7 @@ function App() {
           <div className="events-table">
             <iframe title="RecentEventsTable" scrolling="no" src="https://cloudwatch.amazonaws.com/dashboard.html?dashboard=Dino-Events&context=eyJSIjoidXMtZWFzdC0xIiwiRCI6ImN3LWRiLTM2MDI1OTcwNDE2MSIsIlUiOiJ1cy1lYXN0LTFfOHdqNkFmY0FuIiwiQyI6IjRiYjN1Y3Y3bW5ocDM3YXJoNG8zMnA3aXMzIiwiSSI6InVzLWVhc3QtMTphOGI5ZTg0Mi0yODFlLTRkOTgtYThjNi1jNWRkMzVmNWM5OGMiLCJPIjoiYXJuOmF3czppYW06OjM2MDI1OTcwNDE2MTpyb2xlL3NlcnZpY2Utcm9sZS9DV0RCU2hhcmluZy1QdWJsaWNSZWFkT25seUFjY2Vzcy01SE02SDIwUSIsIk0iOiJQdWJsaWMifQ%3D%3D"/>
           </div>
-          <span className="footer"><p>jurassic-map v.63 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022 - Adapted from art by EvoTheIrritatedNerd</p></span>
+          <span className="footer"><p>jurassic-map v.64 - <a href="http://twitter.com/cloudbart">@CloudBart</a> 2022 - Adapted from art by EvoTheIrritatedNerd</p></span>
         </div>
       </div>
     </>

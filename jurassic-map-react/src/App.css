@@ -118,7 +118,7 @@ html {
   display: flex;
 }
 
-.tourVehicleButtonImg {
+.tourVehicleButton img {
   flex: 0 1 auto;
   min-width: 35px;
   padding: .75em;
