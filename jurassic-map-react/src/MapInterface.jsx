@@ -64,12 +64,10 @@ const MapInterface = () => {
       if (random_boolean) {
         tourDetails = { vehicleId: vehicleId, routeId: 'shortTour' };
       }
-      console.log(tourDetails);
       setTours([...tours, tourDetails]);
       try {
         const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
         setTours([...tours, tourResponse]);
-        console.log(tourResponse);
       }
       catch (err) {
         console.log("Failed tourRequest call");
@@ -86,10 +84,7 @@ const MapInterface = () => {
   function handleClick(i) {
     let vehicleId = "vehicle0" + (i + 1);
     let currentMarker = mapMarkers.find(item => item.id === vehicleId);
-    if (currentMarker.tourState !== "idle") {
-      console.log(vehicleId + " active: " + currentMarker.tourState);
-    }
-    else {
+    if (currentMarker.tourState === "idle") {
       //Call startTour mutation
       startTour(vehicleId);
     }
@@ -98,15 +93,29 @@ const MapInterface = () => {
   //Function to render a tour vehicle button
   function TourVehicleButton(props) {
     let vehicleNumber = Number(props.value) + 1;
-    return (
-      <div className="tourVehicleButton">
-      <img src='jurassicmap_tourVehicle_25x59.png'
-        onClick={props.onClick}
-        alt="JurassicMap tour vehicle button"
-        style={{ filter: (props.buttonStyle) }}
-      /><p>0{vehicleNumber}</p>
-    </div>
-    );
+    let currentMarker = mapMarkers.find(item => item.id === "vehicle0" + vehicleNumber);
+    if (currentMarker.tourState === "idle") {
+      return (
+        <div className="tourVehicleButton">
+          <img src='jurassicmap_tourVehicle_25x59.png'
+            onClick={props.onClick}
+            alt="JurassicMap tour vehicle button"
+            style={{ filter: (props.buttonStyle) }}
+          /><p>0{vehicleNumber}</p>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="tourVehicleButton">
+          <img src='jurassicmap_tourVehicle_25x59.png'
+            onClick={props.onClick}
+            alt="JurassicMap tour vehicle button"
+            style={{ filter: (props.buttonStyle) }}
+          /><p>0{vehicleNumber}<br/>Active</p>
+        </div>
+      );
+    }
   }
 
   //Function to render tour vehicle buttons
@@ -123,12 +132,13 @@ const MapInterface = () => {
           onClick={() => handleClick(i)}
         />
       );
-    } else {
+    }
+    else {
       return (<p>loading</p>);
     }
   }
 
-  //Marker-drawing function
+  //mapMarker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
     //Try to find current map marker in fetched mapMarkers array
     try {
