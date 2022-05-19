@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
@@ -9,72 +9,83 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
-//declare marker variables
-var markerArray;
-var markerArrayStatus = false;
-let refreshCounter = 0;
-
-//Function for starting vehicle tours
-const startTour = async function(vehicleId) {
-  console.log("Start tour: " + vehicleId);
-  var tourDetails = {vehicleId: vehicleId, routeId: 'fullTour'};
-  var random_boolean = Math.random() < 0.6;
-  if (random_boolean) {
-    tourDetails = {vehicleId: vehicleId, routeId: 'shortTour'};
+const initialMapMarkersState = [{
+    "id": "vehicle01",
+    "tourState": "idle",
+    "xcoord": "884",
+    "ycoord": "828"
+  },
+  {
+    "id": "vehicle02",
+    "tourState": "idle",
+    "xcoord": "884",
+    "ycoord": "828"
+  },
+  {
+    "id": "vehicle03",
+    "tourState": "idle",
+    "xcoord": "884",
+    "ycoord": "828"
   }
-  console.log(tourDetails);
-  try {
-    const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
-    console.log(tourResponse);
-  }
-  catch (err) {
-    console.log("Failed tourRequest call");
-    console.log(err);
-  }
-};
+];
 
-//Function for retrieving mapMarkers array from AppSync/DDB
-const fetchMapMarkers = async function() {
-  try {
-    let response = await API.graphql(graphqlOperation(queries.listMapMarkers));
-    markerArray = response.data.listMapMarkers.items;
-    console.log("Markers loaded. Rendering...");
-    markerArrayStatus = true;
-    refreshCounter = 0;
-    return markerArrayStatus;
-  }
-  catch (err) { console.log('Error fetching mapMarkers') }
-};
+//Class to render the overall map interface
+const MapInterface = () => {
+  const [mapMarkers, setMapMarkers] = useState(initialMapMarkersState);
+  const [dataLoaded, setDataLoaded] = useState([false]);
+  const [tours, setTours] = useState([]);
 
-//Function to render a tour vehicle button
-function TourVehicleButton(props) {
-  let vehicleNumber = Number(props.value) + 1;
-  return (
-    <div className="tourVehicleButton">
-      <img src='jurassicmap_tourVehicle_25x59.png'
-        onClick={props.onClick}
-        alt="JurassicMap tour vehicle button"
-        style={{ filter: (props.buttonStyle) }}
-      /><p>0{vehicleNumber}</p>
-    </div>
-  );
-}
+  //Refresh mapMarkers every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMapMarkers();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-//Function to render the tour vehicles interface
-class TourVehicleInterface extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      buttons: Array(3).fill(null),
-      tours: Array(3).fill("idle"),
-      markersLoaded: null
-    };
+  //Function to retrieve data from AppSync
+  async function fetchMapMarkers() {
+    try {
+      let markerArrayData = await API.graphql(graphqlOperation(queries.listMapMarkers));
+      let markerArray = markerArrayData.data.listMapMarkers.items;
+      setMapMarkers(markerArray);
+      setDataLoaded(true);
+    }
+    catch (err) { console.log('graphql error fetching mapMarkers') }
   }
 
-  //Function to handle click event
-  handleClick(i) {
+  //Function to request new tour
+  async function startTour(vehicleId) {
+    try {
+      console.log("Start tour: " + vehicleId);
+      //Prepare startTour request details, randomize tour route
+      var tourDetails = { vehicleId: vehicleId, routeId: 'fullTour' };
+      var random_boolean = Math.random() < 0.6;
+      if (random_boolean) {
+        tourDetails = { vehicleId: vehicleId, routeId: 'shortTour' };
+      }
+      console.log(tourDetails);
+      setTours([...tours, tourDetails]);
+      try {
+        const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
+        setTours([...tours, tourResponse]);
+        console.log(tourResponse);
+      }
+      catch (err) {
+        console.log("Failed tourRequest call");
+        console.log(err);
+      }
+    }
+    catch (err) {
+      console.log("Failed tourRequest call");
+      console.log(err);
+    }
+  }
+
+  // Function to handle click event
+  function handleClick(i) {
     let vehicleId = "vehicle0" + (i + 1);
-    let currentMarker = markerArray.find(item => item.id === vehicleId);
+    let currentMarker = mapMarkers.find(item => item.id === vehicleId);
     if (currentMarker.tourState !== "idle") {
       console.log(vehicleId + " active: " + currentMarker.tourState);
     }
@@ -84,59 +95,44 @@ class TourVehicleInterface extends React.Component {
     }
   }
 
-  renderButton(i) {
-    let vehicleId = "vehicle0" + (i + 1); //Construct vehicleId from index
-    let currentMarker = markerArray.find(item => item.id === vehicleId); //find current vehicle
-    let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow color
-    if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 3px white)" }
+  //Function to render a tour vehicle button
+  function TourVehicleButton(props) {
+    let vehicleNumber = Number(props.value) + 1;
     return (
-      <TourVehicleButton 
+      <div className="tourVehicleButton">
+      <img src='jurassicmap_tourVehicle_25x59.png'
+        onClick={props.onClick}
+        alt="JurassicMap tour vehicle button"
+        style={{ filter: (props.buttonStyle) }}
+      /><p>0{vehicleNumber}</p>
+    </div>
+    );
+  }
+
+  //Function to render tour vehicle buttons
+  function renderVehicleButton(i) {
+    if (dataLoaded === true) {
+      let vehicleId = "vehicle0" + (i + 1); //Construct vehicleId from index
+      let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
+      let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow color
+      if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 3px white)" }
+      return (
+        <TourVehicleButton 
           buttonStyle = {buttonStyle}
           value={[i]}
-          onClick={() => this.handleClick(i)}
+          onClick={() => handleClick(i)}
         />
-    );
-  }
-
-  componentDidMount() {
-    this._asyncRequest = fetchMapMarkers().then(
-      markersLoaded => {
-        this._asyncRequest = null;
-        this.setState({ markersLoaded });
-      }
-    );
-  }
-
-  componentWillUnmount() {
-    if (this._asyncRequest) {
-      this._asyncRequest.cancel();
-    }
-  }
-
-  render() {
-    if (this.state.markersLoaded === null) {
-      return (
-        <div className="tourVehicleInterface"></div>
       );
-    }
-    else {
-      return (
-        <div className="tourVehicleInterface">
-          {this.renderButton(0)}
-          {this.renderButton(1)}
-          {this.renderButton(2)}
-        </div>
-      );
+    } else {
+      return (<p>loading</p>);
     }
   }
-}
 
-function MapInterface() {
   //Marker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
     //Try to find current map marker in fetched mapMarkers array
     try {
-      let currentMarker = markerArray.find(item => item.id === markerId);
+      let currentMarker = mapMarkers.find(item => item.id === markerId);
       //Reset visibility, check for visbility of current marker
       var visible = true;
       if (currentMarker.tourState === "idle") { visible = false; return }
@@ -157,64 +153,60 @@ function MapInterface() {
     catch (err) { console.log(markerId + 'not found') }
   }
 
-  //Main call to draw on canvas
+  //Function to draw on canvas
   const draw = (ctx, frameCount) => {
-    //Check for loaded data status, else wait without drawing anything on the maps
-    if (markerArrayStatus) {
-      if (refreshCounter >= 300) {
-        console.log('Refreshing marker data...');
-        fetchMapMarkers();
-      }
-      else {
-        refreshCounter++;
-        drawMarker(ctx, 'raptor01'); // Raptor 1
-        drawMarker(ctx, 'raptor02'); // Raptor 2
-        drawMarker(ctx, 'raptor03'); // Raptor 3
-        drawMarker(ctx, 'rex01'); // TRex 1
-        drawMarker(ctx, 'dilo01'); // Dilophosaur 1
-        drawMarker(ctx, 'procerat01'); // Proceratosaur 1
-        drawMarker(ctx, 'bary01'); // Baryonyx 1
-        drawMarker(ctx, 'metricanth01'); // Metricanthosaurus 1
-        drawMarker(ctx, 'trike01'); // Triceratops 1
-        drawMarker(ctx, 'trike02'); // Triceratops 2
-        drawMarker(ctx, 'trike03'); // Triceratops 3
-        drawMarker(ctx, 'parasaur01'); // Parasaurolophus 1
-        drawMarker(ctx, 'parasaur02'); // Parasaurolophus 2
-        drawMarker(ctx, 'parasaur03'); // Parasaurolophus 3
-        drawMarker(ctx, 'brachi01'); // Brachiosaurus 1
-        drawMarker(ctx, 'brachi02'); // Brachiosaurus 2
-        drawMarker(ctx, 'brachi03'); // Brachiosaurus 3
-        drawMarker(ctx, 'gallimimus01'); // Gallimimus 1
-        drawMarker(ctx, 'gallimimus02'); // Gallimimus 2
-        drawMarker(ctx, 'gallimimus03'); // Gallimimus 3
-        drawMarker(ctx, 'gallimimus04'); // Gallimimus 4
-        drawMarker(ctx, 'gallimimus05'); // Gallimimus 5
-        drawMarker(ctx, 'gallimimus06'); // Gallimimus 6
-        drawMarker(ctx, 'gallimimus07'); // Gallimimus 7
-        drawMarker(ctx, 'gallimimus08'); // Gallimimus 8
-        drawMarker(ctx, 'gallimimus09'); // Gallimimus 9
-        drawMarker(ctx, 'segi01'); // Segisaurus 1
-        drawMarker(ctx, 'segi02'); // Segisaurus 2
-        drawMarker(ctx, 'segi03'); // Segisaurus 3
-        drawMarker(ctx, 'segi04'); // Segisaurus 4
-        drawMarker(ctx, 'segi05'); // Segisaurus 5
-        drawMarker(ctx, 'segi06'); // Segisaurus 6
-        drawMarker(ctx, 'vehicle01', frameCount); // Vehicle 1
-        drawMarker(ctx, 'vehicle02', frameCount); // Vehicle 2
-        drawMarker(ctx, 'vehicle03', frameCount); // Vehicle 3 
-        drawMarker(ctx, 'boat01', frameCount); // Boat 01
-        drawMarker(ctx, 'helicopter01', frameCount); // Helicopter 01
-      }
+    if (dataLoaded === true) {
+      drawMarker(ctx, 'raptor01'); // Raptor 1
+      drawMarker(ctx, 'raptor02'); // Raptor 2
+      drawMarker(ctx, 'raptor03'); // Raptor 3
+      drawMarker(ctx, 'rex01'); // TRex 1
+      drawMarker(ctx, 'dilo01'); // Dilophosaur 1
+      drawMarker(ctx, 'procerat01'); // Proceratosaur 1
+      drawMarker(ctx, 'bary01'); // Baryonyx 1
+      drawMarker(ctx, 'metricanth01'); // Metricanthosaurus 1
+      drawMarker(ctx, 'trike01'); // Triceratops 1
+      drawMarker(ctx, 'trike02'); // Triceratops 2
+      drawMarker(ctx, 'trike03'); // Triceratops 3
+      drawMarker(ctx, 'parasaur01'); // Parasaurolophus 1
+      drawMarker(ctx, 'parasaur02'); // Parasaurolophus 2
+      drawMarker(ctx, 'parasaur03'); // Parasaurolophus 3
+      drawMarker(ctx, 'brachi01'); // Brachiosaurus 1
+      drawMarker(ctx, 'brachi02'); // Brachiosaurus 2
+      drawMarker(ctx, 'brachi03'); // Brachiosaurus 3
+      drawMarker(ctx, 'gallimimus01'); // Gallimimus 1
+      drawMarker(ctx, 'gallimimus02'); // Gallimimus 2
+      drawMarker(ctx, 'gallimimus03'); // Gallimimus 3
+      drawMarker(ctx, 'gallimimus04'); // Gallimimus 4
+      drawMarker(ctx, 'gallimimus05'); // Gallimimus 5
+      drawMarker(ctx, 'gallimimus06'); // Gallimimus 6
+      drawMarker(ctx, 'gallimimus07'); // Gallimimus 7
+      drawMarker(ctx, 'gallimimus08'); // Gallimimus 8
+      drawMarker(ctx, 'gallimimus09'); // Gallimimus 9
+      drawMarker(ctx, 'segi01'); // Segisaurus 1
+      drawMarker(ctx, 'segi02'); // Segisaurus 2
+      drawMarker(ctx, 'segi03'); // Segisaurus 3
+      drawMarker(ctx, 'segi04'); // Segisaurus 4
+      drawMarker(ctx, 'segi05'); // Segisaurus 5
+      drawMarker(ctx, 'segi06'); // Segisaurus 6
+      drawMarker(ctx, 'vehicle01', frameCount); // Vehicle 1
+      drawMarker(ctx, 'vehicle02', frameCount); // Vehicle 2
+      drawMarker(ctx, 'vehicle03', frameCount); // Vehicle 3 
+      drawMarker(ctx, 'boat01', frameCount); // Boat 01
+      drawMarker(ctx, 'helicopter01', frameCount); // Helicopter 01 
     }
     else {
-      console.log('Waiting for map markers...');
+      console.log("Loading Map Data");
     }
   };
 
   return (
     <>
       <div className="mapTableMap">
-        <TourVehicleInterface/>
+        <div className="tourVehicleInterface">
+          {renderVehicleButton(0)}
+          {renderVehicleButton(1)}
+          {renderVehicleButton(2)}
+        </div>
         <TransformWrapper>
           {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
             <React.Fragment>
@@ -232,6 +224,6 @@ function MapInterface() {
       </div>
     </>
   );
-}
+};
 
 export default MapInterface;
