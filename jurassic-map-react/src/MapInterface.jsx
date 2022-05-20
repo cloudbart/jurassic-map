@@ -56,23 +56,16 @@ const MapInterface = () => {
 
   //Function to request new tour
   async function startTour(vehicleId) {
+    console.log("Start tour: " + vehicleId);
+    //Prepare startTour request details, randomize tour route
+    var tourDetails = { vehicleId: vehicleId, routeId: 'fullTour' };
+    var random_boolean = Math.random() < 0.6;
+    if (random_boolean) {
+      tourDetails = { vehicleId: vehicleId, routeId: 'shortTour' };
+    }
     try {
-      console.log("Start tour: " + vehicleId);
-      //Prepare startTour request details, randomize tour route
-      var tourDetails = { vehicleId: vehicleId, routeId: 'fullTour' };
-      var random_boolean = Math.random() < 0.6;
-      if (random_boolean) {
-        tourDetails = { vehicleId: vehicleId, routeId: 'shortTour' };
-      }
-      setTours([...tours, tourDetails]);
-      try {
-        const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
-        setTours([...tours, tourResponse]);
-      }
-      catch (err) {
-        console.log("Failed tourRequest call");
-        console.log(err);
-      }
+      const tourResponse = await API.graphql(graphqlOperation(mutations.startTour, tourDetails));
+      setTours([...tours, tourResponse]);
     }
     catch (err) {
       console.log("Failed tourRequest call");
@@ -81,7 +74,7 @@ const MapInterface = () => {
   }
 
   // Function to handle click event
-  function handleClick(i) {
+  function handleVehicleClick(i) {
     let vehicleId = "vehicle0" + (i + 1);
     let currentMarker = mapMarkers.find(item => item.id === vehicleId);
     if (currentMarker.tourState === "idle") {
@@ -91,52 +84,37 @@ const MapInterface = () => {
   }
 
   //Function to render a tour vehicle button
-  function TourVehicleButton(props) {
-    let vehicleNumber = Number(props.value) + 1;
-    let currentMarker = mapMarkers.find(item => item.id === "vehicle0" + vehicleNumber);
+  const TourVehicleButton = params => {
+    let vehicleId = "vehicle0" + (params.i + 1); //Construct vehicleId from index
+    let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
+    let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow
+    //Check for and Set active tour drop shadow
+    if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 4px white)" } 
+    //Return idle vehicle button elements
     if (currentMarker.tourState === "idle") {
       return (
         <div className="tourVehicleButton">
           <img src='jurassicmap_tourVehicle_25x59.png'
-            onClick={props.onClick}
+            onClick={() => { handleVehicleClick(params.i); params.setTransform(-2000,-1600,8,1300,"easeOut"); }}
             alt="JurassicMap tour vehicle button"
-            style={{ filter: (props.buttonStyle) }}
-          /><p>0{vehicleNumber}</p>
+            style={{ filter: (buttonStyle) }}
+          /><p>0{params.i + 1}</p>
         </div>
       );
     }
+    //Return active tour vehicle button elements
     else {
       return (
         <div className="tourVehicleButton">
           <img src='jurassicmap_tourVehicle_25x59.png'
-            onClick={props.onClick}
+            onClick={() => { handleVehicleClick(params.i); params.setTransform(-2000,-1600,8,1300,"easeOut"); }}
             alt="JurassicMap tour vehicle button"
-            style={{ filter: (props.buttonStyle) }}
-          /><p>0{vehicleNumber}<br/>Active</p>
+            style={{ filter: (buttonStyle) }}
+          /><p>0{params.i + 1}<br/>Active</p>
         </div>
       );
     }
-  }
-
-  //Function to render tour vehicle buttons
-  function renderVehicleButton(i) {
-    if (dataLoaded === true) {
-      let vehicleId = "vehicle0" + (i + 1); //Construct vehicleId from index
-      let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
-      let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow color
-      if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 3px white)" }
-      return (
-        <TourVehicleButton 
-          buttonStyle = {buttonStyle}
-          value={[i]}
-          onClick={() => handleClick(i)}
-        />
-      );
-    }
-    else {
-      return (<p>loading</p>);
-    }
-  }
+  };
 
   //mapMarker-drawing function
   function drawMarker(ctx, markerId, frameCount) {
@@ -212,14 +190,14 @@ const MapInterface = () => {
   return (
     <>
       <div className="mapTableMap">
-        <div className="tourVehicleInterface">
-          {renderVehicleButton(0)}
-          {renderVehicleButton(1)}
-          {renderVehicleButton(2)}
-        </div>
         <TransformWrapper>
-          {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+          {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
             <React.Fragment>
+              <div className="tourVehicleInterface">
+                <TourVehicleButton i={0} setTransform={setTransform} />
+                <TourVehicleButton i={1} setTransform={setTransform} />
+                <TourVehicleButton i={2} setTransform={setTransform} />
+              </div>
               <div className="mapZoomControls">
                 <button className="mapZoomControlBtn" title="Zoom Out" onClick={() => zoomOut()}>-</button>
                 <button className="mapZoomControlBtn" title="Reset" onClick={() => resetTransform()}>Reset</button>
