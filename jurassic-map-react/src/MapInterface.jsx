@@ -77,42 +77,99 @@ const MapInterface = () => {
   function handleVehicleClick(i) {
     let vehicleId = "vehicle0" + (i + 1);
     let currentMarker = mapMarkers.find(item => item.id === vehicleId);
+    //Check clicked-vehicle tour-state, request tour if idle
     if (currentMarker.tourState === "idle") {
-      //Call startTour mutation
-      startTour(vehicleId);
+      startTour(vehicleId); //Call startTour mutation
     }
   }
 
   //Function to render a tour vehicle button
   const TourVehicleButton = params => {
-    let vehicleId = "vehicle0" + (params.i + 1); //Construct vehicleId from index
-    let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
-    let buttonStyle = "drop-shadow(0 0 0 white)"; //Set default drop shadow
-    //Check for and Set active tour drop shadow
-    if (currentMarker.tourState !== "idle") { buttonStyle = "drop-shadow(0 0 4px white)" } 
-    //Return idle vehicle button elements
-    if (currentMarker.tourState === "idle") {
-      return (
-        <div className="tourVehicleButton">
-          <img src='jurassicmap_tourVehicle_25x59.png'
-            onClick={() => { handleVehicleClick(params.i); params.setTransform(-2000,-1600,8,1300,"easeOut"); }}
-            alt="JurassicMap tour vehicle button"
-            style={{ filter: (buttonStyle) }}
-          /><p>0{params.i + 1}</p>
-        </div>
-      );
+    if (dataLoaded === true) {
+      let vehicleId = "vehicle0" + (params.i + 1); //Construct vehicleId from index
+      let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
+      //If vehicle is idle, set default mapWindow factor
+      if (currentMarker.tourState === "idle") {
+        let xfactor = 1.8;
+        let yfactor = 1.6;
+        var mapWindowX = (0 - (currentMarker.xcoord * xfactor));
+        var mapWindowY = (0 - (currentMarker.ycoord * yfactor));
+      }
+      //If vehicle is active on tour, adjust mapWindow factor
+      else {
+        //Calculate mapWindow x coords
+        let xratio = (currentMarker.xcoord / 2261);
+        console.log("xratio:" + xratio);
+        let xfactor;
+        switch (true) {
+          case ((xratio > .25) && (xratio < .55)):
+            xfactor = 1.91;
+            break;
+          case ((xratio > .55) && (xratio < .75)):
+            xfactor = 1.99;
+            break;
+          case (xratio > .75):
+            xfactor = 2.02;
+            break;
+          default:
+            xfactor = 1.8;
+            break;
+        }
+        console.log("xfactor:" + xfactor);
+        //Calculate mapWindow y coords
+        let yratio = (currentMarker.ycoord / 2492);
+        console.log("yratio:" + yratio);
+        let yfactor;
+        switch (true) {
+          case ((yratio > .3) && (yratio < .35)):
+            yfactor = 1.76;
+            break;
+          case ((yratio > .35) && (yratio < .4)):
+            yfactor = 1.8;
+            break;
+          case ((yratio > .4) && (yratio < .45)):
+            yfactor = 1.9;
+            break;
+          default:
+            yfactor = 1.6;
+            break;
+        }
+        console.log("yfactor:" + yfactor);
+        mapWindowX = (0 - (currentMarker.xcoord * xfactor));
+        mapWindowY = (0 - (currentMarker.ycoord * yfactor));
+      }
+      //Return idle vehicle button elements
+      if (currentMarker.tourState === "idle") {
+        let buttonStyle = "drop-shadow(0 0 0px white)";
+        return (
+          <div className="tourVehicleButton">
+            <img src='jurassicmap_tourVehicle_25x59.png'
+              onClick={() => { handleVehicleClick(params.i); params.setTransform(mapWindowX,mapWindowY,7,1300,"easeOut"); }}
+              alt="JurassicMap tour vehicle button"
+              style={{ filter: (buttonStyle) }}
+            />
+            <p>0{params.i + 1}</p>
+          </div>
+        );
+      }
+      //Return active tour vehicle button elements
+      else {
+        let buttonStyle = "drop-shadow(0 0 4px white)";
+        return (
+          <div className="tourVehicleButton">
+            <img src='jurassicmap_tourVehicle_25x59.png'
+              onClick={() => { handleVehicleClick(params.i); params.setTransform(mapWindowX,mapWindowY,7,1300,"easeOut"); }}
+              alt="JurassicMap tour vehicle button"
+              style={{ filter: (buttonStyle) }}
+            />
+            <p>0{params.i + 1}<br/>Active</p>
+          </div>
+        );
+      }
     }
-    //Return active tour vehicle button elements
+    //Return temporary loading message
     else {
-      return (
-        <div className="tourVehicleButton">
-          <img src='jurassicmap_tourVehicle_25x59.png'
-            onClick={() => { handleVehicleClick(params.i); params.setTransform(-2000,-1600,8,1300,"easeOut"); }}
-            alt="JurassicMap tour vehicle button"
-            style={{ filter: (buttonStyle) }}
-          /><p>0{params.i + 1}<br/>Active</p>
-        </div>
-      );
+      return (<div className="tourVehicleButton">loading</div>);
     }
   };
 
