@@ -35,13 +35,13 @@
 
 .tourVehicleButton img {
   flex: 0 1 auto;
-  min-width: 35px;
+  min-width: 75px;
   padding: .75em;
   cursor: pointer;
 }
 
 .tourVehicleButton p {
-  font-size: .85em;
+  font-size: .95em;
   text-transform: uppercase;
   font-weight: 600;
   margin: auto;
@@ -59,15 +59,15 @@
 }
 
 .mapZoomControlBtn {
-  font-size: .85em;
+  font-size: 1em;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-  padding: .35em .55em;
+  padding: .45em .75em .35em .75em;
   background: white;
   border: 1px solid grey;
   border-radius: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 8px;
+  margin-left: 8px;
   -webkit-font-smoothing: antialiased;
 }

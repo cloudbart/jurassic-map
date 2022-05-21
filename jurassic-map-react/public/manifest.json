@@ -1,8 +1,7 @@
 {
   "short_name": "Jurassic Map",
   "name": "Jurassic Map from CloudBart",
-  "icons": [
-    {
+  "icons": [{
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
@@ -26,6 +25,11 @@
       "src": "mapGuideBottom_715x250.png",
       "type": "image/png",
       "sizes": "715x250"
+    },
+    {
+      "src": "jurassicmap_tour_vehicle_32x75.png",
+      "type": "image/png",
+      "sizes": "32x75"
     }
   ],
   "start_url": ".",
