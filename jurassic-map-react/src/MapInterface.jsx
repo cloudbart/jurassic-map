@@ -147,7 +147,7 @@ const MapInterface = () => {
         let buttonStyle = "drop-shadow(0 0 0px white)";
         return (
           <div className="tourVehicleButton">
-            <img src='jurassicmap_tourVehicle_25x59.png'
+            <img src='jurassicmap_tour_vehicle_32x75.png'
               onClick={() => { handleVehicleClick(params.i); params.setTransform(mapWindowX,mapWindowY,7,1300,"easeOut"); }}
               alt="JurassicMap tour vehicle button"
               style={{ filter: (buttonStyle) }}
@@ -158,10 +158,10 @@ const MapInterface = () => {
       }
       //Return active tour vehicle button elements
       else {
-        let buttonStyle = "drop-shadow(0 0 4px white)";
+        let buttonStyle = "drop-shadow(0 0 6px white)";
         return (
           <div className="tourVehicleButton">
-            <img src='jurassicmap_tourVehicle_25x59.png'
+            <img src='jurassicmap_tour_vehicle_32x75.png'
               onClick={() => { handleVehicleClick(params.i); params.setTransform(mapWindowX,mapWindowY,7,1300,"easeOut"); }}
               alt="JurassicMap tour vehicle button"
               style={{ filter: (buttonStyle) }}
