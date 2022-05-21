@@ -90,8 +90,8 @@ const MapInterface = () => {
       let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
       //If vehicle is idle, set default mapWindow factor
       if (currentMarker.tourState === "idle") {
-        let xfactor = 1.8;
-        let yfactor = 1.6;
+        let xfactor = 1.85;
+        let yfactor = 1.7;
         var mapWindowX = (0 - (currentMarker.xcoord * xfactor));
         var mapWindowY = (0 - (currentMarker.ycoord * yfactor));
       }
@@ -99,42 +99,46 @@ const MapInterface = () => {
       else {
         //Calculate mapWindow x coords
         let xratio = (currentMarker.xcoord / 2261);
-        console.log("xratio:" + xratio);
-        let xfactor;
+        let xfactor, yfactor;
         switch (true) {
-          case ((xratio > .25) && (xratio < .55)):
-            xfactor = 1.91;
+          case ((xratio > .49) && (xratio < .59)):
+            xfactor = 1.93;
             break;
-          case ((xratio > .55) && (xratio < .75)):
-            xfactor = 1.99;
+          case ((xratio > .59) && (xratio < .69)):
+            xfactor = 1.98;
             break;
-          case (xratio > .75):
-            xfactor = 2.02;
+          case ((xratio > .69) && (xratio < .79)):
+            xfactor = 2.01;
+            break;
+          case (xratio > .79):
+            xfactor = 2.05;
             break;
           default:
-            xfactor = 1.8;
+            xfactor = 1.87;
             break;
         }
-        console.log("xfactor:" + xfactor);
         //Calculate mapWindow y coords
         let yratio = (currentMarker.ycoord / 2492);
-        console.log("yratio:" + yratio);
-        let yfactor;
         switch (true) {
-          case ((yratio > .3) && (yratio < .35)):
-            yfactor = 1.76;
+          case ((yratio > .24) && (yratio < .32)):
+            yfactor = 1.65;
             break;
-          case ((yratio > .35) && (yratio < .4)):
-            yfactor = 1.8;
+          case ((yratio > .32) && (yratio < .40)):
+            yfactor = 1.75;
             break;
-          case ((yratio > .4) && (yratio < .45)):
+          case ((yratio > .40) && (yratio < .48)):
+            yfactor = 1.85;
+            break;
+          case ((yratio > .48) && (yratio < .54)):
             yfactor = 1.9;
             break;
+          case (yratio > .54):
+            yfactor = 1.95;
+            break;
           default:
-            yfactor = 1.6;
+            yfactor = 1.53;
             break;
         }
-        console.log("yfactor:" + yfactor);
         mapWindowX = (0 - (currentMarker.xcoord * xfactor));
         mapWindowY = (0 - (currentMarker.ycoord * yfactor));
       }
