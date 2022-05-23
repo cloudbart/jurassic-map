@@ -30,6 +30,7 @@ html {
 .map-table {
   flex-direction: row;
   min-height: 0;
+  min-width: 45vw;
   max-width: 92vw;
   column-gap: 5px;
   padding: 5px;
@@ -48,10 +49,14 @@ html {
 .map-table Canvas {
   flex: auto;
   border-radius: 5px;
+  min-width: 45vw;
   max-width: 100%;
   max-height: 92vh;
   background: url('jpMap_2261x2492.png');
   background-size: contain;
+  background-repeat: no-repeat;
+  padding-bottom: 120px;
+  margin-bottom: -120px;
 }
 
 .sidePanel {
@@ -65,7 +70,7 @@ html {
   gap: 5px;
   width: 100%;
   min-width: 0;
-  max-width: 30%;
+  max-width: 25%;
   max-height: 100%;
 }
 
@@ -139,7 +144,7 @@ html {
   z-index: 2;
   position: absolute;
   bottom: 1%;
-  left: 1%;
+  left: .5%;
   -webkit-font-smoothing: antialiased;
   width: 15%;
 }
