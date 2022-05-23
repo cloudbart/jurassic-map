@@ -28,27 +28,55 @@ html {
 }
 
 .map-table {
-  flex-direction: column;
-  flex: 0 0 100vh;
+  flex-direction: row;
   min-height: 0;
   max-width: 95vw;
   max-height: 85vh;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
   column-gap: 5px;
   padding: 5px;
 }
 
-.mapTableSidePanel {
-  grid-column: 1/2;
-  grid-row: 1/2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  min-width: 0;
+.mapTableMap {
+  position: relative;
+  min-height: 0;
   max-height: 100%;
-  text-align: center;
+}
+
+.react-transform-wrapper {
+  border-radius: 5px;
+}
+
+.map-table Canvas {
+  flex: auto;
+  border-radius: 5px;
+  max-width: 100%;
+  max-height: 85vh;
+  background: url('jpMap_2261x2492.png');
+  background-size: contain;
+}
+
+.sidePanel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  z-index: 2;
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  gap: 5px;
+  width: 200px;
+  min-width: 0;
+  max-width: 10vw;
+  max-height: 100%;
+}
+
+.sidePanelCollapseButton {
+  width: calc(100% - 5px);
+  cursor: pointer;
+  padding: .45em .75em .35em .75em;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: auto;
 }
 
 .mapTableSidePanelImg {
@@ -58,11 +86,34 @@ html {
   max-height: 100%;
 }
 
-.mapTableSidePanel p {
+.indexPanel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  z-index: 2;
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  gap: 5px;
+  width: 200px;
+  min-width: 0;
+  max-width: 10vw;
+  max-height: 100%;
+}
+
+.indexPanelImg {
+  flex: 0 0 auto;
+  border-radius: 5px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.indexPanel p {
   font-size: .61em;
   font-weight: bold;
   margin: auto;
   white-space: nowrap;
+  text-align: center;
 }
 
 .awsIconsPanel {
@@ -83,17 +134,71 @@ html {
   padding-left: 1px;
 }
 
+.tourVehicleInterface {
+  display: flex;
+  flex-flow: column nowrap;
+  z-index: 2;
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  -webkit-font-smoothing: antialiased;
+  width: 15%;
+}
+
+.tourVehicleButton {
+  display: flex;
+}
+
+.tourVehicleButton img {
+  flex: 0 1 auto;
+  min-width: 75px;
+  padding: .75em;
+  cursor: pointer;
+}
+
+.tourVehicleButton p {
+  font-size: .95em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: auto;
+}
+
+.mapZoomControls {
+  display: flex;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-font-smoothing: antialiased;
+}
+
+.mapZoomControlBtn {
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: .45em .75em .35em .75em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-right: 8px;
+  margin-left: 8px;
+  -webkit-font-smoothing: antialiased;
+}
+
 .events-table {
   flex-direction: row;
   flex: 1 0 40vw;
   min-width: 810px;
   width: 95%;
-  max-width: 95vw;
+  max-width: 50vw;
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.events-table iframe{
+.events-table iframe {
   height: 700px;
   min-height: 700px;
   max-height: 80vh;

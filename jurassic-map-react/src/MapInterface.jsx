@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
-import './MapInterface.css';
+import MapTableSidePanel from './MapTableSidePanel';
+import MapTableIndexPanel from './MapTableIndexPanel';
 import Canvas from './Canvas';
 import { API, graphqlOperation } from 'aws-amplify';
 import { Amplify } from 'aws-amplify';
@@ -254,6 +255,8 @@ const MapInterface = () => {
         <TransformWrapper>
           {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
             <React.Fragment>
+              <MapTableSidePanel/>
+              <MapTableIndexPanel/>
               <div className="tourVehicleInterface">
                 <TourVehicleButton i={0} setTransform={setTransform} />
                 <TourVehicleButton i={1} setTransform={setTransform} />
