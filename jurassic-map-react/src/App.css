@@ -51,8 +51,7 @@ html {
   border-radius: 5px;
   min-width: 45vw;
   max-width: 100%;
-  max-height: 92vh;
-  background: url('jpMap_2261x2492.png');
+  max-height: 90vh;
   background-size: contain;
   background-repeat: no-repeat;
   padding-bottom: 120px;

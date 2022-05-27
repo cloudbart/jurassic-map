@@ -252,7 +252,9 @@ const MapInterface = () => {
   return (
     <>
       <div className="mapTableMap">
-        <TransformWrapper>
+        <TransformWrapper
+          centerOnInit= {true}
+        >
           {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
             <React.Fragment>
               <MapTableSidePanel/>
