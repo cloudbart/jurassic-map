@@ -122,22 +122,22 @@ const MapInterface = () => {
         let yratio = Math.round(100*(currentMarker.ycoord / 2492))/100;
         switch (true) {
           case ((yratio > .24) && (yratio <= .32)):
-            yfactor = 1.83;
+            yfactor = 1.85;
             break;
           case ((yratio >= .32) && (yratio <= .40)):
-            yfactor = 1.88;
+            yfactor = 1.9;
             break;
           case ((yratio >= .40) && (yratio <= .48)):
-            yfactor = 1.98;
+            yfactor = 2.15;
             break;
           case ((yratio >= .48) && (yratio <= .54)):
-            yfactor = 2.1;
+            yfactor = 2.25;
             break;
           case (yratio >= .54):
-            yfactor = 2.23;
+            yfactor = 2.3;
             break;
           default:
-            yfactor = 1.7;
+            yfactor = 1.8;
             break;
         }
         console.log("Y:"+yratio+" "+yfactor+" X:"+xratio+" "+xfactor+" "+vehicleId);
