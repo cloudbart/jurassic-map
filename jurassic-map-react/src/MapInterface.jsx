@@ -91,55 +91,56 @@ const MapInterface = () => {
       let currentMarker = mapMarkers.find(item => item.id === vehicleId); //find current vehicle
       //If vehicle is idle, set default mapWindow factor
       if (currentMarker.tourState === "idle") {
-        let xfactor = 1.85;
-        let yfactor = 1.7;
+        let xfactor = 2.06;
+        let yfactor = 2;
         var mapWindowX = (0 - (currentMarker.xcoord * xfactor));
         var mapWindowY = (0 - (currentMarker.ycoord * yfactor));
       }
       //If vehicle is active on tour, adjust mapWindow factor
       else {
         //Calculate mapWindow x coords
-        let xratio = (currentMarker.xcoord / 2261);
+        let xratio = Math.round(100*(currentMarker.xcoord / 2261))/100;
         let xfactor, yfactor;
         switch (true) {
-          case ((xratio > .49) && (xratio < .59)):
-            xfactor = 1.93;
+          case ((xratio >= .49) && (xratio <= .59)):
+            xfactor = 2.25;
             break;
-          case ((xratio > .59) && (xratio < .69)):
-            xfactor = 1.98;
+          case ((xratio >= .59) && (xratio <= .69)):
+            xfactor = 2.3;
             break;
-          case ((xratio > .69) && (xratio < .79)):
-            xfactor = 2.01;
+          case ((xratio >= .69) && (xratio <= .79)):
+            xfactor = 2.35;
             break;
-          case (xratio > .79):
-            xfactor = 2.05;
+          case ((xratio >= .79) && (xratio <= .89)):
+            xfactor = 2.4;
             break;
           default:
-            xfactor = 1.87;
+            xfactor = 2.08;
             break;
         }
         //Calculate mapWindow y coords
-        let yratio = (currentMarker.ycoord / 2492);
+        let yratio = Math.round(100*(currentMarker.ycoord / 2492))/100;
         switch (true) {
-          case ((yratio > .24) && (yratio < .32)):
-            yfactor = 1.65;
+          case ((yratio > .24) && (yratio <= .32)):
+            yfactor = 1.83;
             break;
-          case ((yratio > .32) && (yratio < .40)):
-            yfactor = 1.75;
+          case ((yratio >= .32) && (yratio <= .40)):
+            yfactor = 1.88;
             break;
-          case ((yratio > .40) && (yratio < .48)):
-            yfactor = 1.85;
+          case ((yratio >= .40) && (yratio <= .48)):
+            yfactor = 1.98;
             break;
-          case ((yratio > .48) && (yratio < .54)):
-            yfactor = 1.9;
+          case ((yratio >= .48) && (yratio <= .54)):
+            yfactor = 2.1;
             break;
-          case (yratio > .54):
-            yfactor = 1.95;
+          case (yratio >= .54):
+            yfactor = 2.23;
             break;
           default:
-            yfactor = 1.53;
+            yfactor = 1.7;
             break;
         }
+        console.log("Y:"+yratio+" "+yfactor+" X:"+xratio+" "+xfactor+" "+vehicleId);
         mapWindowX = (0 - (currentMarker.xcoord * xfactor));
         mapWindowY = (0 - (currentMarker.ycoord * yfactor));
       }
@@ -253,7 +254,9 @@ const MapInterface = () => {
     <>
       <div className="mapTableMap">
         <TransformWrapper
-          centerOnInit= {true}
+          initialScale = {1.35}
+          initialPositionX = {-240}
+          initialPositionY = {-140}
         >
           {({ zoomIn, zoomOut, resetTransform, setTransform, ...rest }) => (
             <React.Fragment>

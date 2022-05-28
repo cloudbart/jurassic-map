@@ -60,12 +60,6 @@ phases:
           sleep 30;
           echo "BEGIN Scheduler02";
           aws events enable-rule --name "JurassicMapMarkerScheduler02-dev";
-          echo "Pause for Amplify Preview Deploy - 5min remaining";
-          sleep 1m;
-          echo "Pause for Amplify Preview Deploy - 4min remaining";
-          sleep 1m;
-          echo "Pause for Amplify Preview Deploy - 3min remaining";
-          sleep 1m;
           echo "Pause for Amplify Preview Deploy - 2min remaining";
           sleep 1m;
           echo "Pause for Amplify Preview Deploy - 1min remaining";
