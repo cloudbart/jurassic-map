@@ -53,8 +53,7 @@ html {
   min-width: 45vw;
   max-width: 100%;
   max-height: 90vh;
-  object-fit: cover;
-  object-position: top;
+  object-fit: contain;
 }
 
 .sidePanel {
@@ -208,7 +207,7 @@ html {
 }
 
 .footer {
-  width: 95%;
+  width: 85%;
   display: grid;
   text-align: center;
   border-top: 2px solid #000;
@@ -217,5 +216,5 @@ html {
 }
 
 .footer p {
-  margin: .3em;
+  margin: .35em;
 }
