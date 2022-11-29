@@ -19,10 +19,10 @@ phases:
         fi
       - |
         if expr "${PHASE}" : "PROD" >/dev/null; then
-          echo "BEGIN merge-preview-to-master";
+          echo "BEGIN merge-preview-to-main";
           aws codecommit merge-branches-by-fast-forward \
           --source-commit-specifier preview \
-          --destination-commit-specifier master \
+          --destination-commit-specifier main \
           --repository-name jurassic-map-mirror;
           cd jurassic-map-markers;
         fi
