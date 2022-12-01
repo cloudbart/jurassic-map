@@ -36,11 +36,52 @@
         "GraphQLAPIIdOutput": "tn2uy2oll5ferj2lajmqokzay4",
         "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2022-11-30T21:56:29.161Z",
+      "lastPushTimeStamp": "2022-12-01T01:37:44.442Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
       }
+    }
+  },
+  "auth": {
+    "jurassicmapreact445e4bae": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/auth/jurassicmapreact445e4bae-cloudformation-template.json",
+        "logicalId": "authjurassicmapreact445e4bae"
+      },
+      "lastPushTimeStamp": "2022-12-01T01:37:44.494Z",
+      "output": {
+        "UserPoolId": "us-east-1_uaOjA3yiI",
+        "AppClientIDWeb": "30ei7olmhdts7qtu1qukhtg3fi",
+        "AppClientID": "769aeafncca9g97dgjsq7l94kh",
+        "IdentityPoolId": "us-east-1:bec7d340-8e2b-461d-bac3-85e175f86366",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:360259704161:userpool/us-east-1_uaOjA3yiI",
+        "IdentityPoolName": "jurassicmapreact445e4bae_identitypool_445e4bae__production",
+        "UserPoolName": "jurassicmapreact445e4bae_userpool_445e4bae"
+      },
+      "lastPushDirHash": "lJGnUOKY9hAYiUQLSRTSILpJlYg="
     }
   }
 }

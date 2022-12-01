@@ -10,6 +10,14 @@
       "StackName": "amplify-jurassicmapreact-production-191349",
       "StackId": "arn:aws:cloudformation:us-east-1:360259704161:stack/amplify-jurassicmapreact-production-191349/2bc77480-c65e-11ec-935e-0af60241c70f",
       "AmplifyAppId": "d1o96259snw5dn"
+    },
+    "categories": {
+      "auth": {
+        "jurassicmapreact445e4bae": {}
+      },
+      "api": {
+        "jurassicmapreact": {}
+      }
     }
   }
 }
