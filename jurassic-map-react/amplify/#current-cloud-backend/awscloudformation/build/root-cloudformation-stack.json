@@ -161,7 +161,7 @@
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
           "S3DeploymentBucket": "amplify-jurassicmapreact-production-191349-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/90b1f91151186ade082f813a54db949a121e7d3c",
+          "S3DeploymentRootKey": "amplify-appsync-files/59468842e97c890fd5ff53274111bef7a032847d",
           "env": "production"
         }
       }

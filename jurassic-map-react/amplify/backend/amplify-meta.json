@@ -32,7 +32,7 @@
         "GraphQLAPIIdOutput": "tn2uy2oll5ferj2lajmqokzay4",
         "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2022-12-05T18:51:25.056Z",
+      "lastPushTimeStamp": "2022-12-06T02:26:17.964Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
