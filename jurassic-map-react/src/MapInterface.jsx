@@ -6,6 +6,7 @@ import MapTableSidePanel from './MapTableSidePanel';
 import MapTableIndexPanel from './MapTableIndexPanel';
 import Canvas from './Canvas';
 import { Amplify, API, graphqlOperation } from 'aws-amplify';
+
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
