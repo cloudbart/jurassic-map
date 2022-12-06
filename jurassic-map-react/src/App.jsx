@@ -1,19 +1,12 @@
 import './App.css';
 import MapInterface from './MapInterface';
-import { Amplify } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
 
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
-
-function App({ signOut, user }) {
+function App() {
   return (
     <>
       <div className="App">
         <div className="main">
-          <span className="header"><p>Jurassic Park - Monitoring System</p></span>
-          <button onClick={signOut}>Sign out</button>
+          <span className="header"><p>JurassicMap - Park Monitoring System</p></span>
           <div className="map-table">
             <MapInterface/>
           </div>
@@ -27,4 +20,4 @@ function App({ signOut, user }) {
   );
 }
 
-export default withAuthenticator(App);
+export default App;

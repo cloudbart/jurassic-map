@@ -23,65 +23,22 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-05-07T22:59:26.912Z",
-              "description": "JurassicMapProdKey"
+              "apiKeyExpirationDate": "2023-12-05T18:34:22.857Z",
+              "description": "JurassicMapAPIKey"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         },
         "GraphQLAPIIdOutput": "tn2uy2oll5ferj2lajmqokzay4",
         "GraphQLAPIEndpointOutput": "https://nto2dgwogzfa7iqnkowxtc7jl4.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2022-12-01T01:37:44.442Z",
+      "lastPushTimeStamp": "2022-12-05T18:51:25.056Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apijurassicmapreact"
-      }
+      },
+      "lastPushDirHash": "vkqOe8NC4On/2S7R5Db3vq5HFJ4="
     }
   },
-  "auth": {
-    "jurassicmapreact445e4bae": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false,
-      "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      },
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jurassicmapreact-production-191349-deployment/amplify-cfn-templates/auth/jurassicmapreact445e4bae-cloudformation-template.json",
-        "logicalId": "authjurassicmapreact445e4bae"
-      },
-      "lastPushTimeStamp": "2022-12-01T01:37:44.494Z",
-      "output": {
-        "UserPoolId": "us-east-1_uaOjA3yiI",
-        "AppClientIDWeb": "30ei7olmhdts7qtu1qukhtg3fi",
-        "AppClientID": "769aeafncca9g97dgjsq7l94kh",
-        "IdentityPoolId": "us-east-1:bec7d340-8e2b-461d-bac3-85e175f86366",
-        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:360259704161:userpool/us-east-1_uaOjA3yiI",
-        "IdentityPoolName": "jurassicmapreact445e4bae_identitypool_445e4bae__production",
-        "UserPoolName": "jurassicmapreact445e4bae_userpool_445e4bae"
-      },
-      "lastPushDirHash": "lJGnUOKY9hAYiUQLSRTSILpJlYg="
-    }
-  }
+  "auth": {}
 }

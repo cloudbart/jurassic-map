@@ -5,8 +5,7 @@ import * as mutations from './graphql/mutations';
 import MapTableSidePanel from './MapTableSidePanel';
 import MapTableIndexPanel from './MapTableIndexPanel';
 import Canvas from './Canvas';
-import { API, graphqlOperation } from 'aws-amplify';
-import { Amplify } from 'aws-amplify';
+import { Amplify, API, graphqlOperation } from 'aws-amplify';
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
